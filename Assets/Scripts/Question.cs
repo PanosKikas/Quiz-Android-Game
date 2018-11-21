@@ -24,47 +24,16 @@ public class Question
         }
     }
    
+    public string difficulty;
     
-    public Difficulty questionDifficulty { get; private set; }
-    public string difficulty
+    public Difficulty QuestionDifficulty
     {
         get
         {
-            switch (questionDifficulty)
-            {
-                case Difficulty.easy:
-                    return "Easy";
-
-                case Difficulty.medium:
-                    return "Normal";
-                case Difficulty.hard:
-                    return "Hard";
-                default:
-                    return "";
-            }
-        }
-        set
-        {
-            type = value;
-            switch (type)
-            {
-
-                case "easy":
-                    questionDifficulty = Difficulty.easy;
-                    break;
-                case "medium":
-                    questionDifficulty = Difficulty.medium;
-                    break;
-                case "hard":
-                    questionDifficulty = Difficulty.hard;
-                    break;
-                default:
-                    break;
-
-            }
+            return (Difficulty)System.Enum.Parse(typeof(Difficulty), difficulty);
         }
     }
-
+    
     public string question;
 
     public string correct_answer;
@@ -75,9 +44,7 @@ public class Question
         return "Category: " + category + " Type: " + type +
             " Difficulty: " + difficulty + " Question: " + WebUtility.HtmlDecode(question)
             + " Correct Answer: " + correct_answer 
-            + " Incorrect answers: " + string.Join(" ", incorrect_answers) + "\n";
-
-           
+            + " Incorrect answers: " + string.Join(" ", incorrect_answers) + "\n";       
     }
 
 }

@@ -16,7 +16,7 @@ public class RequestData
     public int MyProperty { get; set; }
     public override string ToString()
     {
-        return "Response Code: " + response_code + "\n Resulting Questions: " + results.ToString();
+        return "Response Code: " + response_code + "\n Resulting Questions: " + results.ToString() + "\n";
     }
 
 }

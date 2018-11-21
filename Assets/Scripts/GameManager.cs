@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 
     private const string catUrl = "https://opentdb.com/api_category.php";
 
-    private const string questUrl = "https://opentdb.com/api.php?amount=10";
+    private const string testQuestUrl = "https://opentdb.com/api.php?amount=10";
 
     public static Dictionary<string, int> AllCategories;
     TriviaCategories catData;
@@ -56,8 +56,9 @@ public class GameManager : MonoBehaviour {
             SetupCategoryData();
         }
     }
-
-
+    
+    // A method that retrieves all the availiable categories from 
+    // the trivia api and uses them to initialize a dictionary <name, id>
    private void SetupCategoryData()
    {
         foreach (Category category in catData.trivia_categories)
@@ -68,24 +69,21 @@ public class GameManager : MonoBehaviour {
             AllCategories.Add(category.name, category.id);
         }
 
-        StartCoroutine(GetQuestion());
+        StartCoroutine(GetQuestions(testQuestUrl));
 
    }
-
-    IEnumerator GetQuestion()
+    
+    // Async Task that takes a url from the trivia api and Retrieves Quesitons
+    // Storing them into a RequestData object.
+    IEnumerator GetQuestions(string questUrl)
     {
         using (WWW www = new WWW(questUrl))
         {
             yield return www;
             string text = www.text;
                        
-            requestData = JsonUtility.FromJson<RequestData>(text);            
-        }
-        
-        foreach (var data in requestData.results)
-        {
-            Debug.Log(data.ToString() + " Type: " + data.TypeOfQuestion);
-          
-        }
+            requestData = JsonUtility.FromJson<RequestData>(text);
+            
+        }   
     }
 }
