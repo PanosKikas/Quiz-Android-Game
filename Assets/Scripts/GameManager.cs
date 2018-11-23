@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using System;
 
 public class GameManager : MonoBehaviour {
 
@@ -16,10 +15,14 @@ public class GameManager : MonoBehaviour {
     public static Dictionary<string, int> AllCategories;
     TriviaCategories catData;
     RequestData requestData;
+
     [SerializeField]
     GameObject buttonPrefab;
+
     [SerializeField]
-    GameObject categoryParent;
+    Transform categoryParent;
+
+    public Sprite[] btnSprites;
 
     #region Singleton
     private void Awake()
@@ -38,8 +41,10 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        ObjectPooler.PreLoadInstances(buttonPrefab, 24, categoryParent);
         AllCategories = new Dictionary<string, int>();
         StartCoroutine(GetCategories());
+
 	}
 
     // Async Task used to get all the categories of the game
@@ -63,10 +68,31 @@ public class GameManager : MonoBehaviour {
    {
         foreach (Category category in catData.trivia_categories)
         {
-            //GameObject gm = Instantiate(buttonPrefab, categoryParent.transform);
-            // Text text = gm.GetComponentInChildren<Text>();
-            //text.text = category.name;
+            
             AllCategories.Add(category.name, category.id);
+            Toggle obj = ObjectPooler.GetInstance(buttonPrefab).GetComponent<Toggle>();
+            
+            if(obj != null)
+            {
+                Text buttText = obj.GetComponentInChildren<Text>();
+                Image img = obj.GetComponent<Image>();
+                img.sprite = btnSprites[Random.Range(0, btnSprites.Length)];
+                // Remove Header for example Entertainment: Something
+                string[] info = category.name.Split(':');
+                if(info.Length > 1)
+                {
+                    string txt = info[1].Substring(1);
+                    buttText.text = txt;
+
+
+                }
+                else
+                {
+                    buttText.text = category.name;
+                }
+
+
+            }
         }
 
         StartCoroutine(GetQuestions(testQuestUrl));
@@ -83,7 +109,7 @@ public class GameManager : MonoBehaviour {
             string text = www.text;
                        
             requestData = JsonUtility.FromJson<RequestData>(text);
-            
-        }   
+        }
+
     }
 }
