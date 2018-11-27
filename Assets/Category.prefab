@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114677504314152864}
   - component: {fileID: 222446257262472200}
   - component: {fileID: 114429978241456834}
+  - component: {fileID: 114209341578823594}
   m_Layer: 5
   m_Name: Category
   m_TagString: Untagged
@@ -80,6 +81,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114209341578823594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348288389987270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26a1d2161fa7c0438ca5084fde30b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114429978241456834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,7 +187,18 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114209341578823594}
+        m_MethodName: OnValueChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
@@ -200,9 +223,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 21
+    m_FontSize: 19
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 18
     m_MaxSize: 24
     m_Alignment: 3
@@ -319,8 +342,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 20.47, y: -0.63}
-  m_SizeDelta: {x: 86.46, y: -10.7}
+  m_AnchoredPosition: {x: 19.152, y: 0.16}
+  m_SizeDelta: {x: 139.44, y: -9.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224889190234184790
 RectTransform:

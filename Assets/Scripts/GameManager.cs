@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -12,17 +13,14 @@ public class GameManager : MonoBehaviour {
 
     private const string testQuestUrl = "https://opentdb.com/api.php?amount=10";
 
-    public static Dictionary<string, int> AllCategories;
-    TriviaCategories catData;
+    public Dictionary<string, Category> AllCategoriesDictionary;
+    
+    [SerializeField]
+    GameObject categoryButtonPrefab;
+
+    
     RequestData requestData;
 
-    [SerializeField]
-    GameObject buttonPrefab;
-
-    [SerializeField]
-    Transform categoryParent;
-
-    public Sprite[] btnSprites;
 
     #region Singleton
     private void Awake()
@@ -35,21 +33,25 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
     #endregion
 
     // Use this for initialization
-    void Start ()
+    private void Start()
     {
-        ObjectPooler.PreLoadInstances(buttonPrefab, 24, categoryParent);
-        AllCategories = new Dictionary<string, int>();
+        ObjectPooler.PreLoadInstances(categoryButtonPrefab, 24);
+        AllCategoriesDictionary = new Dictionary<string, Category>();
+        
         StartCoroutine(GetCategories());
-
-	}
+    }
 
     // Async Task used to get all the categories of the game
     IEnumerator GetCategories()
     {
+
+        TriviaCategories catData;
+
         using (WWW www = new WWW(catUrl))
         {
             yield return www;
@@ -58,47 +60,30 @@ public class GameManager : MonoBehaviour {
 
             catData = JsonUtility.FromJson<TriviaCategories>(text);
             
-            SetupCategoryData();
+            //SetupCategoryData();
         }
-    }
-    
-    // A method that retrieves all the availiable categories from 
-    // the trivia api and uses them to initialize a dictionary <name, id>
-   private void SetupCategoryData()
-   {
-        foreach (Category category in catData.trivia_categories)
+
+        foreach(Category category in catData.trivia_categories)
         {
-            
-            AllCategories.Add(category.name, category.id);
-            Toggle obj = ObjectPooler.GetInstance(buttonPrefab).GetComponent<Toggle>();
-            
-            if(obj != null)
+
+            string[] info = category.name.Split(':');
+            string name;
+            if (info.Length > 1)
             {
-                Text buttText = obj.GetComponentInChildren<Text>();
-                Image img = obj.GetComponent<Image>();
-                img.sprite = btnSprites[Random.Range(0, btnSprites.Length)];
-                // Remove Header for example Entertainment: Something
-                string[] info = category.name.Split(':');
-                if(info.Length > 1)
-                {
-                    string txt = info[1].Substring(1);
-                    buttText.text = txt;
-
-
-                }
-                else
-                {
-                    buttText.text = category.name;
-                }
-
-
+                name = info[1].Substring(1);
             }
+            else
+            {
+                name = category.name;
+            }
+            
+
+            AllCategoriesDictionary.Add(name, category);
         }
 
-        StartCoroutine(GetQuestions(testQuestUrl));
-
-   }
-    
+        SceneManager.LoadScene("MainMenu");
+    }
+  
     // Async Task that takes a url from the trivia api and Retrieves Quesitons
     // Storing them into a RequestData object.
     IEnumerator GetQuestions(string questUrl)
@@ -112,4 +97,6 @@ public class GameManager : MonoBehaviour {
         }
 
     }
+
+    
 }
