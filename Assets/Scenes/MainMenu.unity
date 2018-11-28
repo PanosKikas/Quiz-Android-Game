@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 693755455}
   - component: {fileID: 693755456}
   m_Layer: 5
-  m_Name: BackgroundCategory
+  m_Name: CategorySelectPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,6 +323,8 @@ MonoBehaviour:
   - {fileID: 21300012, guid: 6f6160c40a557a4418ef05ffb82faf19, type: 3}
   - {fileID: 21300026, guid: 6f6160c40a557a4418ef05ffb82faf19, type: 3}
   - {fileID: 21300028, guid: 6f6160c40a557a4418ef05ffb82faf19, type: 3}
+  anyCategorySprite: {fileID: 21300012, guid: 6f6160c40a557a4418ef05ffb82faf19, type: 3}
+  deselectAllSprite: {fileID: 21300026, guid: 6f6160c40a557a4418ef05ffb82faf19, type: 3}
   anyCategoryToggle: {fileID: 1185006044}
 --- !u!114 &693755453
 MonoBehaviour:
@@ -629,7 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -649,7 +651,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Any Category
+  m_Text: Deselect All
 --- !u!222 &976240725
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -764,9 +766,8 @@ GameObject:
   - component: {fileID: 1185006044}
   - component: {fileID: 1185006043}
   - component: {fileID: 1185006042}
-  - component: {fileID: 1185006041}
   m_Layer: 5
-  m_Name: AnyCategory
+  m_Name: AnyCategoryToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -793,18 +794,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1185006041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114631645091124020, guid: cd491f9e1e7ebc44fadd0c6ab83730a7,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1185006039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21e3a2e31ceb5a84083f5057090b702a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1185006042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,7 +814,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300012, guid: 6f6160c40a557a4418ef05ffb82faf19, type: 3}
+  m_Sprite: {fileID: 21300026, guid: 6f6160c40a557a4418ef05ffb82faf19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -884,8 +873,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1185006041}
-        m_MethodName: OnValueChanged
+      - m_Target: {fileID: 693755452}
+        m_MethodName: OnAnyCategoryToggleChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1046,8 +1035,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1595244105}
   m_HandleRect: {fileID: 1595244104}
   m_Direction: 2
-  m_Value: 0.9999233
-  m_Size: 0.43707478
+  m_Value: 0.99992335
+  m_Size: 0.4366855
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

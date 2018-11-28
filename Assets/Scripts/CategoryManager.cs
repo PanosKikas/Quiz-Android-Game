@@ -8,6 +8,8 @@ public class CategoryManager : MonoBehaviour
 {
     [SerializeField]
     private const int minimumSelectedCategories = 3;
+    private const string anyCategoryText = "Any Category";
+    private const string deselectAllText = "Deselect All";
 
     [SerializeField]
     GameObject categoryButtonPrefab;
@@ -20,13 +22,32 @@ public class CategoryManager : MonoBehaviour
 
     public Sprite[] btnSprites;
 
+    [SerializeField]
+    Sprite anyCategorySprite;
+
+    [SerializeField]
+    Sprite deselectAllSprite;
     
     public Toggle anyCategoryToggle;
 
+    private string currentToggleText;
+    private Image selectDeselectImage;
+    private Text selectDeselectText;
+   
    
     // Use this for initialization
     void Start ()
     {
+        selectDeselectText = anyCategoryToggle.GetComponentInChildren<Text>();
+        selectDeselectImage = anyCategoryToggle.GetComponent<Image>();
+        if(selectDeselectText == null)
+        {
+            Debug.LogError("No text found in toggle any category / deselect all");
+        }
+        
+        currentToggleText = deselectAllText;
+        selectDeselectImage.sprite = deselectAllSprite;
+        anyCategoryToggle.isOn = false;
         SetUpCategoryButtons();
 	}
 
@@ -34,6 +55,8 @@ public class CategoryManager : MonoBehaviour
     // the trivia api and uses them to initialize a dictionary <name, id>
     private void SetUpCategoryButtons()
     {
+        selectDeselectText.text = currentToggleText;
+        
         foreach (var entry in GameManager.Instance.AllCategoriesDictionary)
         { 
             Toggle obj = ObjectPooler.GetInstance(categoryButtonPrefab,categoryParent).GetComponent<Toggle>();
@@ -53,13 +76,8 @@ public class CategoryManager : MonoBehaviour
     public void StartGame()
     {
         Toggle[] categoryToggles = GetComponentsInChildren<Toggle>();
-        List<Category> selectedCategories = new List<Category>();
-        if(anyCategoryToggle.isOn)
-        {
-            selectedCategories = GameManager.Instance.AllCategoriesDictionary.Values.ToList();
-        }
-        else
-        {
+        List<int> selectedCategories = new List<int>();
+       
             foreach (Toggle toggle in categoryToggles)
             {
                 if (toggle.isOn)
@@ -67,28 +85,72 @@ public class CategoryManager : MonoBehaviour
                     Text catText = toggle.gameObject.GetComponentInChildren<Text>();
                     if (catText != null)
                     {
-                        Category category = GameManager.Instance.AllCategoriesDictionary[catText.text];
+                        int categoryID = GameManager.Instance.AllCategoriesDictionary[catText.text];
                         //Debug.Log("Selected Category: ID: " + idSelected + " NAME: " + catText.text);
                         
-                        selectedCategories.Add(category);
+                        selectedCategories.Add(categoryID);
                     }
                 }
             }
-        }
         
+       
+        // check if we have selected at least what the minimum amount of categories is
         if (selectedCategories.Count >= minimumSelectedCategories)
         {
-            foreach (Category category in selectedCategories)
+            // Start Game
+            foreach (int categoryID in selectedCategories)
             {
-                Debug.Log("ID: " + category.id + " NAME: " + category.name + "\n");
+                Debug.Log("ID: " + categoryID + "\n");
             }
             Debug.Log("Starting Game");
+            GameManager.Instance.StartGame(selectedCategories);
         }
-        else
+        else // print a message to the screen
         {
             Debug.Log("You have to select at least 3 categories");
         }
     }
+
+    // When the toggle of any category is changed
+    public void OnAnyCategoryToggleChanged()
+    {
+        bool willSelect;
+        // If we have just ticked any category -> select all categories
+        if (anyCategoryToggle.isOn)
+        {
+            
+            if(currentToggleText.Equals(anyCategoryText))
+            {
+                currentToggleText = deselectAllText;
+                selectDeselectImage.sprite = deselectAllSprite;  
+                willSelect = true;
+            }
+            else
+            {
+                currentToggleText = anyCategoryText;
+                selectDeselectImage.sprite = anyCategorySprite;
+                willSelect = false;
+            }
+            selectDeselectText.text = currentToggleText;
+            ToggleCategories(willSelect);
+        }
+        anyCategoryToggle.isOn = false;
+    }
+
+    void ToggleCategories(bool willSelect)
+    {
+        Toggle[] toggles = gameObject.transform.parent.GetComponentsInChildren<Toggle>();
+        for (int i = 0; i < toggles.Length; ++i)
+        {
+            Toggle currentToggle = toggles[i];
+            if (currentToggle != anyCategoryToggle)
+            {
+                toggles[i].isOn = willSelect;
+            }
+        }
+    }
+
+  
 
 
 }
