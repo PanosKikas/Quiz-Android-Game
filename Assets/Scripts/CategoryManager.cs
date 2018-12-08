@@ -37,6 +37,8 @@ public class CategoryManager : MonoBehaviour
     private Image selectDeselectImage;
     private Text selectDeselectText;
 
+    GameObject[] categoryObjects;
+
     Toggle[] difficultyToggles;
 
     // Use this for initialization
@@ -46,6 +48,9 @@ public class CategoryManager : MonoBehaviour
         selectDeselectText = anyCategoryToggle.GetComponentInChildren<Text>();
         selectDeselectImage = anyCategoryToggle.GetComponent<Image>();
         difficultyToggles = difficultySelectPanel.GetComponentsInChildren<Toggle>();
+
+        categoryObjects = new GameObject[GameManager.Instance.AllCategoriesDictionary.Count];
+
         if(selectDeselectText == null)
         {
             Debug.LogError("No text found in toggle any category / deselect all");
@@ -62,7 +67,8 @@ public class CategoryManager : MonoBehaviour
     private void SetUpCategoryButtons()
     {
         selectDeselectText.text = currentToggleText;
-        
+
+        int j = 0;
         foreach (var entry in GameManager.Instance.AllCategoriesDictionary)
         { 
             Toggle obj = ObjectPooler.GetInstance(categoryButtonPrefab,categoryParent).GetComponent<Toggle>();
@@ -74,7 +80,11 @@ public class CategoryManager : MonoBehaviour
                 img.sprite = btnSprites[Random.Range(0, btnSprites.Length)];
                 // Remove Header for example Entertainment: Something
                 buttText.text = entry.Key;
+
+                categoryObjects[j] = obj.gameObject;
+                ++j;
             }
+            
         }
         //StartCoroutine(GetQuestions(testQuestUrl));
     }
@@ -128,9 +138,8 @@ public class CategoryManager : MonoBehaviour
                     break;
                 }
             }
-
-               
-            GameManager.Instance.StartGame(selectedCategories, difficulty);
+            
+            GameManager.Instance.StartGame(selectedCategories, difficulty, categoryObjects);
         }
         else // print a message to the screen
         {
@@ -138,6 +147,7 @@ public class CategoryManager : MonoBehaviour
         }
     }
 
+    
     // When the toggle of any category is changed
     public void OnAnyCategoryToggleChanged()
     {

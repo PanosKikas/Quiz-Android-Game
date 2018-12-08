@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
     private const string getSessionTokenUrl = "https://opentdb.com/api_token.php?command=request";
     private string SessionToken;
 
+    private const int pooledCategoryButtons = 24;
+
     public Dictionary<string, int> AllCategoriesDictionary;
     
 
@@ -43,7 +45,9 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     private void Start()
     {
-        ObjectPooler.PreLoadInstances(categoryButtonPrefab, 24);
+        // Object Pool the category buttons
+        ObjectPooler.PreLoadInstances(categoryButtonPrefab, pooledCategoryButtons, gameObject.transform);
+
         AllCategoriesDictionary = new Dictionary<string, int>();
         questionList = new List<Question>();
         StartCoroutine(GetSessionToken());
@@ -124,8 +128,13 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("MainGame");
     }
 
-    public void StartGame(List<int> selectedCategories, Difficulty difficulty)
+    public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
+        // Pool the category buttons
+        foreach (GameObject category in categories)
+        {
+            ObjectPooler.StoreInstance(category, this.transform);
+        }
         // Get questions for each category and store them in the question list
         string[] requestURLS = GenerateUrlArray(selectedCategories, difficulty);
         

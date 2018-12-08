@@ -53,7 +53,7 @@ public class ObjectPooler : MonoBehaviour
     }
 
  
-    public static void StoreInstance(GameObject gameObjectInstance)
+    public static void StoreInstance(GameObject gameObjectInstance, Transform parent = null)
     {
         gameObjectInstance.gameObject.SetActive(false);
         Stack<GameObject> instancesList;
@@ -66,6 +66,11 @@ public class ObjectPooler : MonoBehaviour
             instancesList = new Stack<GameObject>();
             instancesList.Push(gameObjectInstance);
             pool.Add(gameObjectInstance.name, instancesList);
+        }
+
+        if(parent)
+        {
+            gameObjectInstance.transform.SetParent(parent, false);
         }
     }
 
