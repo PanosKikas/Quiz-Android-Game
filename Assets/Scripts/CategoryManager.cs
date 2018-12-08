@@ -27,19 +27,25 @@ public class CategoryManager : MonoBehaviour
 
     [SerializeField]
     Sprite deselectAllSprite;
+
+    [SerializeField]
+    GameObject difficultySelectPanel;
     
     public Toggle anyCategoryToggle;
 
     private string currentToggleText;
     private Image selectDeselectImage;
     private Text selectDeselectText;
-   
-   
+
+    Toggle[] difficultyToggles;
+
     // Use this for initialization
     void Start ()
     {
+
         selectDeselectText = anyCategoryToggle.GetComponentInChildren<Text>();
         selectDeselectImage = anyCategoryToggle.GetComponent<Image>();
+        difficultyToggles = difficultySelectPanel.GetComponentsInChildren<Toggle>();
         if(selectDeselectText == null)
         {
             Debug.LogError("No text found in toggle any category / deselect all");
@@ -92,18 +98,39 @@ public class CategoryManager : MonoBehaviour
                     }
                 }
             }
-        
-       
+               
         // check if we have selected at least what the minimum amount of categories is
         if (selectedCategories.Count >= minimumSelectedCategories)
         {
-            // Start Game
-            foreach (int categoryID in selectedCategories)
+            Difficulty difficulty = Difficulty.medium;
+            // Find the difficulty of the questions
+            foreach (Toggle difficultyToggle in difficultyToggles)
             {
-                Debug.Log("ID: " + categoryID + "\n");
+
+                if(difficultyToggle.isOn)
+                {
+                    string text = difficultyToggle.GetComponentInChildren<Text>().text;
+                    switch (text)
+                    {
+                        case "EASY":
+                            difficulty = Difficulty.easy;
+                            break;
+                        case "MEDIUM":
+                            difficulty = Difficulty.medium;
+                            break;
+                        case "HARD":
+                            difficulty = Difficulty.hard;
+                            break;
+                        default:
+                            Debug.LogError("No difficulty found error");
+                            break;
+                    }
+                    break;
+                }
             }
-            Debug.Log("Starting Game");
-            GameManager.Instance.StartGame(selectedCategories);
+
+               
+            GameManager.Instance.StartGame(selectedCategories, difficulty);
         }
         else // print a message to the screen
         {

@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
             string retrievedData = www.text;
             Token generatedToken = JsonUtility.FromJson<Token>(retrievedData);
             SessionToken = generatedToken.token;
-            Debug.Log("Session token is: " + SessionToken);
+            //Debug.Log("Session token is: " + SessionToken);
         }
                
     }
@@ -120,19 +120,20 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        RandomizeQuestionList();
+        //RandomizeQuestionList();
         SceneManager.LoadScene("MainGame");
     }
 
-    public void StartGame(List<int> selectedCategories)
+    public void StartGame(List<int> selectedCategories, Difficulty difficulty)
     {
         // Get questions for each category and store them in the question list
-        string[] requestURLS = GenerateUrlArray(selectedCategories);
+        string[] requestURLS = GenerateUrlArray(selectedCategories, difficulty);
         
         StartCoroutine(GetQuestions(requestURLS));
        
     }
 
+    /*
     private void RandomizeQuestionList()
     {
         System.Random rng = new System.Random();
@@ -151,18 +152,22 @@ public class GameManager : MonoBehaviour {
             Debug.Log(question.ToString());
         }
     }
+    */
 
-    private string[] GenerateUrlArray(List<int> selectedIds)
+    private string[] GenerateUrlArray(List<int> selectedIds, Difficulty difficulty)
     {
         string[] requestURLS = new string[selectedIds.Count];
         StringBuilder requestURL = new StringBuilder();
         for (int i =0; i <selectedIds.Count; ++i)
         {
             requestURL.Clear();
+            // append category and token
             requestURL.Append(defaultGetQuestUrl).
                 Append("&token=").Append(SessionToken).Append("&category=");
+           
 
             requestURL.Append(selectedIds[i]);
+            requestURL.Append("&difficulty=").Append(difficulty.ToString());
             requestURLS[i] = requestURL.ToString();
         }
         
