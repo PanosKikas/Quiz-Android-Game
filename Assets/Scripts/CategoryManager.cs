@@ -138,7 +138,7 @@ public class CategoryManager : MonoBehaviour
                     break;
                 }
             }
-            
+
             GameManager.Instance.StartGame(selectedCategories, difficulty, categoryObjects);
         }
         else // print a message to the screen

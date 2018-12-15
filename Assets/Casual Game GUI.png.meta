@@ -25,7 +25,7 @@ TextureImporter:
     21300040: Casual Game GUI_20
     21300042: Casual Game GUI_21
     21300044: Casual Game GUI_22
-    21300046: Casual Game GUI_23
+    21300046: Scrolling
     21300048: Casual Game GUI_24
     21300050: Casual Game GUI_25
     21300052: Casual Game GUI_26
@@ -38,8 +38,8 @@ TextureImporter:
     21300066: Casual Game GUI_34
     21300068: Casual Game GUI_35
     21300070: Casual Game GUI_36
-    21300072: Casual Game GUI_37
-    21300074: Casual Game GUI_38
+    21300072: LoadingBg
+    21300074: LoadingBar
     21300076: Casual Game GUI_39
     21300078: Casual Game GUI_33
     21300080: Casual Game GUI_40
@@ -596,7 +596,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Casual Game GUI_23
+      name: Scrolling
       rect:
         serializedVersion: 2
         x: 2197
@@ -856,7 +856,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Casual Game GUI_37
+      name: LoadingBg
       rect:
         serializedVersion: 2
         x: 43
@@ -876,7 +876,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Casual Game GUI_38
+      name: LoadingBar
       rect:
         serializedVersion: 2
         x: 41

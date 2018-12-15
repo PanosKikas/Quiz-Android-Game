@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour {
 
         AllCategoriesDictionary = new Dictionary<string, int>();
         questionList = new List<Question>();
-        StartCoroutine(GetSessionToken());
-        StartCoroutine(GetCategories());
+        
+        StartCoroutine(LoadSceneAsync(2));
     }
 
     IEnumerator GetSessionToken()
@@ -62,14 +62,13 @@ public class GameManager : MonoBehaviour {
             string retrievedData = www.text;
             Token generatedToken = JsonUtility.FromJson<Token>(retrievedData);
             SessionToken = generatedToken.token;
-            //Debug.Log("Session token is: " + SessionToken);
-        }
-               
+        }          
     }
 
     // Async Task used to get all the categories of the game
     IEnumerator GetCategories()
     {
+        StartCoroutine(GetSessionToken());
 
         TriviaCategories catData;
 
@@ -128,8 +127,10 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("MainGame");
     }
 
-    public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
+    IEnumerator LoadGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
+        SceneManager.LoadScene("LoadScreen");
+
         // Pool the category buttons
         foreach (GameObject category in categories)
         {
@@ -138,31 +139,18 @@ public class GameManager : MonoBehaviour {
         // Get questions for each category and store them in the question list
         string[] requestURLS = GenerateUrlArray(selectedCategories, difficulty);
         
-        StartCoroutine(GetQuestions(requestURLS));
-       
+        yield return  StartCoroutine(GetQuestions(requestURLS));
+
+        SceneManager.LoadScene(3);
     }
 
-    /*
-    private void RandomizeQuestionList()
+    public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
-        System.Random rng = new System.Random();
-        int n = questionList.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = rng.Next(n + 1);
-            Question value = questionList[k];
-            questionList[k] = questionList[n];
-            questionList[n] = value;
-        }
-        
-        foreach (Question question in questionList)
-        {
-            Debug.Log(question.ToString());
-        }
+        StartCoroutine(LoadGame(selectedCategories, difficulty, categories));
     }
-    */
 
+
+   
     private string[] GenerateUrlArray(List<int> selectedIds, Difficulty difficulty)
     {
         string[] requestURLS = new string[selectedIds.Count];
@@ -181,6 +169,14 @@ public class GameManager : MonoBehaviour {
         }
         
         return requestURLS;
+    }
+
+    IEnumerator LoadSceneAsync(int SceneIndex)
+    {
+        SceneManager.LoadScene("LoadScreen");
+
+        yield return StartCoroutine(GetCategories());    
+        SceneManager.LoadScene(SceneIndex);
     }
     
 }
