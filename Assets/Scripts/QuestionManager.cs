@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
 using System.Linq;
+using System.Collections;
 
 public class QuestionManager : MonoBehaviour
 {
@@ -45,16 +46,22 @@ public class QuestionManager : MonoBehaviour
     List<Question> QuestionList;
 
     Question currentQuestion;
-
+    PlayerStats playerStats;
     private List<Button> wrongAnswers;
     private Button correctAnswerButton;
-
-
     
+    ExtraInfoUI extraInfo;
+  
 	// Use this for initialization
 	void Start ()
     {
         gameManager = GameManager.Instance;
+        extraInfo = GetComponentInChildren<ExtraInfoUI>();
+        playerStats = gameManager.playerStats;
+
+        extraInfo.UpdateLivesText(playerStats.RemainingLives);
+        extraInfo.UpdateScoreText(playerStats.CurrentScore);
+
         QuestionList = gameManager.questionList;
         wrongAnswers = new List<Button>();
         GetNextQuestion();
@@ -133,21 +140,40 @@ public class QuestionManager : MonoBehaviour
         this.categoryText.text = currentQuestion.category;
     }
 
-    public void OnAnswerClicked(Button button)
+    public void ButtonClicked(Button button)
     {
-       // Text text = button.GetComponentInChildren<Text>();
-        //string correctAnswer = WebUtility.HtmlDecode(currentQuestion.correct_answer);
+        StartCoroutine(OnAnswerClicked(button));
+    }
+
+
+    public IEnumerator OnAnswerClicked(Button button)
+    {
+
+        foreach (Button wrongButton in wrongAnswers)
+        {
+            wrongButton.image.color = Color.red;
+            wrongButton.interactable = false;
+        }
+
+        correctAnswerButton.image.color = Color.green;
+        correctAnswerButton.interactable = false;
+
         if(button != correctAnswerButton)
         {
-            Debug.Log("Wrong Answer...");
+            playerStats.RemainingLives--;
+            extraInfo.UpdateLivesText(playerStats.RemainingLives);
+            
         }
         else
         {
-            Debug.Log("Correct Answer!");
+            playerStats.CurrentScore += ((int)currentQuestion.QuestionDifficulty + 1) * 200;
+            extraInfo.UpdateScoreText(playerStats.CurrentScore);
         }
-
+        yield return new WaitForSeconds(2);
         GetNextQuestion();
     }
+
+    
 
     
 

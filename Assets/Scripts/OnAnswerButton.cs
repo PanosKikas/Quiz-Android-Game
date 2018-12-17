@@ -8,7 +8,7 @@ public class OnAnswerButton : MonoBehaviour {
         Button thisButton = GetComponent<Button>();
         if (thisButton != null)
         {
-            QuestionManager.Instance.OnAnswerClicked(thisButton);
+            QuestionManager.Instance.ButtonClicked(thisButton);
         }
     }
 }

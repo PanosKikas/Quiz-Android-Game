@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public static GameManager Instance;
 
@@ -18,6 +20,9 @@ public class GameManager : MonoBehaviour {
     private const int pooledCategoryButtons = 24;
 
     public Dictionary<string, int> AllCategoriesDictionary;
+
+    
+    public PlayerStats playerStats;
     
 
     [SerializeField]
@@ -56,12 +61,20 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator GetSessionToken()
     {
-        using (WWW www = new WWW(getSessionTokenUrl))
+        using (UnityWebRequest www = UnityWebRequest.Get(getSessionTokenUrl))
         {
-            yield return www;
-            string retrievedData = www.text;
-            Token generatedToken = JsonUtility.FromJson<Token>(retrievedData);
-            SessionToken = generatedToken.token;
+            yield return www.SendWebRequest();
+
+            if(www.isNetworkError || www.isHttpError)
+            {
+                Debug.LogError(www.error);
+            }
+            else
+            {
+                string retrievedData = www.downloadHandler.text;
+                Token generatedToken = JsonUtility.FromJson<Token>(retrievedData);
+                SessionToken = generatedToken.token;
+            }      
         }          
     }
 
@@ -70,37 +83,44 @@ public class GameManager : MonoBehaviour {
     {
         StartCoroutine(GetSessionToken());
 
-        TriviaCategories catData;
+        TriviaCategories catData = null;
 
-        using (WWW www = new WWW(catUrl))
+        using (UnityWebRequest www =  UnityWebRequest.Get(catUrl))
         {
-            yield return www;
-            string text = www.text;
-            
-
-            catData = JsonUtility.FromJson<TriviaCategories>(text);
-            
-            //SetupCategoryData();
-        }
-
-        foreach(Category category in catData.trivia_categories)
-        {
-
-            string[] info = category.name.Split(':');
-            string name;
-            if (info.Length > 1)
+            yield return www.SendWebRequest();
+           
+            if (www.isNetworkError || www.isHttpError)
             {
-                name = info[1].Substring(1);
+                Debug.LogError(www.error);
             }
             else
             {
-                name = category.name;
-            }
-            
-            AllCategoriesDictionary.Add(name, category.id);
+                string retrievedData = www.downloadHandler.text;      
+                catData = JsonUtility.FromJson<TriviaCategories>(retrievedData);
+            }        
         }
 
-        SceneManager.LoadScene("MainMenu");
+        if (catData != null)
+        {
+            foreach (Category category in catData.trivia_categories)
+            {
+
+                string[] info = category.name.Split(':');
+                string name;
+                if (info.Length > 1)
+                {
+                    name = info[1].Substring(1);
+                }
+                else
+                {
+                    name = category.name;
+                }
+
+                AllCategoriesDictionary.Add(name, category.id);
+            }
+
+            SceneManager.LoadScene("MainMenu");
+        } 
     }
   
     // Async Task that takes a url from the trivia api and Retrieves Quesitons
@@ -109,12 +129,20 @@ public class GameManager : MonoBehaviour {
     {
         foreach (string URL in questUrl)
         {
-            using (WWW www = new WWW(URL))
+            using (UnityWebRequest www = UnityWebRequest.Get(URL))
             {
-                yield return www;
-                string text = www.text;
-                
-                requestData = JsonUtility.FromJson<RequestData>(text);
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    Debug.LogError(www.error);
+                }
+                else
+                {
+                    string retrievedData = www.downloadHandler.text;
+                    requestData = JsonUtility.FromJson<RequestData>(retrievedData);
+                }
+                       
             }
 
             foreach (Question question in requestData.results)
@@ -146,11 +174,18 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
+        InitializePlayerStats(difficulty);
         StartCoroutine(LoadGame(selectedCategories, difficulty, categories));
     }
 
+    private void InitializePlayerStats(Difficulty _difficulty)
+    {
+        playerStats.RemainingLives = 5 + 2*(int)_difficulty;
+        playerStats.CurrentScore = 0;
+        Debug.Log("Lives: " + playerStats.RemainingLives);
+    }
 
-   
+    
     private string[] GenerateUrlArray(List<int> selectedIds, Difficulty difficulty)
     {
         string[] requestURLS = new string[selectedIds.Count];
