@@ -9,12 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Persistent.unity
     guid: 5af8896a4136b2f4489a305196ce58b2
   - enabled: 1
-    path: Assets/Scenes/LoadScreen.unity
-    guid: 5561fd01ff7ddef49b88b79e937594c9
+    path: Assets/Scenes/StartScreen.unity
+    guid: b525d2f6e4d92654d8d18b311fd9c4ad
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/MainGame.unity
     guid: 862e392edda07e149b523c4d4343fc29
+  - enabled: 1
+    path: Assets/Scenes/LoadScreen.unity
+    guid: 5561fd01ff7ddef49b88b79e937594c9
   m_configObjects: {}

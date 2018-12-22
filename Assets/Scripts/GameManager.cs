@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour
     private const int pooledCategoryButtons = 24;
 
     public Dictionary<string, int> AllCategoriesDictionary;
-
-    
+            
     public PlayerStats playerStats;
     
 
@@ -56,8 +55,18 @@ public class GameManager : MonoBehaviour
 
         AllCategoriesDictionary = new Dictionary<string, int>();
         questionList = new List<Question>();
-        
-        StartCoroutine(LoadSceneAsync(2,GetCategories()));
+
+        SceneManager.LoadScene(GetNextSceneIndex());
+    }
+
+    public void ToCategorySelect()
+    {       
+        StartCoroutine(LoadSceneAsync(GetNextSceneIndex(), GetCategories()));
+    }
+
+    private int GetNextSceneIndex()
+    {
+        return SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     private void Update()
@@ -182,7 +191,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
         InitializePlayerStats(difficulty);
-        StartCoroutine(LoadSceneAsync(3,LoadGame(selectedCategories, difficulty, categories)));      
+        StartCoroutine(LoadSceneAsync(GetNextSceneIndex(),LoadGame(selectedCategories, difficulty, categories)));      
     }
 
     private void InitializePlayerStats(Difficulty _difficulty)
