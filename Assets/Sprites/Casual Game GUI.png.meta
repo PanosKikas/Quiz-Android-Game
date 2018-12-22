@@ -17,8 +17,8 @@ TextureImporter:
     21300024: Casual Game GUI_12
     21300026: btnRed
     21300028: btnWhite
-    21300030: Casual Game GUI_15
-    21300032: Casual Game GUI_16
+    21300030: LivesSprite
+    21300032: TimerSprite
     21300034: Casual Game GUI_17
     21300036: Casual Game GUI_18
     21300038: Casual Game GUI_19
@@ -436,7 +436,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Casual Game GUI_15
+      name: LivesSprite
       rect:
         serializedVersion: 2
         x: 1796
@@ -456,7 +456,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Casual Game GUI_16
+      name: TimerSprite
       rect:
         serializedVersion: 2
         x: 1955

@@ -24,46 +24,50 @@ public class QuestionManager : MonoBehaviour
     #endregion
 
     [SerializeField]
-    Text questionText;
-    [SerializeField]
-    Text difficultyText;
-    [SerializeField]
-    Text categoryText;
-
-    [SerializeField]
     Transform MultipleAnswersPanel;
 
     [SerializeField]
-    GameObject multipleAnswerButton;
-
-    [SerializeField]
     Transform trueFalsePanel;
-
-    [SerializeField]
-    GameObject booleanButtonPrefab;
-
+    
     GameManager gameManager;
     List<Question> QuestionList;
 
     Question currentQuestion;
     PlayerStats playerStats;
+
     private List<Button> wrongAnswers;
     private Button correctAnswerButton;
-    
-    ExtraInfoUI extraInfo;
-  
+
+    [SerializeField]
+    private Button trueBooleanButton;
+    [SerializeField]
+    private Button falseBooleanButton;
+
+    private GameObject trueButtonParent;
+    private GameObject falseButtonParent;
+
+    QuestionUI questionUI;
+
+    Button[] multipleAnswerButtons;
+
 	// Use this for initialization
 	void Start ()
     {
         gameManager = GameManager.Instance;
-        extraInfo = GetComponentInChildren<ExtraInfoUI>();
+        questionUI = GetComponent<QuestionUI>();
         playerStats = gameManager.playerStats;
 
-        extraInfo.UpdateLivesText(playerStats.RemainingLives);
-        extraInfo.UpdateScoreText(playerStats.CurrentScore);
+        questionUI.UpdateLivesText(playerStats.RemainingLives);
+        questionUI.UpdateScoreText(playerStats.CurrentScore);
+
+        trueButtonParent = trueBooleanButton.transform.parent.gameObject;
+        falseButtonParent = falseBooleanButton.transform.parent.gameObject;
 
         QuestionList = gameManager.questionList;
         wrongAnswers = new List<Button>();
+
+        multipleAnswerButtons = MultipleAnswersPanel.GetComponentsInChildren<Button>(true);
+        
         GetNextQuestion();
     }
 	
@@ -76,105 +80,138 @@ public class QuestionManager : MonoBehaviour
         int randomQuestionIndex = Random.Range(0, QuestionList.Count);
         currentQuestion = QuestionList[randomQuestionIndex];
         QuestionList.RemoveAt(randomQuestionIndex);
-        
-        List<string> answers = currentQuestion.incorrect_answers.ToList<string>();
-        
-        answers.Add(currentQuestion.correct_answer);
-        
-        for (int i = 0; i < currentQuestion.incorrect_answers.Length +1; i++)
-        {
-            int randIndex = Random.Range(0, answers.Count);
-            Button answerButton;
-            if(currentQuestion.TypeOfQuestion == QuestionType.boolean )
-            {
-                answerButton = Instantiate(booleanButtonPrefab, trueFalsePanel).GetComponent<Button>();
-            }
-            else
-            {
-                answerButton = Instantiate(multipleAnswerButton, MultipleAnswersPanel).GetComponent<Button>();
-            }
-            
-            
-            Text _text = answerButton.GetComponentInChildren<Text>();
-            string currentAnswer = answers.ElementAt(randIndex);
-            if(currentAnswer.Equals(currentQuestion.correct_answer))
-            {
-                correctAnswerButton = answerButton;
-            }
-            else
-            {
-                wrongAnswers.Add(answerButton);
-            }
 
-            _text.text = WebUtility.HtmlDecode(answers.ElementAt(randIndex));
-            answers.RemoveAt(randIndex);
-        }
+        // Set the UI elements of the current question
+        questionUI.SetQuestionUI(currentQuestion);
 
-        Debug.Log(currentQuestion.ToString());
-        
-        SetQuestionUI();
-        
+        // Set the answer buttons
+        SetAnswerButtons(currentQuestion.TypeOfQuestion);       
     }
 
+    void SetAnswerButtons(QuestionType type)
+    {        
+        switch (type)
+        {
+            case QuestionType.multiple:
+
+                List<string> answers = currentQuestion.incorrect_answers.ToList<string>();
+                answers.Add(currentQuestion.correct_answer);
+
+                for (int i = 0; i < currentQuestion.incorrect_answers.Length + 1; i++)
+                {
+                    int randIndex = Random.Range(0, answers.Count);
+                    
+                    Button answerButton = multipleAnswerButtons[i];
+                    
+                    Text _text = answerButton.GetComponentInChildren<Text>();
+                    string currentAnswer = answers.ElementAt(randIndex);
+                    if (currentAnswer.Equals(currentQuestion.correct_answer))
+                    {
+                        correctAnswerButton = answerButton;
+                    }
+                    else
+                    {
+                        wrongAnswers.Add(answerButton);
+                    }
+
+                    _text.text = WebUtility.HtmlDecode(answers.ElementAt(randIndex));
+                    answers.RemoveAt(randIndex);
+                    answerButton.interactable = true;
+                    answerButton.gameObject.SetActive(true);
+                }
+
+                break;
+
+            case QuestionType.boolean:       
+                
+                trueButtonParent.SetActive(true);
+                falseButtonParent.SetActive(true);
+              
+                if(currentQuestion.correct_answer.Equals("True"))
+                {
+                    correctAnswerButton = trueBooleanButton;
+                    wrongAnswers.Add(falseBooleanButton);
+                }
+                else
+                {
+                    correctAnswerButton = falseBooleanButton;
+                    wrongAnswers.Add(trueBooleanButton);
+                }
+                break;
+        }
+    }
+       
     void ClearPreviousAnswers()
-    {      
+    {       
+        if (trueButtonParent.activeInHierarchy)
+        {
+            trueButtonParent.SetActive(false);
+            trueBooleanButton.interactable = true;
+        }
+
+        if(falseButtonParent.activeInHierarchy)
+        {
+            falseButtonParent.SetActive(false);
+            falseBooleanButton.interactable = true;
+            wrongAnswers.Clear();
+            correctAnswerButton = null;
+        }
+        
         foreach (Button answer in wrongAnswers)
         {
-            Destroy(answer.gameObject);
+            if (answer.gameObject.activeSelf)
+            {
+                answer.gameObject.SetActive(false);
+            }
         }
-            
-
-        if(correctAnswerButton != null)
-        {
-            Destroy(correctAnswerButton.gameObject);
-        }
-        wrongAnswers.Clear();
-    }
         
-
-    void SetQuestionUI()
-    {
-        // Set the UI
-        this.questionText.text = WebUtility.HtmlDecode(currentQuestion.question);
-        this.difficultyText.text = "Difficulty: " + currentQuestion.difficulty.ToUpper();
-        this.categoryText.text = currentQuestion.category;
+        if(correctAnswerButton != null && correctAnswerButton.gameObject.activeSelf)
+        {
+            correctAnswerButton.gameObject.SetActive(false);
+        }
+        wrongAnswers.Clear();        
     }
-
+    
     public void ButtonClicked(Button button)
     {
         StartCoroutine(OnAnswerClicked(button));
     }
-
-
+    
     public IEnumerator OnAnswerClicked(Button button)
     {
-
-        foreach (Button wrongButton in wrongAnswers)
-        {
-            wrongButton.image.color = Color.red;
-            wrongButton.interactable = false;
-        }
-
-        correctAnswerButton.image.color = Color.green;
-        correctAnswerButton.interactable = false;
-
+        AnimateAnswerButtons();
+        
         if(button != correctAnswerButton)
         {
             playerStats.RemainingLives--;
-            extraInfo.UpdateLivesText(playerStats.RemainingLives);
-            
+            if (playerStats.RemainingLives <= 0)
+            {
+                gameManager.EndGame();
+            }
+            questionUI.UpdateLivesText(playerStats.RemainingLives);           
         }
         else
         {
             playerStats.CurrentScore += ((int)currentQuestion.QuestionDifficulty + 1) * 200;
-            extraInfo.UpdateScoreText(playerStats.CurrentScore);
+            questionUI.UpdateScoreText(playerStats.CurrentScore);
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         GetNextQuestion();
     }
 
-    
+    void AnimateAnswerButtons()
+    {
+        questionUI.StopAllCoroutines();
 
-    
+        foreach (Button _button in wrongAnswers)
+        {
+            Animator anim = _button.GetComponentInParent<Animator>();
+            _button.interactable = false;
+            anim.SetTrigger("Incorrect");
+        }
 
+        correctAnswerButton.interactable = false;
+        correctAnswerButton.GetComponentInParent<Animator>().SetTrigger("Correct");
+    }
+    
 }

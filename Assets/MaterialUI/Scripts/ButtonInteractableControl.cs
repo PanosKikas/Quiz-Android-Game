@@ -46,7 +46,7 @@ namespace MaterialUI
 				}
 				else
 				{
-					canvasGroup.alpha = 0.5f;
+					//canvasGroup.alpha = 0.5f;
 					canvasGroup.blocksRaycasts = false;
 
 					if (shadows)

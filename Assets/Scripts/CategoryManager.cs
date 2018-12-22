@@ -8,57 +8,27 @@ public class CategoryManager : MonoBehaviour
 {
     [SerializeField]
     private const int minimumSelectedCategories = 3;
-    private const string anyCategoryText = "Any Category";
-    private const string deselectAllText = "Deselect All";
 
     [SerializeField]
     GameObject categoryButtonPrefab;
 
     [SerializeField]
     Transform categoryParent;
-
-    [SerializeField]
-    GameObject anyCategoryPrefab;
-
     public Sprite[] btnSprites;
 
     [SerializeField]
-    Sprite anyCategorySprite;
-
-    [SerializeField]
-    Sprite deselectAllSprite;
-
-    [SerializeField]
     GameObject difficultySelectPanel;
-    
-    public Toggle anyCategoryToggle;
-
-    private string currentToggleText;
-    private Image selectDeselectImage;
-    private Text selectDeselectText;
-
+           
     GameObject[] categoryObjects;
 
     Toggle[] difficultyToggles;
-
+    List<Toggle> categoryToggles;
     // Use this for initialization
     void Start ()
-    {
-
-        selectDeselectText = anyCategoryToggle.GetComponentInChildren<Text>();
-        selectDeselectImage = anyCategoryToggle.GetComponent<Image>();
+    {     
         difficultyToggles = difficultySelectPanel.GetComponentsInChildren<Toggle>();
-
         categoryObjects = new GameObject[GameManager.Instance.AllCategoriesDictionary.Count];
-
-        if(selectDeselectText == null)
-        {
-            Debug.LogError("No text found in toggle any category / deselect all");
-        }
-        
-        currentToggleText = deselectAllText;
-        selectDeselectImage.sprite = deselectAllSprite;
-        anyCategoryToggle.isOn = false;
+        categoryToggles = new List<Toggle>();
         SetUpCategoryButtons();
 	}
 
@@ -66,8 +36,7 @@ public class CategoryManager : MonoBehaviour
     // the trivia api and uses them to initialize a dictionary <name, id>
     private void SetUpCategoryButtons()
     {
-        selectDeselectText.text = currentToggleText;
-
+      
         int j = 0;
         foreach (var entry in GameManager.Instance.AllCategoriesDictionary)
         { 
@@ -78,20 +47,20 @@ public class CategoryManager : MonoBehaviour
                 Text buttText = obj.GetComponentInChildren<Text>();
                 Image img = obj.GetComponent<Image>();
                 img.sprite = btnSprites[Random.Range(0, btnSprites.Length)];
+
                 // Remove Header for example Entertainment: Something
                 buttText.text = entry.Key;
 
                 categoryObjects[j] = obj.gameObject;
                 ++j;
+                categoryToggles.Add(obj);
             }
             
         }
-        //StartCoroutine(GetQuestions(testQuestUrl));
     }
 
     public void StartGame()
     {
-        Toggle[] categoryToggles = GetComponentsInChildren<Toggle>();
         List<int> selectedCategories = new List<int>();
        
             foreach (Toggle toggle in categoryToggles)
@@ -114,27 +83,12 @@ public class CategoryManager : MonoBehaviour
         {
             Difficulty difficulty = Difficulty.medium;
             // Find the difficulty of the questions
-            foreach (Toggle difficultyToggle in difficultyToggles)
+            for (int i = 0; i < difficultyToggles.Length; ++i)
             {
-
-                if(difficultyToggle.isOn)
+                if (difficultyToggles[i].isOn)
                 {
-                    string text = difficultyToggle.GetComponentInChildren<Text>().text;
-                    switch (text)
-                    {
-                        case "EASY":
-                            difficulty = Difficulty.easy;
-                            break;
-                        case "MEDIUM":
-                            difficulty = Difficulty.medium;
-                            break;
-                        case "HARD":
-                            difficulty = Difficulty.hard;
-                            break;
-                        default:
-                            Debug.LogError("No difficulty found error");
-                            break;
-                    }
+                    
+                    difficulty = (Difficulty)i;
                     break;
                 }
             }
@@ -147,47 +101,26 @@ public class CategoryManager : MonoBehaviour
         }
     }
 
-    
-    // When the toggle of any category is changed
-    public void OnAnyCategoryToggleChanged()
+    public void SelectAll()
     {
-        bool willSelect;
-        // If we have just ticked any category -> select all categories
-        if (anyCategoryToggle.isOn)
+        foreach (Toggle toggle in categoryToggles)
         {
-            
-            if(currentToggleText.Equals(anyCategoryText))
+            if(!toggle.isOn)
             {
-                currentToggleText = deselectAllText;
-                selectDeselectImage.sprite = deselectAllSprite;  
-                willSelect = true;
-            }
-            else
-            {
-                currentToggleText = anyCategoryText;
-                selectDeselectImage.sprite = anyCategorySprite;
-                willSelect = false;
-            }
-            selectDeselectText.text = currentToggleText;
-            ToggleCategories(willSelect);
-        }
-        anyCategoryToggle.isOn = false;
-    }
-
-    void ToggleCategories(bool willSelect)
-    {
-        Toggle[] toggles = gameObject.transform.parent.GetComponentsInChildren<Toggle>();
-        for (int i = 0; i < toggles.Length; ++i)
-        {
-            Toggle currentToggle = toggles[i];
-            if (currentToggle != anyCategoryToggle)
-            {
-                toggles[i].isOn = willSelect;
+                toggle.isOn = true;
             }
         }
     }
 
-  
-
+    public void DeselectAll()
+    {
+        foreach (Toggle toggle in categoryToggles)
+        {
+            if (toggle.isOn)
+            {
+                toggle.isOn = false;
+            }
+        }
+    }
 
 }

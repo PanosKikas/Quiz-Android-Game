@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MultipleAnswerButton
+  m_Controller: {fileID: 9100000, guid: 16a7977da1b016243b516a40693338e0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 27c5e26bf8da3a04e895b09cbc651da8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6f8eabf13089f674e998928d2d6ff637, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a72cf3f0c33ac49488d860cdc2623c57, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ad1fe9264b82ec141a6a425aaab81bc2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5c327ab7d8841b246a6e2e09ac531e4a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cca9d7fab71039d4ebd31da7f8147d9f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2fcb6de09fd34b74aa766ae92af939ad, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 086d7bc7dabf297449d65d1f9906309c, type: 2}

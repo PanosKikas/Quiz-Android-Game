@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     GameObject categoryButtonPrefab;
     public List<Question> questionList;
 
+    UnityWebRequestAsyncOperation webRequest;
 
     RequestData requestData;
      
@@ -56,7 +57,15 @@ public class GameManager : MonoBehaviour
         AllCategoriesDictionary = new Dictionary<string, int>();
         questionList = new List<Question>();
         
-        StartCoroutine(LoadSceneAsync(2));
+        StartCoroutine(LoadSceneAsync(2,GetCategories()));
+    }
+
+    private void Update()
+    {
+        if (webRequest != null)
+        {
+            Debug.Log("Web request: " + webRequest.progress);
+        }
     }
 
     IEnumerator GetSessionToken()
@@ -88,7 +97,8 @@ public class GameManager : MonoBehaviour
         using (UnityWebRequest www =  UnityWebRequest.Get(catUrl))
         {
             yield return www.SendWebRequest();
-           
+            
+                
             if (www.isNetworkError || www.isHttpError)
             {
                 Debug.LogError(www.error);
@@ -97,7 +107,8 @@ public class GameManager : MonoBehaviour
             {
                 string retrievedData = www.downloadHandler.text;      
                 catData = JsonUtility.FromJson<TriviaCategories>(retrievedData);
-            }        
+            }
+           
         }
 
         if (catData != null)
@@ -122,7 +133,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         } 
     }
-  
+   
     // Async Task that takes a url from the trivia api and Retrieves Quesitons
     // Storing them into a RequestData object.
     IEnumerator GetQuestions(string[] questUrl)
@@ -131,8 +142,9 @@ public class GameManager : MonoBehaviour
         {
             using (UnityWebRequest www = UnityWebRequest.Get(URL))
             {
+                
                 yield return www.SendWebRequest();
-
+                
                 if (www.isNetworkError || www.isHttpError)
                 {
                     Debug.LogError(www.error);
@@ -151,14 +163,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //RandomizeQuestionList();
-        SceneManager.LoadScene("MainGame");
+        
     }
 
     IEnumerator LoadGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
-    {
-        SceneManager.LoadScene("LoadScreen");
-
+    {   
         // Pool the category buttons
         foreach (GameObject category in categories)
         {
@@ -166,23 +175,20 @@ public class GameManager : MonoBehaviour
         }
         // Get questions for each category and store them in the question list
         string[] requestURLS = GenerateUrlArray(selectedCategories, difficulty);
-        
-        yield return  StartCoroutine(GetQuestions(requestURLS));
 
-        SceneManager.LoadScene(3);
+        yield return StartCoroutine(GetQuestions(requestURLS));
     }
 
     public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
         InitializePlayerStats(difficulty);
-        StartCoroutine(LoadGame(selectedCategories, difficulty, categories));
+        StartCoroutine(LoadSceneAsync(3,LoadGame(selectedCategories, difficulty, categories)));      
     }
 
     private void InitializePlayerStats(Difficulty _difficulty)
     {
         playerStats.RemainingLives = 5 + 2*(int)_difficulty;
         playerStats.CurrentScore = 0;
-        Debug.Log("Lives: " + playerStats.RemainingLives);
     }
 
     
@@ -200,18 +206,26 @@ public class GameManager : MonoBehaviour
 
             requestURL.Append(selectedIds[i]);
             requestURL.Append("&difficulty=").Append(difficulty.ToString());
+            //requestURL.Append("&type=boolean");
             requestURLS[i] = requestURL.ToString();
         }
         
         return requestURLS;
     }
 
-    IEnumerator LoadSceneAsync(int SceneIndex)
+    public void EndGame()
+    {
+        Debug.Log("You idiot poop face, you lost all your lives");
+        SceneManager.LoadScene(2);
+    }
+
+    
+    IEnumerator LoadSceneAsync(int SceneIndex, IEnumerator enumerator)
     {
         SceneManager.LoadScene("LoadScreen");
 
-        yield return StartCoroutine(GetCategories());    
-        SceneManager.LoadScene(SceneIndex);
+        yield return enumerator;   
+        SceneManager.LoadSceneAsync(SceneIndex);
     }
     
 }
