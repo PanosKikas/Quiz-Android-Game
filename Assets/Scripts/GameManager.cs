@@ -162,17 +162,14 @@ public class GameManager : MonoBehaviour
                 {
                     string retrievedData = www.downloadHandler.text;
                     requestData = JsonUtility.FromJson<RequestData>(retrievedData);
-                }
-                       
+                }                      
             }
 
             foreach (Question question in requestData.results)
             {
                 questionList.Add(question);
             }
-        }
-
-        
+        }      
     }
 
     IEnumerator LoadGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
@@ -227,14 +224,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("You idiot poop face, you lost all your lives");
         SceneManager.LoadScene(2);
     }
-
-    
+   
     IEnumerator LoadSceneAsync(int SceneIndex, IEnumerator enumerator)
     {
         SceneManager.LoadScene("LoadScreen");
 
         yield return enumerator;   
         SceneManager.LoadSceneAsync(SceneIndex);
-    }
-    
+    }   
 }

@@ -2,12 +2,11 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class CategoryManager : MonoBehaviour
 {
     [SerializeField]
-    private const int minimumSelectedCategories = 3;
+    private const int minimumSelectedCategories = 0;
 
     [SerializeField]
     GameObject categoryButtonPrefab;

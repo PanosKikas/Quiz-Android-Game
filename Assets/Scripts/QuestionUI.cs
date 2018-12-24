@@ -20,6 +20,9 @@ public class QuestionUI : MonoBehaviour
     Text timerText;
 
     int timer;
+
+    [SerializeField]
+    GameObject PauseUI;
     
     QuestionManager questionManager;
 
@@ -89,5 +92,20 @@ public class QuestionUI : MonoBehaviour
                 break;
         }
         StartCoroutine(DecreaseTimer());
+    }
+
+    public void TogglePause()
+    {
+        if(PauseUI.activeSelf)
+        {
+            PauseUI.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            PauseUI.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
     }
 }
