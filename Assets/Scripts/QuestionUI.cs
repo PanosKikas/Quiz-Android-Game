@@ -19,7 +19,7 @@ public class QuestionUI : MonoBehaviour
     [SerializeField]
     Text timerText;
 
-    int timer;
+    public int timer { get; private set; }
 
     [SerializeField]
     GameObject PauseUI;

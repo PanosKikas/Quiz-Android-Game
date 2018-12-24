@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public List<Question> questionList;
 
     UnityWebRequestAsyncOperation webRequest;
-
+    DatabaseManager dbManager;
     RequestData requestData;
      
     #region Singleton
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         // Object Pool the category buttons
         ObjectPooler.PreLoadInstances(categoryButtonPrefab, pooledCategoryButtons, gameObject.transform);
-
+        dbManager = GetComponent<DatabaseManager>();
         AllCategoriesDictionary = new Dictionary<string, int>();
         questionList = new List<Question>();
 
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
         InitializePlayerStats(difficulty);
-        StartCoroutine(LoadSceneAsync(GetNextSceneIndex(),LoadGame(selectedCategories, difficulty, categories)));      
+        StartCoroutine(LoadSceneAsync(GetNextSceneIndex(),LoadGame(selectedCategories, difficulty, categories)));
     }
 
     private void InitializePlayerStats(Difficulty _difficulty)
@@ -221,9 +221,16 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("You idiot poop face, you lost all your lives");
-        SceneManager.LoadScene(2);
+        // Save score to database
+        if (playerStats.CurrentScore > playerStats.HighScore)
+        {
+            playerStats.HighScore = playerStats.CurrentScore;
+        }
+        dbManager.SaveToDatabase();
+        // Load Previous Scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+
    
     IEnumerator LoadSceneAsync(int SceneIndex, IEnumerator enumerator)
     {

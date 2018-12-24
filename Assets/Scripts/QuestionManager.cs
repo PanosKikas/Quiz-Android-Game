@@ -53,6 +53,7 @@ public class QuestionManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        
         gameManager = GameManager.Instance;
         questionUI = GetComponent<QuestionUI>();
         playerStats = gameManager.playerStats;
@@ -76,11 +77,12 @@ public class QuestionManager : MonoBehaviour
         // Remove Previous Answer Buttons
         ClearPreviousAnswers();
 
+        
         // Get random question and remove it from list
         int randomQuestionIndex = Random.Range(0, QuestionList.Count);
         currentQuestion = QuestionList[randomQuestionIndex];
         QuestionList.RemoveAt(randomQuestionIndex);
-
+        Debug.Log(currentQuestion);
         // Set the UI elements of the current question
         questionUI.SetQuestionUI(currentQuestion);
 
@@ -192,8 +194,13 @@ public class QuestionManager : MonoBehaviour
         }
         else
         {
-            playerStats.CurrentScore += ((int)currentQuestion.QuestionDifficulty + 1) * 200;
+            int scoreReceived = ((int)currentQuestion.QuestionDifficulty + 1) * 200;
+            Debug.Log("Time left: " + questionUI.timer);
+            scoreReceived += 20 * questionUI.timer;
+            playerStats.CurrentScore += scoreReceived;
+            playerStats.TotalCorrectQuestionsAnswered++;
             questionUI.UpdateScoreText(playerStats.CurrentScore);
+
         }
         yield return new WaitForSeconds(1.5f);
         GetNextQuestion();
