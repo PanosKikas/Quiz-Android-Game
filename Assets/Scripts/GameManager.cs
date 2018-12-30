@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(FacebookManager))]
+[RequireComponent(typeof(DatabaseManager))]
+[RequireComponent(typeof(ObjectPooler))]
 public class GameManager : MonoBehaviour
 {
 
@@ -44,9 +47,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+       
     }
     #endregion
 
+   
     // Use this for initialization
     private void Start()
     {
@@ -74,6 +79,21 @@ public class GameManager : MonoBehaviour
         if (webRequest != null)
         {
             Debug.Log("Web request: " + webRequest.progress);
+        }
+
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                if(SceneManager.GetActiveScene().buildIndex != 0)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                }
+                else
+                {
+                    Application.Quit();
+                }
+            }
         }
     }
 
@@ -226,6 +246,7 @@ public class GameManager : MonoBehaviour
         {
             playerStats.HighScore = playerStats.CurrentScore;
         }
+
         dbManager.SaveToDatabase();
         // Load Previous Scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

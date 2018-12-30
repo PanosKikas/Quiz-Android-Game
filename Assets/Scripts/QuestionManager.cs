@@ -186,16 +186,17 @@ public class QuestionManager : MonoBehaviour
         if(button != correctAnswerButton)
         {
             playerStats.RemainingLives--;
+            questionUI.UpdateLivesText(playerStats.RemainingLives);
             if (playerStats.RemainingLives <= 0)
             {
+                ClearPreviousAnswers();
                 gameManager.EndGame();
-            }
-            questionUI.UpdateLivesText(playerStats.RemainingLives);           
+            }                     
         }
         else
         {
             int scoreReceived = ((int)currentQuestion.QuestionDifficulty + 1) * 200;
-            Debug.Log("Time left: " + questionUI.timer);
+            
             scoreReceived += 20 * questionUI.timer;
             playerStats.CurrentScore += scoreReceived;
             playerStats.TotalCorrectQuestionsAnswered++;

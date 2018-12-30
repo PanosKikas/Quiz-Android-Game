@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class CategoryManager : MonoBehaviour
 {
     [SerializeField]
-    private const int minimumSelectedCategories = 0;
+    private const int minimumSelectedCategories = 3;
 
     [SerializeField]
     GameObject categoryButtonPrefab;
@@ -22,14 +22,22 @@ public class CategoryManager : MonoBehaviour
 
     Toggle[] difficultyToggles;
     List<Toggle> categoryToggles;
+
+    [SerializeField]
+    Text highscore;
+    [SerializeField]
+    PlayerStats stats;
     // Use this for initialization
     void Start ()
     {     
+        highscore.text ="High Score: " +  stats.HighScore + "\nCorrect: " + stats.TotalCorrectQuestionsAnswered.ToString();
         difficultyToggles = difficultySelectPanel.GetComponentsInChildren<Toggle>();
         categoryObjects = new GameObject[GameManager.Instance.AllCategoriesDictionary.Count];
         categoryToggles = new List<Toggle>();
+        
         SetUpCategoryButtons();
-	}
+        DeselectAll();
+    }
 
     // A method that retrieves all the availiable categories from 
     // the trivia api and uses them to initialize a dictionary <name, id>

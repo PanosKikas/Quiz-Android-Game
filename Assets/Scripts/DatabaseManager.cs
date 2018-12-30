@@ -1,95 +1,168 @@
 ﻿using Mono.Data.Sqlite;
 using System.Data;
-using System;
+using Facebook.Unity;
 using UnityEngine;
+using System.IO;
+using System;
 
 public class DatabaseManager : MonoBehaviour
 {
     [SerializeField]
     PlayerStats playerStats;
 
-    IDbConnection dbconn;
+   // IDbConnection dbconn;
 
+    private string connectionString;
+    private string path;
+    FacebookManager fbManager;
     const string TableName = "PlayerStats";
 
     void Start()
     {
+        fbManager = GetComponent<FacebookManager>();
         ConnectToDatabase();
-        ReadDatabase();
         
     }
 
     void ConnectToDatabase()
     {
-        string conn = "URI=file:" + Application.dataPath + "/Stats.s3db"; //Path to database.
-        
-        dbconn = (IDbConnection)new SqliteConnection(conn);
-        dbconn.Open(); //Open connection to the database.
 
-        IDbCommand dbcmd = dbconn.CreateCommand();
-        string sqlQuery = "Create Table if not exists PlayerStats (" + "Id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-        + "HighScore INTEGER NOT NULL," + "CorrectQuestions	INTEGER NOT NULL);";
+        if (Application.platform != RuntimePlatform.Android)
+        {
+            connectionString = Application.dataPath + "/Stats.db";
+        }
+        else
+        {
+            connectionString = Application.persistentDataPath + "/" + "Stats.db";
+            if(!File.Exists(connectionString))
+            {
+                WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/" + "Stats.db");
+                while (!loadDB.isDone)
+                {
+                    
+                }
+                File.WriteAllBytes(connectionString, loadDB.bytes);
+            }
+            
+        }
+        Debug.Log(connectionString);
+        using (IDbConnection dbConnection = new SqliteConnection("URI=file:" + connectionString))
+        {
 
-        dbcmd.CommandText = sqlQuery;
-        dbcmd.ExecuteNonQuery();
+            dbConnection.Open(); //Open connection to the database.
+
+            using (IDbCommand dbcmd = dbConnection.CreateCommand())
+            {
+                string sqlQuery = "Create Table if not exists PlayerStats (" + "Id	TEXT NOT NULL PRIMARY KEY,"
+                + "HighScore INTEGER NOT NULL," + "CorrectQuestions	INTEGER NOT NULL);";
+                dbcmd.CommandText = sqlQuery;
+                dbcmd.ExecuteNonQuery();
+            }
+
+            dbConnection.Close();
+        }
     }
 
-    void ReadDatabase()
+    public void ReadDatabase()
     {
-        string sqlQuery = "Select * From PlayerStats";
-        IDbCommand dbcmd = dbconn.CreateCommand();
-        dbcmd.CommandText = sqlQuery;
-
-        IDataReader reader = dbcmd.ExecuteReader();
         
-        while (reader.Read())
+        using (IDbConnection dbConnection = new SqliteConnection("URI=file:" + connectionString))
         {
-            int id = reader.GetInt32(0);
-            int highScore = reader.GetInt32(1);
-            int correctAnswered = reader.GetInt32(2);
+
+            dbConnection.Open(); //Open connection to the database.
+            string uid = "0";
+
+            if (FB.IsLoggedIn)
+                uid = fbManager.GetAccessToken().UserId;
+
+            string sqlQuery = "Select * From PlayerStats Where Id = " + uid;
+            IDbCommand dbcmd = dbConnection.CreateCommand();
+            dbcmd.CommandText = sqlQuery;
+            using (IDataReader reader = dbcmd.ExecuteReader())
+            {
+
+                while (reader.Read())
+                {
+                    string id = reader.GetString(0);
+                    int highScore = reader.GetInt32(1);
+                    int correctAnswered = reader.GetInt32(2);
 
 
-            playerStats.HighScore = highScore;
-            playerStats.TotalCorrectQuestionsAnswered = correctAnswered;
+                    playerStats.HighScore = highScore;
+                    playerStats.TotalCorrectQuestionsAnswered = correctAnswered;
 
-            Debug.Log("id= " + id + "  name =" + highScore + "  correct =" + correctAnswered);
-                   
+                    Debug.Log("id= " + id + "  name =" + highScore + "  correct =" + correctAnswered);
+
+                }
+
+                reader.Close();
+
+            }
+            dbcmd.Dispose();
+            dbcmd = null;
+            dbConnection.Close();
         }
         
-        reader.Close();
-        
-        reader = null;
-        
-        dbcmd.Dispose();
-        dbcmd = null;
-        dbconn.Close();
-        //dbconn = null;
     }
 
     public void SaveToDatabase()
     {
-        dbconn.Open();
-        IDbCommand dbcmd = dbconn.CreateCommand();
-        string sqlQuery = "select count(*) from PlayerStats;";
-        dbcmd.CommandText = sqlQuery;
+        using (IDbConnection dbConnection = new SqliteConnection("URI=file:" + connectionString))
+        {
 
-        int rowCount = 0;
-        rowCount = Convert.ToInt32(dbcmd.ExecuteScalar());
-        
-        // If stats does not exist create them
-        if (rowCount <= 0)
-        {
-            sqlQuery = "Insert into PlayerStats (HighScore, CorrectQuestions) Values(" + playerStats.HighScore
-            + "," + playerStats.TotalCorrectQuestionsAnswered + ");";
-            dbcmd.CommandText = sqlQuery;
-            dbcmd.ExecuteNonQuery();
-        }
-        else // stats exist
-        {
-            sqlQuery = "Update PlayerStats Set HighScore = " + playerStats.HighScore 
-                + ",CorrectQuestions = " + playerStats.TotalCorrectQuestionsAnswered + ";";
-            dbcmd.CommandText = sqlQuery;
-            dbcmd.ExecuteNonQuery();
+            dbConnection.Open(); //Open connection to the database.
+
+            int rowCount = 0;
+            string sqlQuery;
+            string id;
+            if(FB.IsLoggedIn)
+            {
+                // Save user with fb username
+                
+                AccessToken token =  fbManager.GetAccessToken();
+                sqlQuery = "select count(*) from PlayerStats where Id = " + token.UserId;
+                id = token.UserId;
+                
+            }
+            else
+            {
+                id = "0";
+                // Search for anonymous user with id 0
+                sqlQuery = "select count(*) from PlayerStats where Id = 0";
+            }
+
+
+            using (IDbCommand dbcmd = dbConnection.CreateCommand())
+            {
+                dbcmd.CommandText = sqlQuery;
+                rowCount = Convert.ToInt32(dbcmd.ExecuteScalar());
+
+                // if entry does not exist create it
+                if (rowCount < 1)
+                {
+                    sqlQuery = "Insert into PlayerStats (Id, HighScore, CorrectQuestions) Values(" +id +"," + playerStats.HighScore
+                    + "," + playerStats.TotalCorrectQuestionsAnswered + ");";
+                    dbcmd.CommandText = sqlQuery;
+                    dbcmd.ExecuteNonQuery();
+                }
+                else // current entry exists
+                {
+
+                    sqlQuery = "Update PlayerStats " +
+                        "Set (HighScore, CorrectQuestions) = (" + playerStats.HighScore
+                        + "," + playerStats.TotalCorrectQuestionsAnswered + ")"
+                        + "WHERE Id = " + id + ";";
+
+                       
+                    dbcmd.CommandText = sqlQuery;
+                    dbcmd.ExecuteNonQuery();
+                }
+
+                dbcmd.Dispose();
+            }
+
+
+            dbConnection.Close();
         }
         
         
