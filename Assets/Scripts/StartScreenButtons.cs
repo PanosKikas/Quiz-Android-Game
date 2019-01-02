@@ -18,7 +18,11 @@ public class StartScreenButtons : MonoBehaviour
 
     public void Play()
     {
-        
+        if(Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            Debug.LogError("No internet connection, Please connect to the internet!");
+            return;
+        }
         GameManager.Instance.ToCategorySelect();
        
     }

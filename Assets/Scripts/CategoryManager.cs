@@ -34,7 +34,7 @@ public class CategoryManager : MonoBehaviour
         difficultyToggles = difficultySelectPanel.GetComponentsInChildren<Toggle>();
         categoryObjects = new GameObject[GameManager.Instance.AllCategoriesDictionary.Count];
         categoryToggles = new List<Toggle>();
-        
+              
         SetUpCategoryButtons();
         DeselectAll();
     }
@@ -68,6 +68,13 @@ public class CategoryManager : MonoBehaviour
 
     public void StartGame()
     {
+
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            Debug.LogError("No internet connection!");
+            return;
+        }
+
         List<int> selectedCategories = new List<int>();
        
             foreach (Toggle toggle in categoryToggles)

@@ -30,8 +30,7 @@ public class QuestionManager : MonoBehaviour
     Transform trueFalsePanel;
     
     GameManager gameManager;
-    List<Question> QuestionList;
-
+    
     Question currentQuestion;
     PlayerStats playerStats;
 
@@ -63,12 +62,14 @@ public class QuestionManager : MonoBehaviour
 
         trueButtonParent = trueBooleanButton.transform.parent.gameObject;
         falseButtonParent = falseBooleanButton.transform.parent.gameObject;
-
-        QuestionList = gameManager.questionList;
+        
+     
         wrongAnswers = new List<Button>();
 
         multipleAnswerButtons = MultipleAnswersPanel.GetComponentsInChildren<Button>(true);
-        
+
+      
+
         GetNextQuestion();
     }
 	
@@ -76,12 +77,12 @@ public class QuestionManager : MonoBehaviour
     {
         // Remove Previous Answer Buttons
         ClearPreviousAnswers();
-
-        
+      
         // Get random question and remove it from list
-        int randomQuestionIndex = Random.Range(0, QuestionList.Count);
-        currentQuestion = QuestionList[randomQuestionIndex];
-        QuestionList.RemoveAt(randomQuestionIndex);
+        int randomQuestionIndex = Random.Range(0, gameManager.questionList.Count);
+        currentQuestion = gameManager.questionList[randomQuestionIndex];
+        gameManager.questionList.RemoveAt(randomQuestionIndex);
+        
         Debug.Log(currentQuestion);
         // Set the UI elements of the current question
         questionUI.SetQuestionUI(currentQuestion);
@@ -185,7 +186,7 @@ public class QuestionManager : MonoBehaviour
         
         if(button != correctAnswerButton)
         {
-            playerStats.RemainingLives--;
+            //playerStats.RemainingLives--;
             questionUI.UpdateLivesText(playerStats.RemainingLives);
             if (playerStats.RemainingLives <= 0)
             {
@@ -203,7 +204,14 @@ public class QuestionManager : MonoBehaviour
             questionUI.UpdateScoreText(playerStats.CurrentScore);
 
         }
+
         yield return new WaitForSeconds(1.5f);
+
+        if (gameManager.questionList.Count <= 0)
+        {
+            yield return StartCoroutine(gameManager.GetQuestions());
+        }
+
         GetNextQuestion();
     }
 

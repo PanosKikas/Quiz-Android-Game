@@ -19,9 +19,5 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Show stats");
     }
-
-    public void Share()
-    {
-        GameManager.Instance.GetComponent<FacebookManager>().Share();
-    }
+    
 }

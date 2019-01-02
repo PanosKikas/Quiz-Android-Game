@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -25,16 +26,16 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, int> AllCategoriesDictionary;
             
     public PlayerStats playerStats;
-    
+    List<int> SelectedCategories;
 
     [SerializeField]
     GameObject categoryButtonPrefab;
     public List<Question> questionList;
-
+    private Difficulty currentDifficulty;
     UnityWebRequestAsyncOperation webRequest;
     DatabaseManager dbManager;
     RequestData requestData;
-     
+    Dictionary<string, int> NonSelectedCategories;
     #region Singleton
     private void Awake()
     {
@@ -60,13 +61,20 @@ public class GameManager : MonoBehaviour
         dbManager = GetComponent<DatabaseManager>();
         AllCategoriesDictionary = new Dictionary<string, int>();
         questionList = new List<Question>();
-
+        SelectedCategories = new List<int>();
         SceneManager.LoadScene(GetNextSceneIndex());
     }
 
     public void ToCategorySelect()
-    {       
-        StartCoroutine(LoadSceneAsync(GetNextSceneIndex(), GetCategories()));
+    {
+        if (AllCategoriesDictionary.Count <= 0)
+        {
+            StartCoroutine(LoadSceneAsync(GetNextSceneIndex(), GetCategories()));
+        }
+        else
+        {
+            StartCoroutine(LoadSceneAsync(GetNextSceneIndex(), null));
+        }     
     }
 
     private int GetNextSceneIndex()
@@ -83,9 +91,14 @@ public class GameManager : MonoBehaviour
 
         if(Application.platform == RuntimePlatform.Android)
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if(Input.GetKey(KeyCode.Escape))
             {
-                if(SceneManager.GetActiveScene().buildIndex != 0)
+                Scene currentScene = SceneManager.GetActiveScene();
+                if(currentScene.name == "MainGame" || currentScene.name == "LoadScreen")
+                {
+                    return;
+                }
+                else if(SceneManager.GetActiveScene().buildIndex != 1)
                 {
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
                 }
@@ -116,11 +129,40 @@ public class GameManager : MonoBehaviour
         }          
     }
 
+    IEnumerator ResetSessionToken()
+    {
+        string requestURL = "https://opentdb.com/api_token.php?command=reset&token=";
+        requestURL += SessionToken;
+
+        using (UnityWebRequest www = UnityWebRequest.Get(requestURL))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.LogError(www.error);
+            }
+            else
+            {
+                string retrievedData = www.downloadHandler.text;
+                Token token = JsonUtility.FromJson<Token>(retrievedData);
+                Debug.Log("ResponseCode: " + token.response_code);
+                if(token.response_code == (int)ResponseType.TokenNotFound)
+                {
+                    StartCoroutine(GetSessionToken());
+                }
+            }
+        }
+    }
+
     // Async Task used to get all the categories of the game
     IEnumerator GetCategories()
     {
-        StartCoroutine(GetSessionToken());
-
+        if(SessionToken == null)
+        {
+            StartCoroutine(GetSessionToken());
+        }
+        
         TriviaCategories catData = null;
 
         using (UnityWebRequest www =  UnityWebRequest.Get(catUrl))
@@ -144,7 +186,6 @@ public class GameManager : MonoBehaviour
         {
             foreach (Category category in catData.trivia_categories)
             {
-
                 string[] info = category.name.Split(':');
                 string name;
                 if (info.Length > 1)
@@ -166,14 +207,15 @@ public class GameManager : MonoBehaviour
     // Async Task that takes a url from the trivia api and Retrieves Quesitons
     // Storing them into a RequestData object.
     IEnumerator GetQuestions(string[] questUrl)
-    {
+    {        
+        List<string> QuestionsNotFoundURL = new List<string>();
         foreach (string URL in questUrl)
         {
             using (UnityWebRequest www = UnityWebRequest.Get(URL))
             {
-                
+
                 yield return www.SendWebRequest();
-                
+
                 if (www.isNetworkError || www.isHttpError)
                 {
                     Debug.LogError(www.error);
@@ -182,33 +224,103 @@ public class GameManager : MonoBehaviour
                 {
                     string retrievedData = www.downloadHandler.text;
                     requestData = JsonUtility.FromJson<RequestData>(retrievedData);
-                }                      
+                }
             }
 
-            foreach (Question question in requestData.results)
+            if (requestData.Response_Code == ResponseType.NoResults || requestData.Response_Code == ResponseType.TokenEmpty)              
             {
-                questionList.Add(question);
+                if(URL.Contains("&difficulty"))
+                {
+                    Debug.Log("No more questions with this token.");
+                    // Add more difficulties
+                    string newURL = URL.Replace("&difficulty=" + currentDifficulty, "");
+
+                    QuestionsNotFoundURL.Add(newURL);
+                    Debug.Log(newURL);
+                }
+                else
+                {
+                    // take the category id
+                    string[] splitted = URL.Split(new string[] {"&category="}, StringSplitOptions.None);
+                    SelectedCategories.Remove(Int32.Parse(splitted[1]));
+                    
+                }
             }
-        }      
+            else
+            {
+                foreach (Question question in requestData.results)
+                {
+                    questionList.Add(question);
+                }
+            }
+
+        }
+
+        // Get questions for the questions not found
+        if (QuestionsNotFoundURL.Count <= 0)
+        {
+            yield return null;
+        }
+        else
+        {
+            yield return StartCoroutine(GetQuestions(QuestionsNotFoundURL.ToArray()));
+            // No questions found
+            if(questionList.Count <= 0)
+            {               
+                SelectedCategories.Clear();
+
+                // Add 3 more categories
+                for (int i = 0; i < 3; i++)
+                {
+                    Debug.Log("Adding more categories");
+                    int randIndex = UnityEngine.Random.Range(0, NonSelectedCategories.Count);
+                    var randEntry = NonSelectedCategories.ElementAt(randIndex);
+                    int newId = randEntry.Value;
+
+                    NonSelectedCategories.Remove(randEntry.Key);
+                    SelectedCategories.Add(newId);
+                }
+
+                yield return StartCoroutine(LoadQuestions(SelectedCategories, currentDifficulty));
+            }
+        }       
     }
 
-    IEnumerator LoadGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
+    public IEnumerator GetQuestions()
+    {
+        yield return StartCoroutine(LoadQuestions(SelectedCategories, currentDifficulty));
+    }
+
+    IEnumerator LoadQuestions(List<int> selectedCategories, Difficulty difficulty)
     {   
-        // Pool the category buttons
-        foreach (GameObject category in categories)
-        {
-            ObjectPooler.StoreInstance(category, this.transform);
-        }
         // Get questions for each category and store them in the question list
         string[] requestURLS = GenerateUrlArray(selectedCategories, difficulty);
-
+        
         yield return StartCoroutine(GetQuestions(requestURLS));
+        Debug.Log(questionList.Count);
     }
 
     public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
         InitializePlayerStats(difficulty);
-        StartCoroutine(LoadSceneAsync(GetNextSceneIndex(),LoadGame(selectedCategories, difficulty, categories)));
+        currentDifficulty = difficulty;
+        NonSelectedCategories = AllCategoriesDictionary;
+        questionList.Clear();
+
+        foreach (int id in selectedCategories)
+        {
+            var cat = AllCategoriesDictionary.First(kvp => kvp.Value == id);
+            NonSelectedCategories.Remove(cat.Key);
+        }
+
+        // Pool the category buttons
+        foreach (GameObject category in categories)
+        {
+            ObjectPooler.StoreInstance(category, this.transform);
+        }
+
+        StartCoroutine(ResetSessionToken());
+        StartCoroutine(LoadSceneAsync(GetNextSceneIndex(),LoadQuestions(selectedCategories, difficulty)));
     }
 
     private void InitializePlayerStats(Difficulty _difficulty)
@@ -220,6 +332,7 @@ public class GameManager : MonoBehaviour
     
     private string[] GenerateUrlArray(List<int> selectedIds, Difficulty difficulty)
     {
+        SelectedCategories = selectedIds;
         string[] requestURLS = new string[selectedIds.Count];
         StringBuilder requestURL = new StringBuilder();
         for (int i =0; i <selectedIds.Count; ++i)
