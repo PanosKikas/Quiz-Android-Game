@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     public void Home()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.ToCategorySelect();
     }
 
     public void Stats()

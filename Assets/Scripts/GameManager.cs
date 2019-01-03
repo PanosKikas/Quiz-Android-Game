@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     DatabaseManager dbManager;
     RequestData requestData;
     Dictionary<string, int> NonSelectedCategories;
+
+    const int CategorySelectIndex = 2;
+   
+    GameObject GameOverPanel;
+
     #region Singleton
     private void Awake()
     {
@@ -69,13 +74,15 @@ public class GameManager : MonoBehaviour
     {
         if (AllCategoriesDictionary.Count <= 0)
         {
-            StartCoroutine(LoadSceneAsync(GetNextSceneIndex(), GetCategories()));
+            StartCoroutine(LoadSceneAsync(CategorySelectIndex, GetCategories()));
         }
         else
         {
-            StartCoroutine(LoadSceneAsync(GetNextSceneIndex(), null));
+            StartCoroutine(LoadSceneAsync(CategorySelectIndex, null));
         }     
     }
+
+    
 
     private int GetNextSceneIndex()
     {
@@ -146,7 +153,7 @@ public class GameManager : MonoBehaviour
             {
                 string retrievedData = www.downloadHandler.text;
                 Token token = JsonUtility.FromJson<Token>(retrievedData);
-                Debug.Log("ResponseCode: " + token.response_code);
+                
                 if(token.response_code == (int)ResponseType.TokenNotFound)
                 {
                     StartCoroutine(GetSessionToken());
@@ -199,8 +206,6 @@ public class GameManager : MonoBehaviour
 
                 AllCategoriesDictionary.Add(name, category.id);
             }
-
-            SceneManager.LoadScene("MainMenu");
         } 
     }
    
@@ -304,7 +309,7 @@ public class GameManager : MonoBehaviour
     {
         InitializePlayerStats(difficulty);
         currentDifficulty = difficulty;
-        NonSelectedCategories = AllCategoriesDictionary;
+        NonSelectedCategories = new Dictionary<string, int>(AllCategoriesDictionary);
         questionList.Clear();
 
         foreach (int id in selectedCategories)
@@ -360,9 +365,22 @@ public class GameManager : MonoBehaviour
             playerStats.HighScore = playerStats.CurrentScore;
         }
 
+        playerStats.TotalCorrectQuestionsAnswered += playerStats.RoundCorrectAnswers;
+        
+       // playerStats.TotalExp += 50 * playerStats.RoundCorrectAnswers;
+        //playerStats.Experience = (playerStats.Experience + 50 * playerStats.RoundCorrectAnswers) % (playerStats.ExpToNextLevel);
+        // playerStats.Experience = (playerStats.Experience + 50 * playerStats.RoundCorrectAnswers) % (playerStats.Level*400);
+        // playerStats.Level += (int)(playerStats.Experience + 50 * playerStats.RoundCorrectAnswers) / playerStats.ExpToNextLevel;
+
+        if (GameOverPanel == null)
+        {
+            GameOverPanel = Resources.FindObjectsOfTypeAll<GameoverMenu>()[0].gameObject;
+        }
+
+        GameOverPanel.SetActive(true);
+
         dbManager.SaveToDatabase();
-        // Load Previous Scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        
     }
 
    

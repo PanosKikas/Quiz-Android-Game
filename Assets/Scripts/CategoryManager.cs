@@ -27,11 +27,13 @@ public class CategoryManager : MonoBehaviour
     Text highscore;
     [SerializeField]
     PlayerStats stats;
+
     // Use this for initialization
     void Start ()
     {     
         highscore.text ="High Score: " +  stats.HighScore + "\nCorrect: " + stats.TotalCorrectQuestionsAnswered.ToString();
         difficultyToggles = difficultySelectPanel.GetComponentsInChildren<Toggle>();
+        //Debug.Log("Category count: " + GameManager.Instance.AllCategoriesDictionary.Count);
         categoryObjects = new GameObject[GameManager.Instance.AllCategoriesDictionary.Count];
         categoryToggles = new List<Toggle>();
               
@@ -48,6 +50,7 @@ public class CategoryManager : MonoBehaviour
         foreach (var entry in GameManager.Instance.AllCategoriesDictionary)
         { 
             Toggle obj = ObjectPooler.GetInstance(categoryButtonPrefab,categoryParent).GetComponent<Toggle>();
+            Text toggleText = obj.GetComponentInChildren<Text>();
 
             if (obj != null)
             {
@@ -56,13 +59,13 @@ public class CategoryManager : MonoBehaviour
                 img.sprite = btnSprites[Random.Range(0, btnSprites.Length)];
 
                 // Remove Header for example Entertainment: Something
-                buttText.text = entry.Key;
-
-                categoryObjects[j] = obj.gameObject;
-                ++j;
-                categoryToggles.Add(obj);
+                buttText.text = entry.Key;               
             }
-            
+
+            categoryObjects[j] = obj.gameObject;
+            ++j;
+            categoryToggles.Add(obj);
+
         }
     }
 

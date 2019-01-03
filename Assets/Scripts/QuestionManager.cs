@@ -56,7 +56,7 @@ public class QuestionManager : MonoBehaviour
         gameManager = GameManager.Instance;
         questionUI = GetComponent<QuestionUI>();
         playerStats = gameManager.playerStats;
-
+        playerStats.RoundCorrectAnswers = 0;
         questionUI.UpdateLivesText(playerStats.RemainingLives);
         questionUI.UpdateScoreText(playerStats.CurrentScore);
 
@@ -186,7 +186,7 @@ public class QuestionManager : MonoBehaviour
         
         if(button != correctAnswerButton)
         {
-            //playerStats.RemainingLives--;
+            playerStats.RemainingLives--;
             questionUI.UpdateLivesText(playerStats.RemainingLives);
             if (playerStats.RemainingLives <= 0)
             {
@@ -197,10 +197,10 @@ public class QuestionManager : MonoBehaviour
         else
         {
             int scoreReceived = ((int)currentQuestion.QuestionDifficulty + 1) * 200;
-            
+            playerStats.RoundCorrectAnswers++;
             scoreReceived += 20 * questionUI.timer;
             playerStats.CurrentScore += scoreReceived;
-            playerStats.TotalCorrectQuestionsAnswered++;
+            
             questionUI.UpdateScoreText(playerStats.CurrentScore);
 
         }

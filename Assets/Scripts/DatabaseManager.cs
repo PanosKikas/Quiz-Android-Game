@@ -21,7 +21,7 @@ public class DatabaseManager : MonoBehaviour
     {
         fbManager = GetComponent<FacebookManager>();
         ConnectToDatabase();
-        
+        ReadDatabase();
     }
 
     void ConnectToDatabase()

@@ -3,7 +3,7 @@ guid: 80ba7d23ca485bb40b26887204ed2572
 TextureImporter:
   fileIDToRecycleName:
     21300000: Button Pack - Red_0
-    21300002: Button Pack - Red_1
+    21300002: shareBtn
     21300004: Button Pack - Red_2
     21300006: Button Pack - Red_3
     21300008: Button Pack - Red_4
@@ -30,7 +30,7 @@ TextureImporter:
     21300050: Button Pack - Red_25
     21300052: Button Pack - Red_26
     21300054: Button Pack - Red_27
-    21300056: Button Pack - Red_28
+    21300056: closeBtn
     21300058: RetryButton
     21300060: Button Pack - Red_30
     21300062: Button Pack - Red_31
@@ -155,7 +155,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Button Pack - Red_1
+      name: shareBtn
       rect:
         serializedVersion: 2
         x: 160
@@ -695,7 +695,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Button Pack - Red_28
+      name: closeBtn
       rect:
         serializedVersion: 2
         x: 0
