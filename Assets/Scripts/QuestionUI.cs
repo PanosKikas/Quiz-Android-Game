@@ -82,13 +82,13 @@ public class QuestionUI : MonoBehaviour
         switch (difficulty)
         {
             case Difficulty.easy:
-                timer += 13;
+                timer += 16;
                 break;
             case Difficulty.medium:
-                timer += 13;
+                timer += 16;
                 break;
             case Difficulty.hard:
-                timer += 15;
+                timer += 20;
                 break;
         }
         StartCoroutine(DecreaseTimer());

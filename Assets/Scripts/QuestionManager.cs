@@ -56,7 +56,7 @@ public class QuestionManager : MonoBehaviour
         gameManager = GameManager.Instance;
         questionUI = GetComponent<QuestionUI>();
         playerStats = gameManager.playerStats;
-        playerStats.RoundCorrectAnswers = 0;
+        
         questionUI.UpdateLivesText(playerStats.RemainingLives);
         questionUI.UpdateScoreText(playerStats.CurrentScore);
 

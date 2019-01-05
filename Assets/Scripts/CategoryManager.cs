@@ -31,7 +31,7 @@ public class CategoryManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {     
-        highscore.text ="High Score: " +  stats.HighScore + "\nCorrect: " + stats.TotalCorrectQuestionsAnswered.ToString();
+       
         difficultyToggles = difficultySelectPanel.GetComponentsInChildren<Toggle>();
         //Debug.Log("Category count: " + GameManager.Instance.AllCategoriesDictionary.Count);
         categoryObjects = new GameObject[GameManager.Instance.AllCategoriesDictionary.Count];

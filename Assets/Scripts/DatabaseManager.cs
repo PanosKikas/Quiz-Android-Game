@@ -53,8 +53,13 @@ public class DatabaseManager : MonoBehaviour
 
             using (IDbCommand dbcmd = dbConnection.CreateCommand())
             {
-                string sqlQuery = "Create Table if not exists PlayerStats (" + "Id	TEXT NOT NULL PRIMARY KEY,"
-                + "HighScore INTEGER NOT NULL," + "CorrectQuestions	INTEGER NOT NULL);";
+                
+
+                string sqlQuery = "Create Table if not exists PlayerStats (" + "Id TEXT NOT NULL PRIMARY KEY,"
+                + "HighScore INTEGER NOT NULL,"
+                + "PlayerName TEXT NOT NULL,"
+                + "CorrectQuestions INTEGER NOT NULL,"
+                + "Level INTEGER NOT NULL," + "Experience INTEGER NOT NULL);";
                 dbcmd.CommandText = sqlQuery;
                 dbcmd.ExecuteNonQuery();
             }
@@ -80,22 +85,33 @@ public class DatabaseManager : MonoBehaviour
             dbcmd.CommandText = sqlQuery;
             using (IDataReader reader = dbcmd.ExecuteReader())
             {
-
+                int j = 0;
                 while (reader.Read())
                 {
                     string id = reader.GetString(0);
                     int highScore = reader.GetInt32(1);
-                    int correctAnswered = reader.GetInt32(2);
+                    string name = reader.GetString(2);
+                    int correctAnswered = reader.GetInt32(3);
+                    int level = reader.GetInt32(4);
+                    int experience = reader.GetInt32(5);
 
-
+                    playerStats.Name = name;
                     playerStats.HighScore = highScore;
                     playerStats.TotalCorrectQuestionsAnswered = correctAnswered;
+                    playerStats.Level = level;
+                    playerStats.Experience = experience;
 
-                    Debug.Log("id= " + id + "  name =" + highScore + "  correct =" + correctAnswered);
-
+                    Debug.Log("id= " + id + "  name =" + name + "  correct =" + correctAnswered + "High Score= " + highScore
+                        + "Level= " + level + "Experience= " + experience + "\n");
+                    ++j;
                 }
 
                 reader.Close();
+
+                if(j == 0)
+                {
+                    playerStats.Initialize();
+                }
 
             }
             dbcmd.Dispose();
@@ -115,6 +131,8 @@ public class DatabaseManager : MonoBehaviour
             int rowCount = 0;
             string sqlQuery;
             string id;
+            string nameAdded = "Guest";
+
             if(FB.IsLoggedIn)
             {
                 // Save user with fb username
@@ -122,7 +140,7 @@ public class DatabaseManager : MonoBehaviour
                 AccessToken token =  fbManager.GetAccessToken();
                 sqlQuery = "select count(*) from PlayerStats where Id = " + token.UserId;
                 id = token.UserId;
-                
+                nameAdded = fbManager.FbName;
             }
             else
             {
@@ -140,20 +158,23 @@ public class DatabaseManager : MonoBehaviour
                 // if entry does not exist create it
                 if (rowCount < 1)
                 {
-                    sqlQuery = "Insert into PlayerStats (Id, HighScore, CorrectQuestions) Values(" +id +"," + playerStats.HighScore
-                    + "," + playerStats.TotalCorrectQuestionsAnswered + ");";
+                    
+                    sqlQuery = "Insert into PlayerStats (Id,HighScore,PlayerName,CorrectQuestions,Level,Experience) Values("
+                    + id +  "," + playerStats.HighScore + "," + "\'" + nameAdded + "\'"
+                    + "," + playerStats.TotalCorrectQuestionsAnswered 
+                    + "," + playerStats.Level + "," + playerStats.Experience + ");";
                     dbcmd.CommandText = sqlQuery;
                     dbcmd.ExecuteNonQuery();
                 }
                 else // current entry exists
                 {
-
+                    
                     sqlQuery = "Update PlayerStats " +
-                        "Set (HighScore, CorrectQuestions) = (" + playerStats.HighScore
-                        + "," + playerStats.TotalCorrectQuestionsAnswered + ")"
+                        "Set (HighScore, CorrectQuestions, Level, Experience) = (" + playerStats.HighScore
+                        + "," + playerStats.TotalCorrectQuestionsAnswered + "," + playerStats.Level 
+                        + "," + playerStats.Experience + ")"
                         + "WHERE Id = " + id + ";";
-
-                       
+                    
                     dbcmd.CommandText = sqlQuery;
                     dbcmd.ExecuteNonQuery();
                 }

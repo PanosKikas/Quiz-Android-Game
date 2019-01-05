@@ -302,7 +302,7 @@ public class GameManager : MonoBehaviour
         string[] requestURLS = GenerateUrlArray(selectedCategories, difficulty);
         
         yield return StartCoroutine(GetQuestions(requestURLS));
-        Debug.Log(questionList.Count);
+       
     }
 
     public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
@@ -330,7 +330,8 @@ public class GameManager : MonoBehaviour
 
     private void InitializePlayerStats(Difficulty _difficulty)
     {
-        playerStats.RemainingLives = 5 + 2*(int)_difficulty;
+        playerStats.RoundCorrectAnswers = 0;
+        playerStats.RemainingLives = 2;
         playerStats.CurrentScore = 0;
     }
 
@@ -367,10 +368,6 @@ public class GameManager : MonoBehaviour
 
         playerStats.TotalCorrectQuestionsAnswered += playerStats.RoundCorrectAnswers;
         
-       // playerStats.TotalExp += 50 * playerStats.RoundCorrectAnswers;
-        //playerStats.Experience = (playerStats.Experience + 50 * playerStats.RoundCorrectAnswers) % (playerStats.ExpToNextLevel);
-        // playerStats.Experience = (playerStats.Experience + 50 * playerStats.RoundCorrectAnswers) % (playerStats.Level*400);
-        // playerStats.Level += (int)(playerStats.Experience + 50 * playerStats.RoundCorrectAnswers) / playerStats.ExpToNextLevel;
 
         if (GameOverPanel == null)
         {
@@ -379,8 +376,7 @@ public class GameManager : MonoBehaviour
 
         GameOverPanel.SetActive(true);
 
-        dbManager.SaveToDatabase();
-        
+            
     }
 
    

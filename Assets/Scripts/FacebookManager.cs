@@ -1,11 +1,15 @@
 ﻿using UnityEngine.UI;
 using Facebook.Unity;
-using System.Collections.Generic;
+using Facebook.MiniJSON;
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class FacebookManager : MonoBehaviour
 {
     PlayerStats stats;
+    GameObject logoutButton;
+    public string FbName { get; private set; }
 
     private void Awake()
     {
@@ -20,9 +24,10 @@ public class FacebookManager : MonoBehaviour
 
     }
 
-    public void Login()
+    public void Login(GameObject _logoutButton = null)
     {
         FB.LogInWithReadPermissions(callback:OnLogin);
+        logoutButton = _logoutButton;
     }
 
     private void OnLogin(ILoginResult result)
@@ -30,14 +35,45 @@ public class FacebookManager : MonoBehaviour
         if(FB.IsLoggedIn)
         {
             AccessToken token = AccessToken.CurrentAccessToken;
-            GameManager.Instance.GetComponent<DatabaseManager>().ReadDatabase();
-            Debug.Log(token.UserId);
+            FB.API("/me?fields=first_name", Facebook.Unity.HttpMethod.GET, OnLoginCallBack);
+            if(logoutButton != null)
+            {
+                logoutButton.SetActive(true);
+            }
+            GameManager.Instance.GetComponent<DatabaseManager>().ReadDatabase();          
         }
         else
         {
             Debug.Log("Cancelled login");
         }
     }
+
+    private void OnLoginCallBack(Facebook.Unity.IResult result)
+    {
+
+        if(result.Error != null)
+             Debug.Log("Error Response:\n" + result.Error);
+        else if (!FB.IsLoggedIn)
+            Debug.Log("Login cancelled by Player");
+        else
+        {
+            IDictionary dict = Facebook.MiniJSON.Json.Deserialize(result.RawResult) as IDictionary;
+            FbName = dict["first_name"].ToString();
+            print("your name is: " + FbName);
+        }
+    }
+
+    public bool Logout()
+    {
+        if (FB.IsLoggedIn)
+        {
+            FB.LogOut();
+            GetComponent<DatabaseManager>().ReadDatabase();
+            return true;
+        }
+        return false;
+    }
+    
 
     public void Share()
     {

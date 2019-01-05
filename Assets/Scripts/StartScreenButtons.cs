@@ -1,19 +1,23 @@
-﻿using UnityEngine.UI;
+﻿using Facebook.Unity;
 using UnityEngine;
 
 public class StartScreenButtons : MonoBehaviour
 {
     [SerializeField]
-    Text highScore;
-
+    GameObject logoutButton;
     [SerializeField]
-    PlayerStats playerStats;
+    GameObject statsPanel;
 
-    void Start()
+    private void Start()
     {
-        highScore.text = "High Score: " + playerStats.HighScore;
-        highScore.text += "\nCorrect: " + playerStats.TotalCorrectQuestionsAnswered;
-        
+        if(FB.IsLoggedIn)
+        {
+            logoutButton.SetActive(true);
+        }
+        else
+        {
+            logoutButton.SetActive(false);
+        }
     }
 
     public void Play()
@@ -23,13 +27,30 @@ public class StartScreenButtons : MonoBehaviour
             Debug.LogError("No internet connection, Please connect to the internet!");
             return;
         }
-        GameManager.Instance.ToCategorySelect();
-       
+        GameManager.Instance.ToCategorySelect();    
     }
 
     public void FBLogin()
     {
-        GameManager.Instance.GetComponent<FacebookManager>().Login();
-        
+        GameManager.Instance.GetComponent<FacebookManager>().Login(logoutButton);     
+        if (statsPanel.activeSelf)
+        {
+            ToggleStats();
+        }
     }
+
+    public void FBLogout()
+    {
+        if(GameManager.Instance.GetComponent<FacebookManager>().Logout())
+        {
+            logoutButton.SetActive(false);
+        }
+    }
+
+    public void ToggleStats()
+    {
+        statsPanel.SetActive(!statsPanel.activeSelf);
+    }
+
+
 }

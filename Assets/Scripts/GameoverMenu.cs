@@ -38,7 +38,7 @@ public class GameoverMenu : MonoBehaviour
 
         expText.text = playerStats.Experience + "/" + playerStats.ExpToNextLevel;
         levelText.text = playerStats.Level.ToString();
-
+        experienceBar.value =(float) playerStats.Experience / (float) playerStats.ExpToNextLevel;
         StartCoroutine(AnimateScore());           
 
     }
@@ -98,6 +98,7 @@ public class GameoverMenu : MonoBehaviour
             yield return null;
         }
         HomeButton.enabled = true;
+        GameManager.Instance.GetComponent<DatabaseManager>().SaveToDatabase();
     }
 
     public void Home()
