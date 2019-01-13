@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿// Represents a Category Object
 [System.Serializable]
 public class Category
 {

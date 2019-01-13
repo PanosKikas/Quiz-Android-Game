@@ -11,6 +11,7 @@ public class QuestionUI : MonoBehaviour
     Text difficultyText;
     [SerializeField]
     Text categoryText;
+    
 
     [SerializeField]
     Text livesText;
@@ -18,6 +19,8 @@ public class QuestionUI : MonoBehaviour
     Text scoreText;
     [SerializeField]
     Text timerText;
+    [SerializeField]
+    Text currentStreak;
 
     public int timer { get; private set; }
 
@@ -36,18 +39,15 @@ public class QuestionUI : MonoBehaviour
         SetTimer(currentQuestion.QuestionDifficulty, currentQuestion.TypeOfQuestion);
         questionText.text = WebUtility.HtmlDecode(currentQuestion.question);
         this.difficultyText.text = "Difficulty: " + currentQuestion.difficulty.ToUpper();
-        this.categoryText.text = currentQuestion.category;      
-       
+        this.categoryText.text = currentQuestion.category;            
     }
 
-    public void UpdateLivesText(int lives)
-    {
-        livesText.text = lives.ToString();
-    }
 
-    public void UpdateScoreText(int score)
+    public void UpdateGUI(PlayerStats stats)
     {
-        scoreText.text = "Score: " + score.ToString();
+        livesText.text = stats.RemainingLives.ToString();
+        currentStreak.text = "STREAK: x" + stats.CurrentStreak.ToString();
+        scoreText.text = "Score: " + stats.CurrentScore.ToString();
     }
     
     IEnumerator DecreaseTimer()
@@ -91,6 +91,7 @@ public class QuestionUI : MonoBehaviour
                 timer += 20;
                 break;
         }
+        timer = 1;
         StartCoroutine(DecreaseTimer());
     }
 

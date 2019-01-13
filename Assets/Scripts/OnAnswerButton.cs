@@ -1,7 +1,10 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-public class OnAnswerButton : MonoBehaviour {
+// Each answer button has this component 
+// which when clicked sends an event to question manager
+public class OnAnswerButton : MonoBehaviour
+{
 
 	public void OnClickEvent()
     {

@@ -1,4 +1,4 @@
-﻿
+﻿// A class wich holds the token iformation retrieved from the json request
 [System.Serializable]
 public class Token 
 {

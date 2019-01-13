@@ -18,7 +18,7 @@ MonoBehaviour:
   appIds:
   - 225154541737690
   appLabels:
-  - Trivia Hunt
+  - Quiz Hunt
   cookie: 1
   logging: 1
   status: 1

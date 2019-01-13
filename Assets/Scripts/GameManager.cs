@@ -6,6 +6,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(FacebookManager))]
 [RequireComponent(typeof(DatabaseManager))]
@@ -81,9 +82,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(LoadSceneAsync(CategorySelectIndex, null));
         }     
     }
-
     
-
     private int GetNextSceneIndex()
     {
         return SceneManager.GetActiveScene().buildIndex + 1;
@@ -208,11 +207,18 @@ public class GameManager : MonoBehaviour
             }
         } 
     }
-   
+
+  
+
     // Async Task that takes a url from the trivia api and Retrieves Quesitons
     // Storing them into a RequestData object.
     IEnumerator GetQuestions(string[] questUrl)
-    {        
+    {
+        do
+        {
+            yield return null;
+        } while (Application.internetReachability == NetworkReachability.NotReachable);
+
         List<string> QuestionsNotFoundURL = new List<string>();
         foreach (string URL in questUrl)
         {
@@ -307,7 +313,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(List<int> selectedCategories, Difficulty difficulty, GameObject[] categories)
     {
-        InitializePlayerStats(difficulty);
         currentDifficulty = difficulty;
         NonSelectedCategories = new Dictionary<string, int>(AllCategoriesDictionary);
         questionList.Clear();
@@ -328,14 +333,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadSceneAsync(GetNextSceneIndex(),LoadQuestions(selectedCategories, difficulty)));
     }
 
-    private void InitializePlayerStats(Difficulty _difficulty)
-    {
-        playerStats.RoundCorrectAnswers = 0;
-        playerStats.RemainingLives = 2;
-        playerStats.CurrentScore = 0;
-    }
-
-    
     private string[] GenerateUrlArray(List<int> selectedIds, Difficulty difficulty)
     {
         SelectedCategories = selectedIds;
@@ -360,12 +357,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        // Save score to database
-        if (playerStats.CurrentScore > playerStats.HighScore)
-        {
-            playerStats.HighScore = playerStats.CurrentScore;
-        }
-
+        
         playerStats.TotalCorrectQuestionsAnswered += playerStats.RoundCorrectAnswers;
         
 
@@ -374,9 +366,7 @@ public class GameManager : MonoBehaviour
             GameOverPanel = Resources.FindObjectsOfTypeAll<GameoverMenu>()[0].gameObject;
         }
 
-        GameOverPanel.SetActive(true);
-
-            
+        GameOverPanel.SetActive(true);           
     }
 
    
@@ -384,7 +374,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("LoadScreen");
 
-        yield return enumerator;   
+        yield return enumerator;
+        while (GetComponent<DatabaseManager>().readingDB
+           || GetComponent<FacebookManager>().isLogging)
+        {
+           
+            yield return null;
+        }
         SceneManager.LoadSceneAsync(SceneIndex);
     }   
 }

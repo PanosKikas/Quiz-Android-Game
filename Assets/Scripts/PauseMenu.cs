@@ -1,23 +1,24 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 
+// This class handles the functionality of the pause menu
 public class PauseMenu : MonoBehaviour
 {
-    public void Retry()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    // Reference to the stats panel
+    [SerializeField]
+    GameObject statsPanel;
 
+    // Go to home screen when clicked
     public void Home()
     {
         Time.timeScale = 1f;
         GameManager.Instance.ToCategorySelect();
     }
 
-    public void Stats()
+    // Toggles the stats panel
+    public void ToggleStats()
     {
-        Debug.Log("Show stats");
+        statsPanel.SetActive(!statsPanel.activeSelf);
     }
     
 }

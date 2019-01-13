@@ -5,6 +5,8 @@ using System.Net;
 using System.Linq;
 using System.Collections;
 
+// Question manager handles the main game functionality
+// for displaying new questions, animating buttons etc
 public class QuestionManager : MonoBehaviour
 {
 
@@ -23,6 +25,7 @@ public class QuestionManager : MonoBehaviour
     }
     #endregion
 
+   
     [SerializeField]
     Transform MultipleAnswersPanel;
 
@@ -31,10 +34,13 @@ public class QuestionManager : MonoBehaviour
     
     GameManager gameManager;
     
+    // The currently displaed question
     Question currentQuestion;
     PlayerStats playerStats;
 
+    // List of all wrong answer buttons
     private List<Button> wrongAnswers;
+    // reference to the currently correct answer button
     private Button correctAnswerButton;
 
     [SerializeField]
@@ -47,32 +53,33 @@ public class QuestionManager : MonoBehaviour
 
     QuestionUI questionUI;
 
+    // an array of all the multiple answer buttons
     Button[] multipleAnswerButtons;
 
-	// Use this for initialization
-	void Start ()
-    {
-        
+    // helping gui
+    [SerializeField]
+    GameObject PopupGUI;
+
+    // Use this for initialization
+    void Start ()
+    {     
         gameManager = GameManager.Instance;
         questionUI = GetComponent<QuestionUI>();
         playerStats = gameManager.playerStats;
-        
-        questionUI.UpdateLivesText(playerStats.RemainingLives);
-        questionUI.UpdateScoreText(playerStats.CurrentScore);
+        playerStats.NewRoundInit();
+        // Updates the gui such as lives, score, streak
+        questionUI.UpdateGUI(playerStats);
 
         trueButtonParent = trueBooleanButton.transform.parent.gameObject;
         falseButtonParent = falseBooleanButton.transform.parent.gameObject;
-        
-     
+           
         wrongAnswers = new List<Button>();
 
         multipleAnswerButtons = MultipleAnswersPanel.GetComponentsInChildren<Button>(true);
-
-      
-
         GetNextQuestion();
     }
-	
+	// A function that after clearing the previous answer buttons gets a random question
+    // from gamemanager's list of questions and displays it along with its answer buttons
     void GetNextQuestion()
     {
         // Remove Previous Answer Buttons
@@ -84,6 +91,7 @@ public class QuestionManager : MonoBehaviour
         gameManager.questionList.RemoveAt(randomQuestionIndex);
         
         Debug.Log(currentQuestion);
+
         // Set the UI elements of the current question
         questionUI.SetQuestionUI(currentQuestion);
 
@@ -91,23 +99,29 @@ public class QuestionManager : MonoBehaviour
         SetAnswerButtons(currentQuestion.TypeOfQuestion);       
     }
 
+    // a function that sets up the answer buttons 
     void SetAnswerButtons(QuestionType type)
     {        
+        // Different functionality for true/false and multiple answer buttons
         switch (type)
         {
             case QuestionType.multiple:
-
+                // get a list of all the wrong answers
                 List<string> answers = currentQuestion.incorrect_answers.ToList<string>();
+                // add the correct answer to the list
                 answers.Add(currentQuestion.correct_answer);
 
+                // For every answer entry
                 for (int i = 0; i < currentQuestion.incorrect_answers.Length + 1; i++)
                 {
+                    // Get a random index
                     int randIndex = Random.Range(0, answers.Count);
-                    
+                    // set the ith button with the text of the answer
                     Button answerButton = multipleAnswerButtons[i];
                     
                     Text _text = answerButton.GetComponentInChildren<Text>();
                     string currentAnswer = answers.ElementAt(randIndex);
+                    // add it to wrong button or correct button depending on whether it is correct/wrong answer
                     if (currentAnswer.Equals(currentQuestion.correct_answer))
                     {
                         correctAnswerButton = answerButton;
@@ -116,20 +130,21 @@ public class QuestionManager : MonoBehaviour
                     {
                         wrongAnswers.Add(answerButton);
                     }
-
+                    // transforms the answer text's html special characters to readable form
                     _text.text = WebUtility.HtmlDecode(answers.ElementAt(randIndex));
                     answers.RemoveAt(randIndex);
+                    // enable it
                     answerButton.interactable = true;
                     answerButton.gameObject.SetActive(true);
                 }
 
                 break;
-
+                // in case of true/false buttons
             case QuestionType.boolean:       
-                
+                // Set the button's parent to true
                 trueButtonParent.SetActive(true);
                 falseButtonParent.SetActive(true);
-              
+               
                 if(currentQuestion.correct_answer.Equals("True"))
                 {
                     correctAnswerButton = trueBooleanButton;
@@ -143,9 +158,11 @@ public class QuestionManager : MonoBehaviour
                 break;
         }
     }
-       
+    
+    // A function that clear all the previous buttons
     void ClearPreviousAnswers()
     {       
+        // clears true/false buttons (if any)
         if (trueButtonParent.activeInHierarchy)
         {
             trueButtonParent.SetActive(false);
@@ -160,6 +177,7 @@ public class QuestionManager : MonoBehaviour
             correctAnswerButton = null;
         }
         
+        // disables all the wrong answer buttons and the correct answer button
         foreach (Button answer in wrongAnswers)
         {
             if (answer.gameObject.activeSelf)
@@ -172,53 +190,111 @@ public class QuestionManager : MonoBehaviour
         {
             correctAnswerButton.gameObject.SetActive(false);
         }
+        // clears the wrong answers list
         wrongAnswers.Clear();        
     }
     
+    // This is called from OnAnswerButton whenever a button is clicked
     public void ButtonClicked(Button button)
     {
         StartCoroutine(OnAnswerClicked(button));
     }
     
+    // Check which button was just clicked. Different functionality for correct/wrong answers
     public IEnumerator OnAnswerClicked(Button button)
     {
-        AnimateAnswerButtons();
+        AnimateAnswerButtons(); // play animations
         
+       
         if(button != correctAnswerButton)
         {
-            playerStats.RemainingLives--;
-            questionUI.UpdateLivesText(playerStats.RemainingLives);
-            if (playerStats.RemainingLives <= 0)
-            {
-                ClearPreviousAnswers();
-                gameManager.EndGame();
-            }                     
+            OnWrongAnswer();
         }
         else
         {
-            int scoreReceived = ((int)currentQuestion.QuestionDifficulty + 1) * 200;
-            playerStats.RoundCorrectAnswers++;
-            scoreReceived += 20 * questionUI.timer;
-            playerStats.CurrentScore += scoreReceived;
-            
-            questionUI.UpdateScoreText(playerStats.CurrentScore);
-
+            OnCorrectAnswer();
         }
 
-        yield return new WaitForSeconds(1.5f);
-
+        // Update the player's gui
+        questionUI.UpdateGUI(playerStats);
+       
+        // No more questions to display - list is empty
         if (gameManager.questionList.Count <= 0)
         {
+            string popUp = "Getting more questions...";
+            // internet required
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                popUp = "No internet connection! Please enable your internet";
+            }
+            StartCoroutine(DisplayPopup(popUp));
+            // wait until more questions are retrieved
             yield return StartCoroutine(gameManager.GetQuestions());
         }
 
+        // wait before displaying the next question
+        yield return new WaitForSeconds(1.5f);
+        // Get next question
         GetNextQuestion();
     }
 
+    // the player has answered correctly
+    void OnCorrectAnswer()
+    {
+        // increment their streak
+        playerStats.CurrentStreak++;
+        // every x4-x8-x12 etc streak add a life
+        if(playerStats.CurrentStreak%4 == 0)
+        {
+            // Add a live
+            playerStats.RemainingLives++;
+        }
+        // score to be added depending on it's streak
+        int scoreReceived = ((int)currentQuestion.QuestionDifficulty + 1) * (int) Mathf.Floor((float)playerStats.CurrentStreak* 0.6f* 200);
+        // increment the total correct questions answered on this round
+        playerStats.RoundCorrectAnswers++;
+        // Add bonus points for asking quickly
+        scoreReceived += 10 * questionUI.timer;
+        playerStats.CurrentScore += scoreReceived;
+        
+    }
+    // The player has answered incorrectly
+    void OnWrongAnswer()
+    {
+        // decrement its live
+        playerStats.RemainingLives--;
+
+        // check if this is higher than highscore
+        if(playerStats.CurrentStreak > playerStats.HighestStreak)
+        {
+            playerStats.HighestStreak = playerStats.CurrentStreak;
+        }
+
+        // Check if it is the best streak
+        if(playerStats.CurrentStreak > playerStats.BestRoundStreak)
+        {
+            playerStats.BestRoundStreak = playerStats.CurrentStreak;
+        }
+        
+        playerStats.CurrentStreak = 1;
+        
+        // If no more lives
+        if (playerStats.RemainingLives <= 0)
+        {
+            // Clear all answers
+            ClearPreviousAnswers();
+            // end the game
+            gameManager.EndGame();
+        }
+    }
+
+    // Animates the buttons
     void AnimateAnswerButtons()
     {
+        // Stop the timer
         questionUI.StopAllCoroutines();
 
+        // animate every wrong answer button
         foreach (Button _button in wrongAnswers)
         {
             Animator anim = _button.GetComponentInParent<Animator>();
@@ -226,8 +302,18 @@ public class QuestionManager : MonoBehaviour
             anim.SetTrigger("Incorrect");
         }
 
+        // set to note interactable 
         correctAnswerButton.interactable = false;
+        // animate correct answer button
         correctAnswerButton.GetComponentInParent<Animator>().SetTrigger("Correct");
     }
-    
+
+    IEnumerator DisplayPopup(string popuptext)
+    {
+        PopupGUI.GetComponentInChildren<Text>().text = popuptext;
+        PopupGUI.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        PopupGUI.SetActive(false);
+    }
+
 }
