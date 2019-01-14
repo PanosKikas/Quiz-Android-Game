@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class StartScreenButtons : MonoBehaviour
 {
+    
     [SerializeField]
-    GameObject logoutButton;
+    GameObject logoutButton; // reference to the logout button
     [SerializeField]
-    GameObject statsPanel;
+    GameObject statsPanel; // reference to the stats panel
     [SerializeField]
-    GameObject PopupGUI;
+    GameObject PopupGUI; // helper gui
 
-    private const string addQuestionURL = "https://opentdb.com/trivia_add_question.php";
+    private const string addQuestionURL = "https://opentdb.com/trivia_add_question.php"; // the url if the user wants to add a question to the db
 
 
     private void Start()
     {
+        // hide or show the logout button depending on whether the user is logged in
         if(FB.IsLoggedIn)
         {
             logoutButton.SetActive(true);
@@ -27,8 +29,10 @@ public class StartScreenButtons : MonoBehaviour
         }
     }
 
+
     public void Play()
     {
+        // needs internet access 
         if(Application.internetReachability == NetworkReachability.NotReachable)
         {
             string popup = "No internet connection. Enable your internet and try again!";
@@ -38,6 +42,7 @@ public class StartScreenButtons : MonoBehaviour
         GameManager.Instance.ToCategorySelect();
     }
        
+   // Logins with facebook 
     public void FBLogin()
     {      
         GameManager.Instance.GetComponent<FacebookManager>().Login(logoutButton);     
@@ -82,6 +87,7 @@ public class StartScreenButtons : MonoBehaviour
 
     }
 
+    // when clicked it opens a url with the api that lets you add new questions
     public void AddQuestion()
     {
         Application.OpenURL(addQuestionURL);

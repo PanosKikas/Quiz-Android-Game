@@ -31,7 +31,7 @@ public class Stats : MonoBehaviour
 
     DatabaseManager dbManager;
 
-
+    // read the database and then update gui
     private void OnEnable()
     {
         dbManager = GameManager.Instance.GetComponent<DatabaseManager>();
@@ -39,13 +39,16 @@ public class Stats : MonoBehaviour
         StartCoroutine(UpdateGUI());
     }
 
+     
     IEnumerator UpdateGUI()
     {
         FacebookManager fbManager = GameManager.Instance.GetComponent<FacebookManager>();
-        while (dbManager.readingDB || fbManager.isLogging)
+
+        while (dbManager.readingDB || fbManager.isLogging) // wait to read db
         {
             yield return null;
         }
+        // update the gui of the stats panel
         nameText.text = playerStats.Name;
         highScoreText.text = playerStats.HighScore.ToString();
         correctQuestionsText.text = playerStats.TotalCorrectQuestionsAnswered.ToString();

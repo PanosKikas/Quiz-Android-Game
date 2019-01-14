@@ -77,7 +77,7 @@ public class FacebookManager : MonoBehaviour
             // Gets the user's fb name
             IDictionary dict = Facebook.MiniJSON.Json.Deserialize(result.RawResult) as IDictionary;
             FbName = dict["first_name"].ToString();
-            GameManager.Instance.GetComponent<DatabaseManager>().ReadDatabase();
+            GameManager.Instance.GetComponent<DatabaseManager>().ReadDatabase(); // update the stats
         }
         isLogging = false;
     }
