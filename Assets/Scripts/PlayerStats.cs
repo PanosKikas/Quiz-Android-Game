@@ -5,7 +5,7 @@
 public class PlayerStats : ScriptableObject
 {
     // The lives that the player starts with each time they enter the game
-    readonly int startingLives = 2;
+    readonly int startingLives = 5;
 
     // The remaining lives of the player
     public int RemainingLives { get; set; }
