@@ -1,16 +1,20 @@
 fileFormatVersion: 2
-guid: 146fb1f1c7a148e0a45842341619f416
+guid: f87eb93c55814d53b99e4d9d248b0ccd
 labels:
 - gvh
-- gvh_targets-editor
-- gvh_version-1.2.95.0
+- gvh_version-1.2.156
+- gvhp_exportpath-ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.156.dll
+- gvhp_targets-editor
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
   iconMap: {}
   executionOrder: {}
+  defineConstraints: []
   isPreloaded: 0
   isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
   platformData:
   - first:
       Any: 
