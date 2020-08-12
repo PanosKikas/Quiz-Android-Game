@@ -1,5 +1,4 @@
-﻿using Facebook.Unity;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,21 +13,7 @@ public class StartScreenButtons : MonoBehaviour
     GameObject PopupGUI; // helper gui
 
     private const string addQuestionURL = "https://opentdb.com/trivia_add_question.php"; // the url if the user wants to add a question to the db
-
-
-    private void Start()
-    {
-        // hide or show the logout button depending on whether the user is logged in
-        if(FB.IsLoggedIn)
-        {
-            logoutButton.SetActive(true);
-        }
-        else
-        {
-            logoutButton.SetActive(false);
-        }
-    }
-
+    
 
     public void Play()
     {
@@ -42,29 +27,7 @@ public class StartScreenButtons : MonoBehaviour
         GameManager.Instance.ToCategorySelect();
     }
        
-   // Logins with facebook 
-    public void FBLogin()
-    {      
-        GameManager.Instance.GetComponent<FacebookManager>().Login(logoutButton);     
-        if (statsPanel.activeSelf)
-        {
-            ToggleStats();
-        }       
-    }
-
-    public void FBLogout()
-    {
-        if(GameManager.Instance.GetComponent<FacebookManager>().Logout())
-        {
-            logoutButton.SetActive(false);
-        }
-
-        StartCoroutine(WaitForLogout());
-       
-        string popup = "Successfully logged out of Facebook!";
-        StartCoroutine(DisplayPopup(popup));
-    }
-
+   
     public void ToggleStats()
     {
         statsPanel.SetActive(!statsPanel.activeSelf);
@@ -78,14 +41,6 @@ public class StartScreenButtons : MonoBehaviour
         PopupGUI.SetActive(false);
     }
 
-    IEnumerator WaitForLogout()
-    {
-        while(FB.IsLoggedIn)
-        {
-            yield return null;
-        }
-
-    }
 
     // when clicked it opens a url with the api that lets you add new questions
     public void AddQuestion()

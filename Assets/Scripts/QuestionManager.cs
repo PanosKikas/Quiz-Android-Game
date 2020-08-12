@@ -276,7 +276,7 @@ public class QuestionManager : MonoBehaviour
             playerStats.BestRoundStreak = playerStats.CurrentStreak;
         }
         
-        playerStats.CurrentStreak = 1;
+        playerStats.CurrentStreak = 0;
         
         // If no more lives
         if (playerStats.RemainingLives <= 0)

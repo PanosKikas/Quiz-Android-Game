@@ -154,7 +154,8 @@ public class GameoverMenu : MonoBehaviour
         // Enable the home/share button and save to database
         HomeButton.enabled = true;
         ShareButton.enabled = true;
-        GameManager.Instance.GetComponent<DatabaseManager>().SaveToDatabase();
+        //GameManager.Instance.GetComponent<DatabaseManager>().SaveToDatabase();
+        SaveSystem.SavePlayerStats(playerStats.savedStats);
     }
 
     // Go to the category select screen
@@ -167,6 +168,6 @@ public class GameoverMenu : MonoBehaviour
     // Share to facebook
     public void Share()
     {
-        GameManager.Instance.GetComponent<FacebookManager>().Share();
+       // GameManager.Instance.GetComponent<FacebookManager>().Share();
     }
 }
