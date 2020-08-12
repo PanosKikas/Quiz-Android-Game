@@ -7,8 +7,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using EasyMobile;
 
+[RequireComponent(typeof(FacebookManager))]
+[RequireComponent(typeof(DatabaseManager))]
 [RequireComponent(typeof(ObjectPooler))]
 // The gamemanger gameobject holds the core activity
 // and functionality. It is not destroyed on each load of new scene
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
     public List<Question> questionList; // a list of all the questions 
     private Difficulty currentDifficulty; // the current difficulty
     
+
+    DatabaseManager dbManager;
     RequestData requestData;
     Dictionary<string, int> NonSelectedCategories; // a dictionary with the non-selected categories
     // the build index of the category select scene 
@@ -71,12 +74,9 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-
-        var savedStats = SaveSystem.LoadPlayerStats();
-        playerStats.savedStats = savedStats;
         // Pool the category buttons
         ObjectPooler.PreLoadInstances(categoryButtonPrefab, pooledCategoryButtons, gameObject.transform);
-        
+        dbManager = GetComponent<DatabaseManager>();
         AllCategoriesDictionary = new Dictionary<string, int>();
         questionList = new List<Question>();
         SelectedCategories = new List<int>();
@@ -421,8 +421,6 @@ public class GameManager : MonoBehaviour
             GameOverPanel = Resources.FindObjectsOfTypeAll<GameoverMenu>()[0].gameObject;
         }
         // set it to active
-
-        StoreReview.RequestRating();
         GameOverPanel.SetActive(true);           
     }
 
@@ -434,7 +432,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("LoadScreen");
       // wait for enumerator to finish
         yield return enumerator;
-        
+        // wait for any logging or reading the database - else errors may occur
+        while (GetComponent<DatabaseManager>().readingDB
+           || GetComponent<FacebookManager>().isLogging)
+        {
+           
+            yield return null;
+        }
         // load the new scene
         SceneManager.LoadSceneAsync(SceneIndex);
     }   

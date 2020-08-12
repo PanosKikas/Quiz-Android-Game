@@ -29,21 +29,25 @@ public class Stats : MonoBehaviour
     [SerializeField]
     Slider expBar;
 
-   // DatabaseManager dbManager;
+    DatabaseManager dbManager;
 
     // read the database and then update gui
     private void OnEnable()
     {
-        //dbManager = GameManager.Instance.GetComponent<DatabaseManager>();
-        //dbManager.ReadDatabase();
-        UpdateGUI();
+        dbManager = GameManager.Instance.GetComponent<DatabaseManager>();
+        dbManager.ReadDatabase();
+        StartCoroutine(UpdateGUI());
     }
 
      
-    void UpdateGUI()
+    IEnumerator UpdateGUI()
     {
-       
-       
+        FacebookManager fbManager = GameManager.Instance.GetComponent<FacebookManager>();
+
+        while (dbManager.readingDB || fbManager.isLogging) // wait to read db
+        {
+            yield return null;
+        }
         // update the gui of the stats panel
         nameText.text = playerStats.Name;
         highScoreText.text = playerStats.HighScore.ToString();

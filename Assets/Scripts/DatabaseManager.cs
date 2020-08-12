@@ -1,5 +1,6 @@
 ﻿using Mono.Data.Sqlite;
 using System.Data;
+using Facebook.Unity;
 using UnityEngine;
 using System.IO;
 using System;
@@ -14,7 +15,8 @@ public class DatabaseManager : MonoBehaviour
 
     
     private string connectionString;
-
+    // A reference to the facebook manager
+    FacebookManager fbManager;
     // Name of the table to be created
     const string TableName = "PlayerStats";
 
@@ -23,6 +25,7 @@ public class DatabaseManager : MonoBehaviour
 
     void Start()
     {
+        fbManager = GetComponent<FacebookManager>();
         ConnectToDatabase();
         ReadDatabase();
     }
@@ -83,7 +86,8 @@ public class DatabaseManager : MonoBehaviour
             dbConnection.Open(); //Open connection to the database.
             string uid = "0"; // the primaryKey (id) of the user - 0 when user is anonymous (no fb login)
             // if logged in get his access facebook token and use it as id
-            
+            if (FB.IsLoggedIn)
+                uid = fbManager.GetAccessToken().UserId;
             // get all columns for user with this id
             string sqlQuery = "Select * From PlayerStats Where Id = " + uid;
             IDbCommand dbcmd = dbConnection.CreateCommand();
@@ -149,12 +153,21 @@ public class DatabaseManager : MonoBehaviour
             string id;
             string nameAdded = "Guest";
 
-       
-            
+            if(FB.IsLoggedIn)
+            {
+                // Save user with fb username
+                
+                AccessToken token =  fbManager.GetAccessToken();
+                sqlQuery = "select count(*) from PlayerStats where Id = " + token.UserId;
+                id = token.UserId;
+                nameAdded = fbManager.FbName;
+            }
+            else
+            {
                 id = "0";
                 // Search for anonymous user with id 0
                 sqlQuery = "select count(*) from PlayerStats where Id = 0";
-            
+            }
 
             using (IDbCommand dbcmd = dbConnection.CreateCommand())
             {
