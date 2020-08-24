@@ -28,8 +28,8 @@ public class StartScreenButtons : MonoBehaviour
             string popup = "No internet connection. Enable your internet and try again!";
             StartCoroutine(DisplayPopup(popup));
             return;
-        }  
-        GameManager.Instance.ToCategorySelect();
+        }
+        SceneTransitioner.Instance.TransitionToCategorySelect();
     }
        
    // Logins with facebook 

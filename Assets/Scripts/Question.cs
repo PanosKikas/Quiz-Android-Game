@@ -12,7 +12,7 @@ public class Question
     {
         get
         {
-            return GameManager.Instance.AllCategoriesDictionary[category];
+            return AllCategoriesData.AllCategories[category];
         }
     }
     

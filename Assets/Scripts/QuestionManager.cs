@@ -25,7 +25,7 @@ public class QuestionManager : MonoBehaviour
     }
     #endregion
 
-   
+    
     [SerializeField]
     Transform MultipleAnswersPanel;
 
@@ -43,12 +43,13 @@ public class QuestionManager : MonoBehaviour
     // reference to the currently correct answer button
     private Button correctAnswerButton;
 
-    [SerializeField]
-    private Button trueBooleanButton;
-    [SerializeField]
-    private Button falseBooleanButton;
 
+    private Button trueBooleanButton;
+
+    private Button falseBooleanButton;
+    [SerializeField]
     private GameObject trueButtonParent;
+    [SerializeField]
     private GameObject falseButtonParent;
 
     QuestionUI questionUI;
@@ -66,37 +67,52 @@ public class QuestionManager : MonoBehaviour
         gameManager = GameManager.Instance;
         questionUI = GetComponent<QuestionUI>();
         playerStats = gameManager.playerStats;
+
         playerStats.NewRoundInit();
         // Updates the gui such as lives, score, streak
         questionUI.UpdateGUI(playerStats);
 
-        trueButtonParent = trueBooleanButton.transform.parent.gameObject;
-        falseButtonParent = falseBooleanButton.transform.parent.gameObject;
+        trueBooleanButton = trueButtonParent.GetComponentInChildren<Button>();
+        falseBooleanButton = falseButtonParent.GetComponentInChildren<Button>();
            
         wrongAnswers = new List<Button>();
 
         multipleAnswerButtons = MultipleAnswersPanel.GetComponentsInChildren<Button>(true);
         GetNextQuestion();
     }
-	// A function that after clearing the previous answer buttons gets a random question
-    // from gamemanager's list of questions and displays it along with its answer buttons
+    
     void GetNextQuestion()
     {
-        // Remove Previous Answer Buttons
         ClearPreviousAnswers();
-      
-        // Get random question and remove it from list
-        int randomQuestionIndex = Random.Range(0, gameManager.questionList.Count);
-        currentQuestion = gameManager.questionList[randomQuestionIndex];
-        gameManager.questionList.RemoveAt(randomQuestionIndex);
-        
-        Debug.Log(currentQuestion);
-
-        // Set the UI elements of the current question
+        currentQuestion = QuestionsRetriever.Instance.GetRandomQuestion();
+        Debug.Log(currentQuestion.correct_answer);
         questionUI.SetQuestionUI(currentQuestion);
-
-        // Set the answer buttons
         SetAnswerButtons(currentQuestion.TypeOfQuestion);       
+    }
+
+    // A function that clear all the previous buttons
+    void ClearPreviousAnswers()
+    {
+        // disables all the wrong answer buttons and the correct answer button
+        foreach (Button wrongAnswerButton in wrongAnswers)
+        {
+            InitializeButton(wrongAnswerButton);
+        }
+
+        InitializeButton(correctAnswerButton);
+        // clears the wrong answers list
+        wrongAnswers.Clear();
+    }
+    
+    
+    void InitializeButton(Button button)
+    {
+        if (button != null && button.gameObject.activeSelf)
+        {
+            button.interactable = true;
+            button.gameObject.SetActive(false);
+        }
+        
     }
 
     // a function that sets up the answer buttons 
@@ -159,40 +175,7 @@ public class QuestionManager : MonoBehaviour
         }
     }
     
-    // A function that clear all the previous buttons
-    void ClearPreviousAnswers()
-    {       
-        // clears true/false buttons (if any)
-        if (trueButtonParent.activeInHierarchy)
-        {
-            trueButtonParent.SetActive(false);
-            trueBooleanButton.interactable = true;
-        }
 
-        if(falseButtonParent.activeInHierarchy)
-        {
-            falseButtonParent.SetActive(false);
-            falseBooleanButton.interactable = true;
-            wrongAnswers.Clear();
-            correctAnswerButton = null;
-        }
-        
-        // disables all the wrong answer buttons and the correct answer button
-        foreach (Button answer in wrongAnswers)
-        {
-            if (answer.gameObject.activeSelf)
-            {
-                answer.gameObject.SetActive(false);
-            }
-        }
-        
-        if(correctAnswerButton != null && correctAnswerButton.gameObject.activeSelf)
-        {
-            correctAnswerButton.gameObject.SetActive(false);
-        }
-        // clears the wrong answers list
-        wrongAnswers.Clear();        
-    }
     
     // This is called from OnAnswerButton whenever a button is clicked
     public void ButtonClicked(Button button)
@@ -217,20 +200,6 @@ public class QuestionManager : MonoBehaviour
 
         // Update the player's gui
         questionUI.UpdateGUI(playerStats);
-       
-        // No more questions to display - list is empty
-        if (gameManager.questionList.Count <= 0)
-        {
-            string popUp = "Getting more questions...";
-            // internet required
-            if (Application.internetReachability == NetworkReachability.NotReachable)
-            {
-                popUp = "No internet connection! Please enable your internet";
-            }
-            StartCoroutine(DisplayPopup(popUp));
-            // wait until more questions are retrieved
-            yield return StartCoroutine(gameManager.GetQuestions());
-        }
 
         // wait before displaying the next question
         yield return new WaitForSeconds(1.5f);
@@ -306,14 +275,6 @@ public class QuestionManager : MonoBehaviour
         correctAnswerButton.interactable = false;
         // animate correct answer button
         correctAnswerButton.GetComponentInParent<Animator>().SetTrigger("Correct");
-    }
-
-    IEnumerator DisplayPopup(string popuptext)
-    {
-        PopupGUI.GetComponentInChildren<Text>().text = popuptext;
-        PopupGUI.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        PopupGUI.SetActive(false);
     }
 
 }

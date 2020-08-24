@@ -161,7 +161,7 @@ public class GameoverMenu : MonoBehaviour
     public void Home()
     {
         Time.timeScale = 1f;
-        GameManager.Instance.ToCategorySelect();
+        SceneTransitioner.Instance.TransitionToCategorySelect();
     }
 
     // Share to facebook
