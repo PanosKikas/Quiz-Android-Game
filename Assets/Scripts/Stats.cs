@@ -42,9 +42,8 @@ public class Stats : MonoBehaviour
      
     IEnumerator UpdateGUI()
     {
-        FacebookManager fbManager = GameManager.Instance.GetComponent<FacebookManager>();
 
-        while (dbManager.readingDB || fbManager.isLogging) // wait to read db
+        while (dbManager.readingDB) // wait to read db
         {
             yield return null;
         }

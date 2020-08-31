@@ -25,9 +25,7 @@ public class QuestionUI : MonoBehaviour
     Text currentStreak;
 
     public int timer { get; private set; }
-
-    [SerializeField]
-    GameObject PauseUI;
+    
     
     QuestionManager questionManager;
 
@@ -104,21 +102,5 @@ public class QuestionUI : MonoBehaviour
         // Decrease timer
         StartCoroutine(DecreaseTimer());
     }
-
-    // the user hit pause
-    public void TogglePause()
-    {
-        // pause - freeze time
-        if(PauseUI.activeSelf)
-        {
-            PauseUI.SetActive(false);
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            PauseUI.SetActive(true);
-            Time.timeScale = 0f; // unfreeze time
-        }
-
-    }
+    
 }

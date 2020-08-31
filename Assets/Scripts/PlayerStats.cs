@@ -21,6 +21,14 @@ public class PlayerStats : ScriptableObject
     public int HighestStreak { get; set; } // their highest streak
     public int BestRoundStreak { get; set; } // their best streak in this game
 
+    public float ExperiencePercent
+    {
+        get
+        {
+            return (float)Experience / (float)ExpToNextLevel;
+        }
+    }
+
     private void OnEnable()
     {
         Initialize();
@@ -34,7 +42,7 @@ public class PlayerStats : ScriptableObject
         Experience = 0;       
         HighScore = 0;
         TotalCorrectQuestionsAnswered = 0;
-        HighestStreak = 1;
+        HighestStreak = 0;
     }
 
     // Initializes the stats for a new round
@@ -42,8 +50,8 @@ public class PlayerStats : ScriptableObject
     {
         RoundCorrectAnswers = 0;
         CurrentScore = 0;
-        CurrentStreak = 1;
-        BestRoundStreak = 1;
+        CurrentStreak = 0;
+        BestRoundStreak = 0;
         RemainingLives = startingLives;
     }
 }
