@@ -32,6 +32,13 @@ public class CategorySelect : MonoBehaviour
     List<int> selectedCategories;
 
     Difficulty difficulty = Difficulty.medium;
+    AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     // Use this for initialization
     void Start ()
     {
@@ -165,5 +172,11 @@ public class CategorySelect : MonoBehaviour
     bool HasSelectedEnoughCategories()
     {
         return selectedCategories.Count >= minimumSelectedCategories;
+    }
+
+    public void OnToggleClicked(bool val)
+    {
+        audioSource.Play();
+        
     }
 }

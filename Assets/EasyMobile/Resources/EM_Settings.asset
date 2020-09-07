@@ -23,7 +23,7 @@ MonoBehaviour:
     mAndroidDefaultAdNetworks:
       bannerAdNetwork: 0
       interstitialAdNetwork: 0
-      rewardedAdNetwork: 0
+      rewardedAdNetwork: 5
     mAdColony:
       mEnable: 0
       mAppId:
@@ -340,4 +340,4 @@ MonoBehaviour:
   mIsNotificationModuleEnable: 0
   mIsSharingModuleEnable: 1
   mActiveModuleIndex: 7
-  mIsSelectingModule: 1
+  mIsSelectingModule: 0

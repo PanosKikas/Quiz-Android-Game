@@ -7,6 +7,7 @@ public class EasyMobileProInitializer : MonoBehaviour
 {
     private void Awake()
     {
+        
         if (!RuntimeManager.IsInitialized())
         {
             RuntimeManager.Init();

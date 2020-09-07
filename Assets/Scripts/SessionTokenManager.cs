@@ -18,7 +18,6 @@ public class SessionTokenManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-
     }
     #endregion
 
@@ -28,7 +27,7 @@ public class SessionTokenManager : MonoBehaviour
     private const string resetTokenUrl = "https://opentdb.com/api_token.php?command=reset&token=";
     // the session token
     private string SessionToken = null;
-
+    
     public string GetToken()
     {
         if (SessionToken == null)

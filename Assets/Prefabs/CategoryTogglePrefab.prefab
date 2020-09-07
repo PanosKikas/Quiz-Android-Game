@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 532913600636091334}
   - component: {fileID: 532913600636091335}
   m_Layer: 5
-  m_Name: Category15714(Pool)
+  m_Name: CategoryTogglePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!222 &532913600636091334
 CanvasRenderer:
@@ -159,8 +171,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 23.53, y: 0.15997314}
-  m_SizeDelta: {x: 164.79, y: -12.73}
+  m_AnchoredPosition: {x: 39.05, y: -0.789978}
+  m_SizeDelta: {x: 160.09428, y: -17.34169}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &532913600941643426
 CanvasRenderer:
@@ -191,12 +203,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 59190367a1349c84485371e259de4c62, type: 3}
+    m_Font: {fileID: 12800000, guid: 13aab4274842e4c959ae43189c419ee8, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 20
-    m_MaxSize: 26
+    m_MaxSize: 32
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -238,10 +250,10 @@ RectTransform:
   m_Father: {fileID: 532913600636091328}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -82.3, y: 0.15998}
-  m_SizeDelta: {x: -202.88, y: 31.16}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -78.7, y: 0}
+  m_SizeDelta: {x: -220.85329, y: -49.66849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &532913601139311784
 CanvasRenderer:

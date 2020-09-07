@@ -29,12 +29,12 @@ public class Stats : MonoBehaviour
     [SerializeField]
     Slider expBar;
 
-    DatabaseManager dbManager;
+    DBManager dbManager;
 
     // read the database and then update gui
     private void OnEnable()
     {
-        dbManager = GameManager.Instance.GetComponent<DatabaseManager>();
+        dbManager = GameManager.Instance.GetComponent<DBManager>();
         dbManager.ReadDatabase();
         StartCoroutine(UpdateGUI());
     }

@@ -31,6 +31,8 @@ public class GameOverUIAnimator : MonoBehaviour
     [SerializeField]
     GameObject NewHighscoreImage;
 
+    AudioSource audioSource;
+
     private void OnEnable()
     {
         ShowInitialUI();
@@ -38,6 +40,10 @@ public class GameOverUIAnimator : MonoBehaviour
 
     void ShowInitialUI()
     {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         expText.text = String.Format("{0} / {1}", playerStats.Experience, playerStats.ExpToNextLevel);
         levelText.text = playerStats.Level.ToString();
         experienceBar.value = playerStats.ExperiencePercent;
@@ -50,13 +56,15 @@ public class GameOverUIAnimator : MonoBehaviour
 
     IEnumerator AnimateScore()
     {
+        
         // wait for animation gameover to play
         yield return new WaitForSecondsRealtime(1f);
         int score = 0;
         scoreText.text = "0";
         // The speed to which the high score will be incremented
         int speed = playerStats.CurrentScore / 60;
-
+        audioSource.pitch = 1.4f;
+   
         // Add a little to the score - wait then add more
         while (score < playerStats.CurrentScore)
         {
@@ -69,6 +77,7 @@ public class GameOverUIAnimator : MonoBehaviour
             {
                 score += speed;
             }
+            audioSource.Play();
 
             scoreText.text = score.ToString();
 
@@ -80,42 +89,50 @@ public class GameOverUIAnimator : MonoBehaviour
             }
             yield return null;
         }
-
-        StartCoroutine(AnimateCorrectQuestions());
+        audioSource.Stop();
+        yield return AnimateCorrectQuestions();
     }
 
     IEnumerator AnimateCorrectQuestions()
     {
         int correctQuestions = 0;
         correctAnswersText.text = "0";
-
+        audioSource.pitch = 1f;
         while (correctQuestions < playerStats.RoundCorrectAnswers)
         {
             yield return new WaitForSecondsRealtime(0.05f);
             correctQuestions++;
             correctAnswersText.text = correctQuestions.ToString();
-
+            audioSource.Play();
         }
-        StartCoroutine(AnimateStreak());
+        yield return AnimateStreak();
     }
 
     IEnumerator AnimateStreak()
     {
+        audioSource.pitch = 1f;
         int streak = 0;
         highestStreakText.text = "x0";
 
         while (streak < playerStats.BestRoundStreak)
         {
             yield return new WaitForSecondsRealtime(0.1f);
+            audioSource.Play();
             streak++;
             highestStreakText.text = "x" + streak.ToString();
         }
-        StartCoroutine(AnimateExperience());
+
+
+        yield return AnimateExperience();
     }
 
     // A function that animates the experience of the player
     IEnumerator AnimateExperience()
     {
+        
+        Debug.Log("Animating exp");
+        
+        audioSource.pitch = 0.5f;
         int totalExp = 0;
         int speed = 10;
         // the experience gathered from that round
@@ -123,6 +140,7 @@ public class GameOverUIAnimator : MonoBehaviour
 
         while (totalExp < roundExp)
         {
+            
             // the player has leveled up
             if ((playerStats.Experience + speed) >= playerStats.ExpToNextLevel)
             {
@@ -137,6 +155,7 @@ public class GameOverUIAnimator : MonoBehaviour
                 playerStats.Experience += speed;
 
             }
+            audioSource.Play();
             levelText.text = playerStats.Level.ToString();
             expText.text = playerStats.Experience.ToString() + "/" + playerStats.ExpToNextLevel;
             experienceBar.value = (float)playerStats.Experience / (float)playerStats.ExpToNextLevel;
@@ -144,6 +163,6 @@ public class GameOverUIAnimator : MonoBehaviour
         }
         
         
-        GameManager.Instance.GetComponent<DatabaseManager>().SaveToDatabase();
+        GameManager.Instance.GetComponent<DBManager>().SaveToDatabase();
     }
 }

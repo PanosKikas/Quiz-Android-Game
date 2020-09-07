@@ -10,21 +10,9 @@ using System.Collections;
 public class QuestionManager : MonoBehaviour
 {
 
-    #region Singleton
-    public static QuestionManager Instance;
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
-    #endregion
 
+
+    AudioSource audioSource;
     
     [SerializeField]
     Transform MultipleAnswersPanel;
@@ -57,6 +45,27 @@ public class QuestionManager : MonoBehaviour
     // helping gui
     [SerializeField]
     GameObject PopupGUI;
+
+    [Header("AudioClips")]
+    [SerializeField] AudioClip correctAnswerSfx;
+    [SerializeField] AudioClip wrongAnswerSfx;
+
+
+    #region Singleton
+    public static QuestionManager Instance;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        audioSource = GetComponent<AudioSource>();
+    }
+    #endregion
 
     // Use this for initialization
     void Start ()
@@ -198,6 +207,8 @@ public class QuestionManager : MonoBehaviour
             OnCorrectAnswer();
         }
 
+        audioSource.Play();
+
         // Update the player's gui
         questionUI.UpdateGUI(playerStats);
 
@@ -210,6 +221,8 @@ public class QuestionManager : MonoBehaviour
     // the player has answered correctly
     void OnCorrectAnswer()
     {
+        audioSource.clip = correctAnswerSfx;
+
         // increment their streak
         playerStats.CurrentStreak++;
         // every x5-x10-x15 etc streak add a life
@@ -237,6 +250,7 @@ public class QuestionManager : MonoBehaviour
     // The player has answered incorrectly
     void OnWrongAnswer()
     {
+        audioSource.clip = wrongAnswerSfx;
         // decrement its live
         playerStats.RemainingLives--;
 
@@ -249,6 +263,8 @@ public class QuestionManager : MonoBehaviour
             gameManager.EndGame();
         }
     }
+
+    
 
     void UpdateStreakStats()
     {

@@ -6,9 +6,6 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-
-
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -39,8 +36,6 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        //dbManager = GetComponent<DatabaseManager>();
-        // gamemanager starts in persistent scene so always transitions to next scene first
         SceneTransitioner.Instance.TransitionToNextScene();
     }
 
