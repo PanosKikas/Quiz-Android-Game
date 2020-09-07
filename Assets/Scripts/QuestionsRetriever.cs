@@ -10,9 +10,9 @@ public class QuestionsRetriever : MonoBehaviour
 {
     public static QuestionsRetriever Instance;
 
-    private const string defaultGetQuestionsUrl = "https://opentdb.com/api.php?amount=10";
+    private const string defaultGetQuestionsUrl = "https://opentdb.com/api.php?amount=3";
 
-    private const int RandomCategoriesToAddWhenNoQuestionsFound = 3;
+    private const int RandomCategoriesToAddWhenNoQuestionsFound = 2;
 
     List<int> SelectedCategories; // a list of all selected categories
 
@@ -21,7 +21,7 @@ public class QuestionsRetriever : MonoBehaviour
 
     RequestData requestData;
 
-    Dictionary<string, int> NonSelectedCategories; // a dictionary with the non-selected categories
+    Dictionary<string, List<int>> NonSelectedCategories; // a dictionary with the non-selected categories
 
     Difficulty requestedDifficulty;
 
@@ -49,7 +49,7 @@ public class QuestionsRetriever : MonoBehaviour
     {
         SelectedCategories = new List<int>();
         questionList = new List<Question>();
-        NonSelectedCategories = new Dictionary<string, int>();
+        NonSelectedCategories = new Dictionary<string, List<int>>();
     }
 
     public Question GetRandomQuestion()
@@ -108,10 +108,10 @@ public class QuestionsRetriever : MonoBehaviour
     void FindNonSelectedCategories()
     {
         var AllCategoriesDictionary = AllCategoriesData.AllCategories;
-        NonSelectedCategories = new Dictionary<string, int>(AllCategoriesDictionary);
+        NonSelectedCategories = new Dictionary<string, List<int>>(AllCategoriesDictionary);
         foreach (int id in SelectedCategories)
-        {
-            var cat = AllCategoriesDictionary.First(kvp => kvp.Value == id);
+        {  
+            var cat = AllCategoriesDictionary.First(kvp => kvp.Value.Contains(id));
             NonSelectedCategories.Remove(cat.Key);
         }
     }
@@ -213,7 +213,7 @@ public class QuestionsRetriever : MonoBehaviour
 
             if (NoQuestionsRetrieved())
             {
-                RemoveCategoryFromSelected(newURL);
+                RemoveCategoryFromQuestionRetrieve(newURL);
             }
         }
     }
@@ -249,13 +249,15 @@ public class QuestionsRetriever : MonoBehaviour
         return !questionList.Any();
     }
 
-    void RemoveCategoryFromSelected(string requestUrl)
+    void RemoveCategoryFromQuestionRetrieve(string requestUrl)
     {
         // take only the category id from the url
         string[] splitted = requestUrl.Split(new string[] { "&category=" }, StringSplitOptions.None);
+        int id = Int32.Parse(splitted[1]);
         // remove the category from the selected categories - no more requests for this category
-        SelectedCategories.Remove(Int32.Parse(splitted[1]));
-
+        SelectedCategories.Remove(id);
+        string toRemove = NonSelectedCategories.Where(pair => pair.Value.Contains(id)).Select(pair => pair.Key).First();
+        NonSelectedCategories.Remove(toRemove);
     }
 
 
@@ -270,11 +272,15 @@ public class QuestionsRetriever : MonoBehaviour
 
             var randEntry = NonSelectedCategories.ElementAt(randIndex);
             // take its id
-            int newId = randEntry.Value;
+            List<int> newIds = randEntry.Value;
             // remove it from the non selected categories
             NonSelectedCategories.Remove(randEntry.Key);
             // add it to the currently selected categories
-            SelectedCategories.Add(newId);
+            foreach (var id in newIds)
+            {
+                SelectedCategories.Add(id);
+            }
+            
         }
     }
 

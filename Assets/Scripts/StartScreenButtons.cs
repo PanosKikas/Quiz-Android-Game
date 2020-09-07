@@ -27,7 +27,7 @@ public class StartScreenButtons : MonoBehaviour
 
     public void Share()
     {
-        ShareHandler.Instance.ShareScreenshot();
+        ShareHandler.Instance.ShareText();
     }
       
     

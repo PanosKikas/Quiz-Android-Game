@@ -67,14 +67,8 @@ public class SceneTransitioner : MonoBehaviour
 
     public void TransitionToCategorySelect()
     {
-        IEnumerator process = null;
-        // It has not been initialized
-        if (AllCategoriesData.HasNoCategories())
-        {
-            process = categoryRetriever.Retrieve();
-        }
 
-        StartCoroutine(LoadSceneAsync(CategorySelectIndex, process));
+        StartCoroutine(LoadSceneAsync(CategorySelectIndex, null));
     }
 
     // this function is called every time we want to load a new level while waiting

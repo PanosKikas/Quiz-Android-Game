@@ -23,11 +23,17 @@ public class ShareHandler : MonoBehaviour
     #endregion
 
     const string screenshotName = "QuizHuntScreenshot";
+    const string shareText = "Play TriviYES! on PlayStore: ";
+    public void ShareText()
+    {
+        Sharing.ShareText(shareText);
+    }
+
 
     public void ShareScreenshot()
     {
         Debug.Log("Share");
-        this.StartCoroutine(TakeScreenshot());
+        StartCoroutine(TakeScreenshot());
 
         string path = System.IO.Path.Combine(Application.persistentDataPath, "QuizHuntScreenshot.png");
 

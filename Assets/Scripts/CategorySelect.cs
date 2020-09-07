@@ -125,10 +125,13 @@ public class CategorySelect : MonoBehaviour
         Text catText = category.gameObject.GetComponentInChildren<Text>();
         if (catText != null)
         {
-            int categoryID = AllCategoriesData.AllCategories[catText.text];
+            List<int> categoryIds = AllCategoriesData.AllCategories[catText.text];
+            foreach (int id in categoryIds)
+            {
+                selectedCategories.Add(id);
+            }
 
-            // add it's id to the selected categories
-            selectedCategories.Add(categoryID);
+            
         }
     }
 

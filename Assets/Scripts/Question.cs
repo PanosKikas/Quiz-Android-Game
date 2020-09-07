@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 // A question object
 [System.Serializable]
 public class Question
@@ -6,15 +7,7 @@ public class Question
     // the category of the question
     public Category questionCategory { get; private set; }
     public string category; // the category name
-
-    // the category id
-    public int categoryId
-    {
-        get
-        {
-            return AllCategoriesData.AllCategories[category];
-        }
-    }
+    
     
     // the type of question
     public string type;

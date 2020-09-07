@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class CategoryRetriever : MonoBehaviour
 {
-    TriviaCategories catData = null;
+    /*TriviaCategories catData = null;
     // a url that retrieves all the categories in the database
     private const string categoriesRetrieveUrl = "https://opentdb.com/api_category.php";
 
@@ -52,21 +52,12 @@ public class CategoryRetriever : MonoBehaviour
     {
         foreach (Category category in catData.trivia_categories)
         {
-            string formattedName = RemoveCategoryPrefix(category.name);
+            List<int> ids = 
+            
+            //string formattedName = RemoveCategoryPrefix(category.name);
 
             AllCategoriesData.AddCategory(formattedName, category.id);
         }
     }
-
-    private string RemoveCategoryPrefix(string categoryName)
-    {
-        string[] info = categoryName.Split(':');
-        string formattedName = categoryName;
-        // it has a column, take the part after the column
-        if (info.Length > 1)
-        {
-            formattedName = info[1].Substring(1);
-        }
-        return formattedName;
-    }
+    */
 }
