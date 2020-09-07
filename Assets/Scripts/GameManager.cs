@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        Debug.Log(AllCategoriesData.AllCategories.Count);
         SceneTransitioner.Instance.TransitionToNextScene();
     }
 

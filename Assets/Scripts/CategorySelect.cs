@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 // Manages the functionality of the category select menu
 // Selecting/ Deselecting categories and starting the game
@@ -122,7 +123,8 @@ public class CategorySelect : MonoBehaviour
 
     void AddCategoryToSelectedList(Toggle category)
     {
-        Text catText = category.gameObject.GetComponentInChildren<Text>();
+        TextMeshProUGUI catText = category.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+        
         if (catText != null)
         {
             List<int> categoryIds = AllCategoriesData.AllCategories[catText.text];

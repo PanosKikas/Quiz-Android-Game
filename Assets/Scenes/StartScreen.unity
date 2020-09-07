@@ -616,7 +616,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: PLAY!
+  m_Text: TRAIN
 --- !u!222 &92247692
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7411,7 +7411,7 @@ PrefabInstance:
     - target: {fileID: 4338723885322178865, guid: 51afb6fe22d016d41839e02ef71b0944,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38.468933
+      value: -38.468994
       objectReference: {fileID: 0}
     - target: {fileID: 4338723885322178865, guid: 51afb6fe22d016d41839e02ef71b0944,
         type: 3}

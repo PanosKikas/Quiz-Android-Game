@@ -7,18 +7,18 @@ public static class AllCategoriesData
 {
     public static Dictionary<string, List<int>> AllCategories = new Dictionary<string, List<int>>
     {
-        {"General Knowledge", new List<int>{9} },
-        {"Entertainment", new List<int>{10, 11, 12,13, 14, 15, 16, 29, 31, 32} },
-        {"Science", new List<int>{18, 19, 30}},
-        {"Animals & Nature", new List<int>{17, 27} },
-        {"Mythology", new List<int>{20} },
-        {"Sports", new List<int>{21 } },
-        {"Geography", new List<int>{22} },
-        {"History", new List<int>{23} },
-        {"Politics", new List<int>{24} },
-        {"Art", new List<int>{25} },
-        {"Celebrities", new List<int>{26} },
-        {"Vehicles", new List<int>{28}}
+        {"GENERAL KNOWLEDGE", new List<int>{9} },
+        {"ENTERTAINMENT", new List<int>{10, 11, 12,13, 14, 15, 16, 29, 31, 32} },
+        {"SCIENCE", new List<int>{18, 19, 30}},
+        {"ANIMALS & NATURE", new List<int>{17, 27} },
+        {"MYTHOLOGY", new List<int>{20} },
+        {"SPORTS", new List<int>{21 } },
+        {"GEOGRAPHY", new List<int>{22} },
+        {"HISTORY", new List<int>{23} },
+        {"POLITICS", new List<int>{24} },
+        {"ART", new List<int>{25} },
+        {"CELEBRITIES", new List<int>{26} },
+        {"VEHICLES", new List<int>{28}}
     };
 
     public static bool HasNoCategories()

@@ -25,7 +25,6 @@ public class DBManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("dbv yo");
         StartCoroutine(ConnectToDatabase());
         ReadDatabase();
     }
