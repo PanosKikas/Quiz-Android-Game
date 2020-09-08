@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitioner : MonoBehaviour
 {
+
+    StartScreenButtons StartScreen = null;
+    
     public static SceneTransitioner Instance;
 
     private const int CategorySelectIndex = 2;
@@ -43,9 +46,15 @@ public class SceneTransitioner : MonoBehaviour
                 return;
             }
             
-            if (CurrentSceneIsFirst()) 
+            if (CurrentSceneIsFirst() ) 
             {
-                Application.Quit();        
+                if (StartScreen == null)
+                {
+                    StartScreen = GameObject.FindGameObjectWithTag("StartScreenPanel").GetComponent<StartScreenButtons>();
+                }
+                StartScreen.ToggleQuitDialogue();
+                
+                
             }
             else 
             {
@@ -54,6 +63,8 @@ public class SceneTransitioner : MonoBehaviour
         }
 
     }
+
+    
 
     public void TransitionTo(string sceneName)
     {
@@ -99,7 +110,7 @@ public class SceneTransitioner : MonoBehaviour
 
     bool BackButtonPressed()
     {
-        return Input.GetKey(KeyCode.Escape);
+        return Input.GetKeyDown(KeyCode.Escape);
     }
 
     void GetCurrentScene()

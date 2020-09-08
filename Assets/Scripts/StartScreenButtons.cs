@@ -12,7 +12,12 @@ public class StartScreenButtons : MonoBehaviour
 
     [SerializeField]
     GameObject questionAddPanel;
-     
+
+    [SerializeField]
+    GameObject QuitDialogue;
+
+    public bool QuitDialogueAnimationPlaying { get; set; } = false;
+
     public void Play()
     {
         // needs internet access 
@@ -23,6 +28,21 @@ public class StartScreenButtons : MonoBehaviour
             return;
         }
         SceneTransitioner.Instance.TransitionToCategorySelect();
+    }
+
+    public void ToggleQuitDialogue()
+    {
+
+        if (!QuitDialogueAnimationPlaying)
+        {
+            QuitDialogue.SetActive(!QuitDialogue.activeSelf);
+        }
+            
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     public void Share()
@@ -38,6 +58,7 @@ public class StartScreenButtons : MonoBehaviour
 
     public void ToggleQuestionAddPanel()
     {
+        
         questionAddPanel.SetActive(!questionAddPanel.activeSelf);
     }
 

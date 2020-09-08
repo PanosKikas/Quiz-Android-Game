@@ -41,7 +41,6 @@ public class DBManager : MonoBehaviour
         else
         {
             connectionString = Application.persistentDataPath + "/" + "Stats.db";
-            Debug.Log(connectionString);
             if (!File.Exists(connectionString))
             {
                 UnityWebRequest loadDB = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/" + "Stats.db");
