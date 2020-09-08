@@ -11,13 +11,19 @@ public class CategorySelect : MonoBehaviour
     
     [SerializeField]
     private const int minimumSelectedCategories = 3;
-    
+
+    [Header("AudiClips")]  
+    [SerializeField]
+    AudioClip startGameClip;
+    [SerializeField]
+    AudioClip ToggleCategoryClip;
+
+    [Space]
     // The gameobject to which the category buttons 
     // will be stored
     [SerializeField]
     Transform categoryParent;
-
-
+    
     // The panel containing the difficulty buttons
     [SerializeField]
     GameObject difficultySelectPanel;
@@ -33,17 +39,12 @@ public class CategorySelect : MonoBehaviour
     List<int> selectedCategories;
 
     Difficulty difficulty = Difficulty.medium;
-    AudioSource audioSource;
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     // Use this for initialization
     void Start ()
     {
         Initialize();
+        AudioManager.Instance.EnableBGMusic();
         DeselectAllCategories();
     }
 
@@ -63,9 +64,7 @@ public class CategorySelect : MonoBehaviour
         categoryToggles = categoryParent.GetComponentsInChildren<Toggle>();
     }
 
-
-    // A function that checks if the minimum selecte categories 
-    // are selected and starts the game
+    
     public void OnStartGameButton()
     {
         string popup;
@@ -85,6 +84,7 @@ public class CategorySelect : MonoBehaviour
             FindSelectedDifficulty();
             
             GameManager.Instance.StartGame(selectedCategories, difficulty);
+            AudioManager.Instance.PlayAudioClip(startGameClip);
         }
         else // print a message to the screen
         {
@@ -181,7 +181,7 @@ public class CategorySelect : MonoBehaviour
 
     public void OnToggleClicked(bool val)
     {
-        audioSource.Play();
+        AudioManager.Instance.PlayAudioClip(ToggleCategoryClip);
         
     }
 }

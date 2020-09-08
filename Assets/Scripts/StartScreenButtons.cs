@@ -14,12 +14,19 @@ public class StartScreenButtons : MonoBehaviour
     GameObject questionAddPanel;
 
     [SerializeField]
+    AudioClip ButtonClickFx;
+
+    [SerializeField]
     GameObject QuitDialogue;
+
+    [SerializeField]
+    GameObject SettingsPanel;
 
     public bool QuitDialogueAnimationPlaying { get; set; } = false;
 
     public void Play()
     {
+        AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         // needs internet access 
         if(Application.internetReachability == NetworkReachability.NotReachable)
         {
@@ -27,12 +34,12 @@ public class StartScreenButtons : MonoBehaviour
             StartCoroutine(DisplayPopup(popup));
             return;
         }
-        SceneTransitioner.Instance.TransitionToCategorySelect();
+        SceneTransitioner.Instance.TransitionToNextScene();
     }
 
     public void ToggleQuitDialogue()
     {
-
+        AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         if (!QuitDialogueAnimationPlaying)
         {
             QuitDialogue.SetActive(!QuitDialogue.activeSelf);
@@ -42,23 +49,31 @@ public class StartScreenButtons : MonoBehaviour
 
     public void Quit()
     {
+        AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         Application.Quit();
     }
 
     public void Share()
     {
+        AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         ShareHandler.Instance.ShareText();
     }
-      
+    
+    public void ToggleSettingsMenu()
+    {
+        AudioManager.Instance.PlayAudioClip(ButtonClickFx);
+        SettingsPanel.SetActive(!SettingsPanel.activeSelf);
+    }
     
     public void ToggleStats()
     {
+        AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         statsPanel.SetActive(!statsPanel.activeSelf);
     }
 
     public void ToggleQuestionAddPanel()
     {
-        
+        AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         questionAddPanel.SetActive(!questionAddPanel.activeSelf);
     }
 

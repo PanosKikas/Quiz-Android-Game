@@ -10,7 +10,8 @@ public class GameoverMenu : MonoBehaviour
 
     GameOverButtons gameoverButtons;
     GameOverUIAnimator gameoverAnimator;
-
+    [SerializeField]
+    AudioClip GameOverClip;
     // Do this when enabled
     private void OnEnable()
     {
@@ -19,6 +20,7 @@ public class GameoverMenu : MonoBehaviour
         InitializeComponents();
         StartCoroutine(Animate());
         gameoverButtons.EnableAllButtons();
+        AudioManager.Instance.PlayAudioClip(GameOverClip);
         
     }
 

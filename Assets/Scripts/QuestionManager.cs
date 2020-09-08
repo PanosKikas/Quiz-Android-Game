@@ -8,12 +8,7 @@ using System.Collections;
 // Question manager handles the main game functionality
 // for displaying new questions, animating buttons etc
 public class QuestionManager : MonoBehaviour
-{
-
-
-
-    AudioSource audioSource;
-    
+{   
     [SerializeField]
     Transform MultipleAnswersPanel;
 
@@ -35,6 +30,8 @@ public class QuestionManager : MonoBehaviour
     private Button trueBooleanButton;
     [SerializeField]
     private Button falseBooleanButton;
+
+    private AudioClip audioClipToPlay;
 
     QuestionUI questionUI;
 
@@ -63,13 +60,13 @@ public class QuestionManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        audioSource = GetComponent<AudioSource>();
     }
     #endregion
 
     // Use this for initialization
     void Start ()
-    {     
+    {
+        AudioManager.Instance.StopBGMusic();
         gameManager = GameManager.Instance;
         questionUI = GetComponent<QuestionUI>();
         playerStats = gameManager.playerStats;
@@ -207,7 +204,7 @@ public class QuestionManager : MonoBehaviour
             OnCorrectAnswer();
         }
 
-        audioSource.Play();
+        AudioManager.Instance.PlayAudioClip(audioClipToPlay);
 
         // Update the player's gui
         questionUI.UpdateGUI(playerStats);
@@ -221,7 +218,7 @@ public class QuestionManager : MonoBehaviour
     // the player has answered correctly
     void OnCorrectAnswer()
     {
-        audioSource.clip = correctAnswerSfx;
+        audioClipToPlay = correctAnswerSfx;
 
         // increment their streak
         playerStats.CurrentStreak++;
@@ -250,7 +247,7 @@ public class QuestionManager : MonoBehaviour
     // The player has answered incorrectly
     void OnWrongAnswer()
     {
-        audioSource.clip = wrongAnswerSfx;
+        audioClipToPlay = wrongAnswerSfx;
         // decrement its live
         playerStats.RemainingLives--;
 

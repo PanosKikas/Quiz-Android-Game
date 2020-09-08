@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class OnSelectDifficulty : MonoBehaviour
 {
-    AudioSource audioSource;
     [SerializeField]
     AudioClip[] clips;
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public void OnSelect()
     {
         var clip = PickRandomClip();
-        audioSource.clip = clip;
-        audioSource.Play();
+        AudioManager.Instance.PlayAudioClip(clip);
     }
 
     AudioClip PickRandomClip()
