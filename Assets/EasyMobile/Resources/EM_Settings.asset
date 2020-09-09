@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: EM_Settings
   m_EditorClassIdentifier: 
   mAdvertisingSettings:
-    mAutoLoadAdsMode: 2
-    mAdCheckingInterval: 10
-    mAdLoadingInterval: 20
+    mAutoLoadAdsMode: 1
+    mAdCheckingInterval: 5
+    mAdLoadingInterval: 5
     mIosDefaultAdNetworks:
       bannerAdNetwork: 0
       interstitialAdNetwork: 0
       rewardedAdNetwork: 0
     mAndroidDefaultAdNetworks:
       bannerAdNetwork: 0
-      interstitialAdNetwork: 0
+      interstitialAdNetwork: 5
       rewardedAdNetwork: 5
     mAdColony:
       mEnable: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
         keys: []
         values: []
     mChartboost:
-      mEnable: 0
+      mEnable: 1
       mCustomInterstitialPlacements: []
       mCustomRewardedPlacements: []
     mFairBid:
@@ -334,10 +334,10 @@ MonoBehaviour:
       mIOSInfoPlistKeys:
       - mKey: NSContactsUsageDescription
         mValue: '[Your usage description]'
-  mIsAdModuleEnable: 0
+  mIsAdModuleEnable: 1
   mIsIAPModuleEnable: 0
-  mIsGameServiceModuleEnable: 0
+  mIsGameServiceModuleEnable: 1
   mIsNotificationModuleEnable: 0
   mIsSharingModuleEnable: 1
-  mActiveModuleIndex: 7
+  mActiveModuleIndex: 1
   mIsSelectingModule: 0
