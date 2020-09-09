@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,11 @@ public class SceneTransitioner : MonoBehaviour
     Scene currentScene;
 
     CategoryRetriever categoryRetriever;
+
+    [SerializeField]
+    AudioClip PreviousSceneClip;
+    [SerializeField]
+    AudioClip QuitDialogueClip;
 
     #region Singleton
     private void Awake()
@@ -53,11 +59,12 @@ public class SceneTransitioner : MonoBehaviour
                     StartScreen = GameObject.FindGameObjectWithTag("StartScreenPanel").GetComponent<StartScreenButtons>();
                 }
                 StartScreen.ToggleQuitDialogue();
-                
-                
+                AudioManager.Instance.PlayAudioClip(QuitDialogueClip);
+
             }
             else 
             {
+                AudioManager.Instance.PlayAudioClip(PreviousSceneClip);
                 TransitionToPreviousScene();
             }
         }

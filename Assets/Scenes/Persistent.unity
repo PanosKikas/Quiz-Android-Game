@@ -256,7 +256,8 @@ AudioSource:
   m_GameObject: {fileID: 667381686}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 62d208b140c696b4493ac035fe2ebe16,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -357,6 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BgMusicAudioSource: {fileID: 667381690}
   SoundFxAudioSource: {fileID: 667381687}
+  masterMixer: {fileID: 24100000, guid: 62d208b140c696b4493ac035fe2ebe16, type: 2}
 --- !u!4 &667381689
 Transform:
   m_ObjectHideFlags: 0
@@ -380,10 +382,11 @@ AudioSource:
   m_GameObject: {fileID: 667381686}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 62d208b140c696b4493ac035fe2ebe16,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: ad80cdb38d8c0f24b92e64c55dc296a6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.363
+  m_Volume: 0.657
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -573,5 +576,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8187791442385559439, guid: bea4f8a60ccfa2b49b5e3c4db782357f,
+        type: 3}
+      propertyPath: PreviousSceneClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 87266e9a50fb5f5418d663d9c059d863, type: 3}
+    - target: {fileID: 8187791442385559439, guid: bea4f8a60ccfa2b49b5e3c4db782357f,
+        type: 3}
+      propertyPath: QuitDialogueClip
+      value: 
+      objectReference: {fileID: 8300000, guid: abe4b4f384220774591e3c5989328d63, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea4f8a60ccfa2b49b5e3c4db782357f, type: 3}

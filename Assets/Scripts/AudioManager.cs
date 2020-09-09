@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     AudioSource SoundFxAudioSource;
 
+    [SerializeField]
+    AudioMixer masterMixer;
 
-    const string SoundFxToggleName = "SoundFxToggle";
-    const string BgMusicToggleName = "MusicFxToggle";
 
+    const string SoundFxPrefsName = "SoundFxToggle";
+    const string BgMusicTogglePrefsName = "MusicFxToggle";
+    const string MasterVolumePrefsName = "MasterVolume";
 
 
     #region Singleton
@@ -39,9 +43,11 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        int sfx = PlayerPrefs.GetInt(SoundFxToggleName);
-        int bg = PlayerPrefs.GetInt(BgMusicToggleName);
+        int sfx = PlayerPrefs.GetInt(SoundFxPrefsName);
+        int bg = PlayerPrefs.GetInt(BgMusicTogglePrefsName);
+        int MasterVolume = PlayerPrefs.GetInt(MasterVolumePrefsName);
 
+        SetMasterVolume(MasterVolume);
         BgMusicAudioSource.enabled = Convert.ToBoolean(bg);
         SoundFxAudioSource.enabled = Convert.ToBoolean(sfx);
     }
@@ -55,6 +61,17 @@ public class AudioManager : MonoBehaviour
         SoundFxAudioSource.Play();
     }
     
+    public void SetMasterVolume(int Volume)
+    {
+        int mappedVolume = Map(Volume, 0, 100, -80, 0);
+        masterMixer.SetFloat("MasterVolume", mappedVolume);
+    }
+
+    int Map(int value, int low1, int high1, int low2, int high2)
+    {
+        return low2 + (value - low1) * (high2 - low2) / (high1 - low1);
+    }
+
     public void StopBGMusic()
     {
         if (!BgMusicAudioSource.enabled)
