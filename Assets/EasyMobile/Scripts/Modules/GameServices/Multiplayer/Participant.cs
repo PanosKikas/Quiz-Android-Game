@@ -8,7 +8,7 @@ using EasyMobile.iOS.GameKit;
 using EasyMobile.Internal.GameServices.iOS;
 #endif
 
-#if UNITY_ANDROID && EM_GPGS
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
 using GPGS_Participant = GooglePlayGames.BasicApi.Multiplayer.Participant;
 using EasyMobile.Internal.GameServices.Android;
 #endif
@@ -219,12 +219,12 @@ namespace EasyMobile
             {
                 return false;
             }
-        
+
             if (ReferenceEquals(this, obj))
             {
                 return true;
             }
-        
+
             if (!(obj is Participant))
             {
                 return false;
@@ -255,7 +255,7 @@ namespace EasyMobile
             mIsConnectedToRoom = connectedToRoom;
         }
 
-        #if UNITY_IOS
+#if UNITY_IOS
         
         /// <summary>
         /// Constructs a new instance from the <see cref="EasyMobile.iOS.GameKit.GKTurnBasedParticipant"/> object.
@@ -302,10 +302,10 @@ namespace EasyMobile
                 connectedToRoom);
         }
 
-        #endif
+#endif
 
-        #if UNITY_ANDROID && EM_GPGS
-        
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
+
         /// <summary>
         /// Constructs a new instance
         /// from the <see cref="GooglePlayGames.BasicApi.Multiplayer.Participant"/> object.
@@ -322,6 +322,6 @@ namespace EasyMobile
                 participant.IsConnectedToRoom);
         }
 
-        #endif
+#endif
     }
 }

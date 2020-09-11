@@ -9,7 +9,7 @@ using EasyMobile.iOS.GameKit;
 using EasyMobile.Internal.GameServices.iOS;
 #endif
 
-#if UNITY_ANDROID && EM_GPGS
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
 using GPGSTurnBasedMatch = GooglePlayGames.BasicApi.Multiplayer.TurnBasedMatch;
 using EasyMobile.Internal.GameServices.Android;
 #endif
@@ -116,7 +116,7 @@ namespace EasyMobile
         {
             get
             {
-                return mPlayerCount; 
+                return mPlayerCount;
             }
         }
 
@@ -281,7 +281,7 @@ namespace EasyMobile
             mMatchStatus = matchStatus;
         }
 
-        #if UNITY_IOS
+#if UNITY_IOS
         
         /// <summary>
         /// The <see cref="EasyMobile.iOS.GameKit.GKTurnBasedMatch"/> used to create this object.
@@ -322,10 +322,10 @@ namespace EasyMobile
             };
         }
 
-        #endif
+#endif
 
-        #if UNITY_ANDROID && EM_GPGS
-        
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
+
         /// <summary>
         /// The <see cref="GooglePlayGames.BasicApi.Multiplayer.TurnBasedMatch"/> used to create this object.
         /// </summary>
@@ -352,6 +352,6 @@ namespace EasyMobile
             };
         }
 
-        #endif
+#endif
     }
 }

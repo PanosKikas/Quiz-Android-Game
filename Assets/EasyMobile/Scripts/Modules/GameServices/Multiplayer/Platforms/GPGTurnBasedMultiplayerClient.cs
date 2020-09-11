@@ -1,4 +1,4 @@
-﻿#if UNITY_ANDROID && EM_GPGS
+﻿#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
 using UnityEngine;
 using System.Collections;
 using System.Linq;
@@ -36,7 +36,7 @@ namespace EasyMobile.Internal.GameServices
             this.mPendingMatchDelegates = pendingMatchDelegates;
         }
 
-        #region Public methods
+#region Public methods
 
         public void AcceptInvitation(Invitation invitation, Action<bool, TurnBasedMatch> callback)
         {
@@ -248,9 +248,9 @@ namespace EasyMobile.Internal.GameServices
             );
         }
 
-        #endregion
+#endregion
 
-        #region Private methods
+#region Private methods
 
         /// <summary>
         /// Get the right message to use in <see cref="CreateWithMatchmakerUI(MatchRequest, Action, Action{string})"/>.
@@ -288,7 +288,7 @@ namespace EasyMobile.Internal.GameServices
             }
         }
 
-        #endregion
+#endregion
     }
 }
 #endif

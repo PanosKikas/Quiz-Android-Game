@@ -3657,6 +3657,11 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7190930636172985970, guid: 106637bdf340a7c498e00c8b551c8372,
+        type: 3}
+      propertyPath: m_text
+      value: SPORTS
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106637bdf340a7c498e00c8b551c8372, type: 3}
 --- !u!224 &1792789899 stripped

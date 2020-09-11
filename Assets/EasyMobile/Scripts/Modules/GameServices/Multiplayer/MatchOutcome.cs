@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-#if UNITY_ANDROID && EM_GPGS
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
 using GPGS_MatchOutcome = GooglePlayGames.BasicApi.Multiplayer.MatchOutcome;
 #endif
 
@@ -24,7 +24,7 @@ namespace EasyMobile
             /// at the same time, it's an indicator that he or she has quit the match.
             /// </summary>
             CustomPlacement = -1,
-                
+
             /// <summary>
             /// The participant’s outcome has not been set yet 
             /// (typically because the match is still in progress).
@@ -67,7 +67,7 @@ namespace EasyMobile
         {
             if (result == ParticipantResult.CustomPlacement)
                 Debug.Log("Do not set ParticipantResult.CustomPlacement directly. Use SetParticipantPlacement method instead.");
-            
+
             SetParticipantResultAndPlacement(participantId, result, PlacementUnset);
         }
 
@@ -137,32 +137,32 @@ namespace EasyMobile
                 sb.Append(string.Format(" {0}->({1},{2})", pid,
                         GetParticipantResult(pid), GetParticipantPlacement(pid)));
             }
-        
+
             return sb.Append("]").ToString();
         }
 
-        #if UNITY_ANDROID && EM_GPGS
-        
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
+
         /// <summary>
         /// Construct new <see cref="GooglePlayGames.BasicApi.Multiplayer.MatchOutcome"/> based on this object.
         /// </summary>
         public GPGS_MatchOutcome ToGPGSMatchOutcome()
         {
             var outcome = new GPGS_MatchOutcome();
-            foreach(string id in ParticipantIds)
+            foreach (string id in ParticipantIds)
             {
                 outcome.SetParticipantResult(id, mResults[id].ToGPGSParticipantResult(), mPlacements[id]);
             }
             return outcome;
         }
 
-        #endif
+#endif
     }
 
     public static class ParticipantResultExtension
     {
-        #if UNITY_ANDROID && EM_GPGS
-        
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
+
         /// <summary>
         /// Convert from <see cref="MatchOutcome.ParticipantResult"/>
         /// to <see cref="GooglePlayGames.BasicApi.Multiplayer.MatchOutcome.ParticipantResult"/>.
@@ -189,6 +189,6 @@ namespace EasyMobile
             }
         }
 
-        #endif
+#endif
     }
 }

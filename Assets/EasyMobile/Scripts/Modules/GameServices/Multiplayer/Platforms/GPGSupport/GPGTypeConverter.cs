@@ -1,4 +1,4 @@
-﻿#if UNITY_ANDROID && EM_GPGS
+﻿#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;

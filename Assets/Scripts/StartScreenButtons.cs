@@ -77,6 +77,11 @@ public class StartScreenButtons : MonoBehaviour
         questionAddPanel.SetActive(!questionAddPanel.activeSelf);
     }
 
+    public void ShowAchievements()
+    {
+        AchievementsManager.Instance.ShowAchievementUI();
+    }
+
     public IEnumerator DisplayPopup(string popuptext)
     {
         PopupGUI.GetComponentInChildren<Text>().text = popuptext;

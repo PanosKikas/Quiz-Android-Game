@@ -163,12 +163,14 @@ namespace EasyMobile
                 gpgsConfigBuilder.EnableSavedGames();
             }
 
+#if EM_OBSOLETE_GPGS
             // Register an internal invitation delegate and match delegate if Multiplayer is enabled.
             if (EM_Settings.GameServices.IsMultiplayerEnabled)
             {
                 gpgsConfigBuilder.WithInvitationDelegate(OnGPGSInvitationReceived);
                 gpgsConfigBuilder.WithMatchDelegate(OnGPGSTBMatchReceived);
             }
+#endif
 #endif
             // Add the OAuth scopes if any.
             if (EM_Settings.GameServices.GpgsOauthScopes != null && EM_Settings.GameServices.GpgsOauthScopes.Length > 0)

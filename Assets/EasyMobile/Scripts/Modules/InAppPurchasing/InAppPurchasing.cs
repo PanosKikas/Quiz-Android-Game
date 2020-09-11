@@ -854,20 +854,14 @@ namespace EasyMobile
                     return GooglePlay.Name;
                 case IAPStore.AmazonAppStore:
                     return AmazonApps.Name;
-                case IAPStore.CloudMoolah:
-                    return MoolahAppStore.Name;
                 case IAPStore.SamsungApps:
                     return SamsungApps.Name;
-                case IAPStore.XiaomiMiPay:
-                    return XiaomiMiPay.Name;
                 case IAPStore.MacAppStore:
                     return MacAppStore.Name;
                 case IAPStore.AppleAppStore:
                     return AppleAppStore.Name;
                 case IAPStore.WinRT:
                     return WindowsStore.Name;
-                case IAPStore.TizenStore:
-                    return TizenStore.Name;
                 case IAPStore.FacebookStore:
                     return FacebookStore.Name;
                 default:
@@ -908,12 +902,8 @@ namespace EasyMobile
                     return AndroidStore.AmazonAppStore;
                 case IAPAndroidStore.GooglePlay:
                     return AndroidStore.GooglePlay;
-                case IAPAndroidStore.CloudMoolah:
-                    return AndroidStore.CloudMoolah;
                 case IAPAndroidStore.SamsungApps:
                     return AndroidStore.SamsungApps;
-                case IAPAndroidStore.XiaomiMiPay:
-                    return AndroidStore.XiaomiMiPay;
                 case IAPAndroidStore.NotSpecified:
                     return AndroidStore.NotSpecified;
                 default:
@@ -934,12 +924,8 @@ namespace EasyMobile
                     return AppStore.AmazonAppStore;
                 case IAPAndroidStore.GooglePlay:
                     return AppStore.GooglePlay;
-                case IAPAndroidStore.CloudMoolah:
-                    return AppStore.CloudMoolah;
                 case IAPAndroidStore.SamsungApps:
                     return AppStore.SamsungApps;
-                case IAPAndroidStore.XiaomiMiPay:
-                    return AppStore.XiaomiMiPay;
                 case IAPAndroidStore.NotSpecified:
                     return AppStore.NotSpecified;
                 default:

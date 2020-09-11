@@ -7,17 +7,17 @@ using EasyMobile.Internal.GameServices;
 
 namespace EasyMobile
 {
-    #if UNITY_IOS
+#if UNITY_IOS
     using EasyMobile.iOS.GameKit;
     using EasyMobile.Internal.GameServices.iOS;
-    #endif
+#endif
 
-    #if UNITY_ANDROID && EM_GPGS
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
     using GooglePlayGames;
     using GooglePlayGames.BasicApi;
     using GPGS_Invitation = GooglePlayGames.BasicApi.Multiplayer.Invitation;
     using GPGS_TurnBasedMatch = GooglePlayGames.BasicApi.Multiplayer.TurnBasedMatch;
-    #endif
+#endif
 
     public partial class GameServices
     {
@@ -38,7 +38,7 @@ namespace EasyMobile
         /// we received one silently while the app is in foreground), this delegate will be called
         /// with shouldAutoAccept = false to indicate that you should confirm with the user
         /// to see if they wish to accept or decline the invitation.</param>
-        public delegate void InvitationReceivedDelegate(Invitation invitation,bool shouldAutoAccept);
+        public delegate void InvitationReceivedDelegate(Invitation invitation, bool shouldAutoAccept);
 
         /// <summary>
         /// Turn-Based Multiplayer API entry point.
@@ -96,16 +96,16 @@ namespace EasyMobile
         {
             sInvitationDelegate = invitationDelegate;
 
-            #if UNITY_ANDROID && EM_GPGS
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
             // Invoke delegate for pending invitations if any.
             if (sInvitationDelegate != null && sGPGSPendingInvitations != null)
             {
                 while (sGPGSPendingInvitations.Count > 0)
                     sGPGSPendingInvitations.Dequeue()();
-                
+
                 sGPGSPendingInvitations = null;
             }
-            #endif
+#endif
         }
 
         #endregion
@@ -118,7 +118,7 @@ namespace EasyMobile
             return new EditorTurnBasedMultiplayerClient();
 #elif UNITY_IOS
             return new GCTurnBasedMultiplayerClient();
-#elif UNITY_ANDROID && EM_GPGS
+#elif UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
             var gpgClient = new GPGTurnBasedMultiplayerClient(sGPGSPendingMatchDelegates);
             sGPGSPendingMatchDelegates = null;
             return gpgClient;
@@ -133,7 +133,7 @@ namespace EasyMobile
             return new EditorRealTimeMultiplayerClient();
 #elif UNITY_IOS
             return new GCRealTimeMultiplayerClient();
-#elif UNITY_ANDROID && EM_GPGS
+#elif UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
             return new GPGRealTimeMultiplayerClient();
 #else
             return new UnsupportedRealTimeMultiplayerClient();
@@ -142,8 +142,8 @@ namespace EasyMobile
 
         #endregion
 
-        #if UNITY_ANDROID && EM_GPGS
-        
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
+
         internal class GPGS_PendingTurnBasedMatchDelegate
         {
             public GPGS_TurnBasedMatch Match { get; private set; }
@@ -194,9 +194,9 @@ namespace EasyMobile
             sGPGSPendingMatchDelegates.Enqueue(new GPGS_PendingTurnBasedMatchDelegate(match, shouldAutoLaunch));
         }
 
-        #endif
+#endif
 
-        #if UNITY_IOS
+#if UNITY_IOS
         
         private static void RegisterDefaultGKLocalPlayerListener()
         {
@@ -221,7 +221,7 @@ namespace EasyMobile
             }
         }
 
-        #endif
+#endif
     }
 }
 

@@ -7,13 +7,10 @@ namespace EasyMobile
     {
         GooglePlay,
         AmazonAppStore,
-        CloudMoolah,
         SamsungApps,
-        XiaomiMiPay,
         MacAppStore,
         AppleAppStore,
         WinRT,
-        TizenStore,
         FacebookStore
     }
 
@@ -21,9 +18,7 @@ namespace EasyMobile
     {
         GooglePlay,
         AmazonAppStore,
-        CloudMoolah,
         SamsungApps,
-        XiaomiMiPay,
         NotSpecified
     }
 }

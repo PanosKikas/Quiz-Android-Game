@@ -1,4 +1,4 @@
-﻿#if UNITY_ANDROID && EM_GPGS
+﻿#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,7 +101,7 @@ namespace EasyMobile.Internal.GameServices
             PlayGamesPlatform.Instance.RealTime.AcceptFromInbox(new GPGRealTimeMultiplayerListener(listener, false));
         }
 
-        #region Internal GPGS RealTimeMultiplayerListener
+#region Internal GPGS RealTimeMultiplayerListener
 
         private class GPGRealTimeMultiplayerListener : RealTimeMultiplayerListener
         {
@@ -152,7 +152,7 @@ namespace EasyMobile.Internal.GameServices
             }
         }
 
-        #endregion
+#endregion
     }
 }
 #endif

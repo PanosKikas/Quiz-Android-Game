@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasyMobile;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
         questionRetriever.Initialize();   
         
         SessionTokenManager.Instance.ResetToken();
-        
+        AchievementsManager.Instance.UnlockAchievement(EM_GameServicesConstants.Achievement_BabySteps);
         SceneTransitioner.Instance.TransitionToNextSceneAsync(QuestionsRetriever.Instance.InitializeQuestionList(selectedCategories, difficulty));
     }
     

@@ -3,14 +3,14 @@ using System.Collections;
 
 namespace EasyMobile
 {
-    #if UNITY_IOS
+#if UNITY_IOS
     using EasyMobile.iOS.GameKit;
-    #endif
+#endif
 
-    #if UNITY_ANDROID && EM_GPGS
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
     using GPGSInvitation = GooglePlayGames.BasicApi.Multiplayer.Invitation;
     using EasyMobile.Internal.GameServices.Android;
-    #endif
+#endif
 
     /// <summary>
     /// Represents an invitation to a multiplayer game. 
@@ -75,7 +75,7 @@ namespace EasyMobile
             mVariant = variant;
         }
 
-        #if UNITY_IOS
+#if UNITY_IOS
         
         internal GKInvite GK_Invite { get; private set; }
 
@@ -93,10 +93,10 @@ namespace EasyMobile
             };
         }
 
-        #endif
+#endif
 
-        #if UNITY_ANDROID && EM_GPGS
-        
+#if UNITY_ANDROID && EM_GPGS && EM_OBSOLETE_GPGS
+
         internal GPGSInvitation GPGS_Invitation { get; private set; }
 
         /// <summary>
@@ -116,6 +116,6 @@ namespace EasyMobile
             };
         }
 
-        #endif
+#endif
     }
 }
