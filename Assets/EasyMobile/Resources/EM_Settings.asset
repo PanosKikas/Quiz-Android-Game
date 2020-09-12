@@ -221,7 +221,7 @@ MonoBehaviour:
   mGameServiceSettings:
     mAutoInit: 1
     mAutoInitDelay: 0
-    mAndroidMaxLoginRequests: 0
+    mAndroidMaxLoginRequests: 3
     mGpgsDebugLogEnabled: 0
     mGpgsPopupGravity: 0
     mGpgsShouldRequestServerAuthCode: 0

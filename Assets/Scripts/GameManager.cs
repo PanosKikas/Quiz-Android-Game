@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
 
-        playerStats.TotalCorrectQuestionsAnswered += playerStats.RoundCorrectAnswers;
+        playerStats.savedData.TotalCorrectQuestionsAnswered += playerStats.RoundCorrectAnswers;
         
         // find the gameover panel gameobject
         if (GameOverPanel == null)

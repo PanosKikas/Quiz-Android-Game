@@ -34,15 +34,19 @@ public class GameOverUIAnimator : MonoBehaviour
     AudioClip ScoreClip;
     [SerializeField]
     AudioClip LevelUpClip;
+    [SerializeField]
+    GameOverButtons gameoverButtons;
+
 
     private void OnEnable()
     {
+    
         ShowInitialUI();
     }
 
     void ShowInitialUI()
     {   
-        expText.text = String.Format("{0} / {1}", playerStats.Experience, playerStats.ExpToNextLevel);
+        expText.text = String.Format("{0} / {1}", playerStats.CurrentExperience, playerStats.ExpToNextLevel);
         levelText.text = playerStats.Level.ToString();
         experienceBar.value = playerStats.ExperiencePercent;
     }
@@ -80,9 +84,9 @@ public class GameOverUIAnimator : MonoBehaviour
             scoreText.text = score.ToString();
 
             // means that new high score has been reached
-            if (score > playerStats.HighScore)
+            if (score > playerStats.savedData.HighScore)
             {
-                playerStats.HighScore = playerStats.CurrentScore;
+                playerStats.savedData.HighScore = playerStats.CurrentScore;
                 NewHighscoreImage.SetActive(true);
             }
             yield return null;
@@ -128,41 +132,49 @@ public class GameOverUIAnimator : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.2f);   
         
         int totalExp = 0;
-        int speed = 2;
+        
         // the experience gathered from that round
         int roundExp = playerStats.CurrentScore;
-
+        
+        int incrementAmount;
         while (totalExp < roundExp)
         {
-            
+            int speed = (playerStats.ExpToNextLevel / 100) + 1;
             // the player has leveled up
-            if ((playerStats.Experience + speed) >= playerStats.ExpToNextLevel)
+            if ((playerStats.CurrentExperience + speed) >= playerStats.ExpToNextLevel)
             {
-                totalExp += (playerStats.ExpToNextLevel - playerStats.Experience);
-                AudioManager.Instance.PlayAudioClip(LevelUpClip);
-                playerStats.Experience = 0;
-                playerStats.Level++;
+                incrementAmount = (playerStats.ExpToNextLevel - playerStats.CurrentExperience);
+                
                 levelText.text = playerStats.Level.ToString();
                 expText.text = "0 / 0";
                 experienceBar.value = 0f;
-                yield return new WaitForSecondsRealtime(1.2f);
+                
 
             }
             else
             {
-                totalExp += speed;
-                playerStats.Experience += speed;
-
+                incrementAmount = speed;
             }
-            AudioManager.Instance.PlayAudioClip(ScoreClip);
+
+            playerStats.savedData.TotalExperience += incrementAmount;
+            totalExp += incrementAmount;    
+            
             levelText.text = playerStats.Level.ToString();
-            expText.text = playerStats.Experience.ToString() + "/" + playerStats.ExpToNextLevel;
-            experienceBar.value = (float)playerStats.Experience / (float)playerStats.ExpToNextLevel;
+            expText.text = playerStats.CurrentExperience.ToString() + "/" + playerStats.ExpToNextLevel;
+            experienceBar.value = playerStats.ExperiencePercent;
+
+            if (playerStats.CurrentExperience == 0)
+            {
+                AudioManager.Instance.PlayAudioClip(LevelUpClip);
+                yield return new WaitForSecondsRealtime(1f);
+            }
+
+            AudioManager.Instance.PlayAudioClip(ScoreClip);
             yield return null;
+            Debug.Log("Animation finished");
         }
-        
-        
-        GameManager.Instance.GetComponent<DBManager>().SaveToDatabase();
+        SaveGameManager.Instance.SaveGame(playerStats.savedData);
+        gameoverButtons.EnableAllButtons();
     }
 
     

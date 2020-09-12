@@ -7,8 +7,8 @@ using System.Collections;
 // A function that handles the gameover screen functionality
 public class GameoverMenu : MonoBehaviour
 {
-
-    GameOverButtons gameoverButtons;
+    
+    
     GameOverUIAnimator gameoverAnimator;
     [SerializeField]
     AudioClip GameOverClip;
@@ -19,14 +19,16 @@ public class GameoverMenu : MonoBehaviour
         Time.timeScale = 0f;
         InitializeComponents();
         StartCoroutine(Animate());
-        gameoverButtons.EnableAllButtons();
+        
         AudioManager.Instance.PlayAudioClip(GameOverClip);
         
     }
 
     IEnumerator Animate()
     {
+
         yield return gameoverAnimator.Animate();
+        
     }
 
     void InitializeComponents()
@@ -34,11 +36,6 @@ public class GameoverMenu : MonoBehaviour
         if (gameoverAnimator == null)
         {
             gameoverAnimator = GetComponent<GameOverUIAnimator>();
-        }
-        
-        if (gameoverButtons == null)
-        {
-            gameoverButtons = GetComponentInChildren<GameOverButtons>();
         }
     }
 

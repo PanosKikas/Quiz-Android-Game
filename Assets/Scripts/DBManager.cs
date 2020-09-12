@@ -1,4 +1,4 @@
-﻿using Mono.Data.Sqlite;
+﻿/*using Mono.Data.Sqlite;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -106,8 +106,7 @@ public class DBManager : MonoBehaviour
                     playerStats.Name = name;
                     playerStats.HighScore = highScore;
                     playerStats.TotalCorrectQuestionsAnswered = correctAnswered;
-                    playerStats.Level = level;
-                    playerStats.Experience = experience;
+                    playerStats.TotalExperience = experience;
                     playerStats.HighestStreak = highestStreak;
 
                     ++j;
@@ -166,7 +165,7 @@ public class DBManager : MonoBehaviour
                     sqlQuery = "Insert into PlayerStats (Id,HighScore,PlayerName,CorrectQuestions,Level,Experience,HighestStreak) Values("
                     + id + "," + playerStats.HighScore + "," + "\'" + nameAdded + "\'"
                     + "," + playerStats.TotalCorrectQuestionsAnswered
-                    + "," + playerStats.Level + "," + playerStats.Experience + ","
+                    + "," + playerStats.Level + "," + playerStats.TotalExperience + ","
                     + playerStats.HighestStreak + ");";
                     dbcmd.CommandText = sqlQuery;
                     dbcmd.ExecuteNonQuery();
@@ -178,7 +177,7 @@ public class DBManager : MonoBehaviour
                     sqlQuery = "Update PlayerStats " +
                         "Set (HighScore, CorrectQuestions, Level, Experience, HighestStreak) = (" + playerStats.HighScore
                         + "," + playerStats.TotalCorrectQuestionsAnswered + "," + playerStats.Level
-                        + "," + playerStats.Experience + "," + playerStats.HighestStreak + ")"
+                        + "," + playerStats.TotalExperience + "," + playerStats.HighestStreak + ")"
                         + "WHERE Id = " + id + ";";
 
                     dbcmd.CommandText = sqlQuery;
@@ -195,3 +194,4 @@ public class DBManager : MonoBehaviour
 
     }
 }
+*/

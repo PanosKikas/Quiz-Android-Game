@@ -1,6 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
+using EasyMobile;
 
 public class Stats : MonoBehaviour
 {
@@ -29,32 +30,38 @@ public class Stats : MonoBehaviour
     [SerializeField]
     Slider expBar;
 
-    DBManager dbManager;
+    //DBManager dbManager;
 
     // read the database and then update gui
     private void OnEnable()
     {
-        dbManager = GameManager.Instance.GetComponent<DBManager>();
-        dbManager.ReadDatabase();
-        StartCoroutine(UpdateGUI());
+        //dbManager = GameManager.Instance.GetComponent<DBManager>();
+        //dbManager.ReadDatabase();
+        GameServices.UserLoginSucceeded += UpdateGUI;
+        UpdateGUI();
     }
-
+    
+    void OnDisable()
+    {
+        GameServices.UserLoginFailed -= UpdateGUI;
+    }
      
-    IEnumerator UpdateGUI()
+    void UpdateGUI()
     {
 
-        while (dbManager.readingDB) // wait to read db
+        
+        if(GameServices.IsInitialized())
         {
-            yield return null;
+            SaveGameManager.Instance.LoadGame();
         }
-        // update the gui of the stats panel
-        nameText.text = playerStats.Name;
-        highScoreText.text = playerStats.HighScore.ToString();
-        correctQuestionsText.text = playerStats.TotalCorrectQuestionsAnswered.ToString();
-        highestStreakText.text = "x" + playerStats.HighestStreak.ToString();
+
+        nameText.text = playerStats.PlayerName;
+        highScoreText.text = playerStats.savedData.HighScore.ToString();
+        correctQuestionsText.text = playerStats.savedData.TotalCorrectQuestionsAnswered.ToString();
+        highestStreakText.text = "x" + playerStats.savedData.HighestStreak.ToString();
         levelText.text = playerStats.Level.ToString();
-        expText.text = playerStats.Experience + "/" + playerStats.ExpToNextLevel;
-        expBar.value = (float)playerStats.Experience /(float) playerStats.ExpToNextLevel;
+        expText.text = playerStats.savedData.TotalExperience + "/" + playerStats.ExpToNextLevel;
+        expBar.value = (float)playerStats.savedData.TotalExperience /(float) playerStats.ExpToNextLevel;
 
     }
 }

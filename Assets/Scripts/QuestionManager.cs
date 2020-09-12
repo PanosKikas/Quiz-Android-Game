@@ -275,9 +275,9 @@ public class QuestionManager : MonoBehaviour
     void UpdateStreakStats()
     {
         
-        if (playerStats.CurrentStreak > playerStats.HighestStreak)
+        if (playerStats.CurrentStreak > playerStats.savedData.HighestStreak)
         {
-            playerStats.HighestStreak = playerStats.CurrentStreak;
+            playerStats.savedData.HighestStreak = playerStats.CurrentStreak;
         }
 
         // Check if it is the best round streak
