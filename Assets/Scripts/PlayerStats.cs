@@ -18,6 +18,7 @@ public class PlayerStats : ScriptableObject
             }
         }
     }
+   
 
     public SavedData savedData;
     // The lives that the player starts with each time they enter the game

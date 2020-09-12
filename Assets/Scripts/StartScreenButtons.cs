@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using EasyMobile;
 public class StartScreenButtons : MonoBehaviour
 {
     
@@ -23,6 +23,24 @@ public class StartScreenButtons : MonoBehaviour
     GameObject SettingsPanel;
 
     public bool QuitDialogueAnimationPlaying { get; set; } = false;
+
+    void OnEnable()
+    {
+        GameServices.UserLoginSucceeded += OnLoginSucceded;
+    }
+
+    void OnDisable()
+    {
+        GameServices.UserLoginSucceeded -= OnLoginSucceded;
+    }
+
+    private void OnLoginSucceded()
+    {
+        if(statsPanel.activeSelf)
+        {
+            ToggleStats();
+        }
+    }
 
     public void Play()
     {
