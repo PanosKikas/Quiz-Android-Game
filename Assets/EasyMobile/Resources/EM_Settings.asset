@@ -235,13 +235,13 @@ MonoBehaviour:
     - _name: BabySteps
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQAg
-    - _name: VehicleCorrect10
+    - _name: VEHICLE10
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQHQ
-    - _name: VehicleCorrect50
+    - _name: VEHICLE50
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQHg
-    - _name: VehicleCorrect100
+    - _name: VEHICLE100
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQDw
     - _name: GENERAL10
@@ -253,6 +253,96 @@ MonoBehaviour:
     - _name: GENERAL100
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQEg
+    - _name: ANIMALS10
+      _iosId: 
+      _androidId: 
+    - _name: ANIMALS50
+      _iosId: 
+      _androidId: 
+    - _name: ANIMALS100
+      _iosId: 
+      _androidId: 
+    - _name: SCIENCE10
+      _iosId: 
+      _androidId: 
+    - _name: SCIENCE50
+      _iosId: 
+      _androidId: 
+    - _name: SCIENCE100
+      _iosId: 
+      _androidId: 
+    - _name: ART10
+      _iosId: 
+      _androidId: 
+    - _name: ART50
+      _iosId: 
+      _androidId: 
+    - _name: ART100
+      _iosId: 
+      _androidId: 
+    - _name: ENTERTAINMENT10
+      _iosId: 
+      _androidId: 
+    - _name: ENTERTAINMENT50
+      _iosId: 
+      _androidId: 
+    - _name: ENTERTAINMENT100
+      _iosId: 
+      _androidId: 
+    - _name: CELEBRITIES10
+      _iosId: 
+      _androidId: 
+    - _name: CELEBRITIES50
+      _iosId: 
+      _androidId: 
+    - _name: CELEBRITIES100
+      _iosId: 
+      _androidId: 
+    - _name: GEOGRAPHY10
+      _iosId: 
+      _androidId: 
+    - _name: GEOGRAPHY50
+      _iosId: 
+      _androidId: 
+    - _name: GEOGRAPHY100
+      _iosId: 
+      _androidId: 
+    - _name: HISTORY10
+      _iosId: 
+      _androidId: 
+    - _name: HISTORY50
+      _iosId: 
+      _androidId: 
+    - _name: HISTORY100
+      _iosId: 
+      _androidId: 
+    - _name: MYTHOLOGY10
+      _iosId: 
+      _androidId: 
+    - _name: MYTHOLOGY50
+      _iosId: 
+      _androidId: 
+    - _name: MYTHOLOGY100
+      _iosId: 
+      _androidId: 
+    - _name: POLITICS10
+      _iosId: 
+      _androidId: 
+    - _name: POLITICS50
+      _iosId: 
+      _androidId: 
+    - _name: POLITICS100
+      _iosId: 
+      _androidId: 
+    - _name: SPORTS10
+      _iosId: 
+      _androidId: 
+    - _name: SPORTS50
+      _iosId: 
+      _androidId: 
+    - _name: SPORTS100
+      _iosId: 
+      _androidId: 
     mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--\r\nGoogle
       Play game services IDs.\r\nSave this file as res/values/games-ids.xml in your
       project.\r\n-->\r\n<resources>\r\n  <!-- app_id -->\r\n  <string name=\"app_id\"

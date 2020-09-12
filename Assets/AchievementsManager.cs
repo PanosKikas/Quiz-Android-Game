@@ -10,18 +10,9 @@ public class AchievementsManager : MonoBehaviour
     [SerializeField]
     PlayerStats stats;
     public static AchievementsManager Instance;
-
+    #region CategoryAchievementsDictionary
     private Dictionary<CategoryName, List<string>> AchievementsForCategory = new Dictionary<CategoryName, List<string>>
     {
-        {
-            CategoryName.VEHICLES, new List<string>
-            { 
-                 EM_GameServicesConstants.Achievement_VehicleCorrect10,
-                 EM_GameServicesConstants.Achievement_VehicleCorrect50,
-                 EM_GameServicesConstants.Achievement_VehicleCorrect100
-            }
-        },
-
         {
             CategoryName.GENERALKNOWLEDGE, new List<string>
             {
@@ -29,11 +20,108 @@ public class AchievementsManager : MonoBehaviour
                  EM_GameServicesConstants.Achievement_GENERAL50,
                  EM_GameServicesConstants.Achievement_GENERAL100
             }
+        },
+
+        {
+            CategoryName.ANIMALSANDNATURE, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_ANIMALS10,
+                 EM_GameServicesConstants.Achievement_ANIMALS50,
+                 EM_GameServicesConstants.Achievement_ANIMALS100
+            }
+        },
+
+        {
+            CategoryName.ART, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_ART10,
+                 EM_GameServicesConstants.Achievement_ART50,
+                 EM_GameServicesConstants.Achievement_ART100
+            }
+        },
+
+        {
+            CategoryName.ENTERTAINMENT, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_ENTERTAINMENT10,
+                 EM_GameServicesConstants.Achievement_ENTERTAINMENT50,
+                 EM_GameServicesConstants.Achievement_ENTERTAINMENT100
+            }
+        },
+
+         {
+            CategoryName.CELEBRITIES, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_CELEBRITIES10,
+                 EM_GameServicesConstants.Achievement_CELEBRITIES50,
+                 EM_GameServicesConstants.Achievement_CELEBRITIES100
+            }
+        },
+
+         {
+            CategoryName.GEOGRAPHY, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_CELEBRITIES10,
+                 EM_GameServicesConstants.Achievement_CELEBRITIES50,
+                 EM_GameServicesConstants.Achievement_CELEBRITIES100
+            }
+        },
+
+         {
+            CategoryName.HISTORY, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_CELEBRITIES10,
+                 EM_GameServicesConstants.Achievement_CELEBRITIES50,
+                 EM_GameServicesConstants.Achievement_CELEBRITIES100
+            }
+        },
+
+         {
+            CategoryName.MYTHOLOGY, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_CELEBRITIES10,
+                 EM_GameServicesConstants.Achievement_CELEBRITIES50,
+                 EM_GameServicesConstants.Achievement_CELEBRITIES100
+            }
+        },
+
+         {
+            CategoryName.POLITICS, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_POLITICS10,
+                 EM_GameServicesConstants.Achievement_POLITICS50,
+                 EM_GameServicesConstants.Achievement_POLITICS100
+            }
+        },
+
+         {
+            CategoryName.SCIENCE, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_SCIENCE10,
+                 EM_GameServicesConstants.Achievement_SCIENCE50,
+                 EM_GameServicesConstants.Achievement_SCIENCE100
+            }
+        },
+
+         {
+            CategoryName.SPORTS, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_SPORTS10,
+                 EM_GameServicesConstants.Achievement_SPORTS50,
+                 EM_GameServicesConstants.Achievement_SPORTS100
+            }
+        },
+
+        {
+            CategoryName.VEHICLES, new List<string>
+            { 
+                 EM_GameServicesConstants.Achievement_VEHICLE10,
+                 EM_GameServicesConstants.Achievement_VEHICLE50,
+                 EM_GameServicesConstants.Achievement_VEHICLE100
+            }
         }
-
-
     };
-
+    #endregion
     private void Awake()
     {
         if (Instance == null)

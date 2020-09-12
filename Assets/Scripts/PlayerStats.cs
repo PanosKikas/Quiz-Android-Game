@@ -44,8 +44,6 @@ public class PlayerStats : ScriptableObject
         HighScore = 0;
         TotalCorrectQuestionsAnswered = 0;
         HighestStreak = 0;
-        VehicleCorrectCount = 0;
-        GeneralCount = 0;
     }
 
     // Initializes the stats for a new round
