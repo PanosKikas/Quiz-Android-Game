@@ -43,6 +43,28 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        if (!PlayerPrefs.HasKey(SoundFxPrefsName))
+        {
+            InitializeValues();
+        }
+        else
+        {
+            RestorePreviousValues();
+        }
+        
+    }
+
+    void InitializeValues()
+    {
+        PlayerPrefs.SetInt(SoundFxPrefsName, 1);
+        PlayerPrefs.SetInt(BgMusicTogglePrefsName, 1);
+        
+        PlayerPrefs.SetInt(MasterVolumePrefsName, 100);
+        
+    }
+
+    void RestorePreviousValues()
+    {
         int sfx = PlayerPrefs.GetInt(SoundFxPrefsName);
         int bg = PlayerPrefs.GetInt(BgMusicTogglePrefsName);
         int MasterVolume = PlayerPrefs.GetInt(MasterVolumePrefsName);

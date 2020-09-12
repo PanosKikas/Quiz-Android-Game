@@ -4,9 +4,16 @@ using UnityEngine;
 using System.Net;
 using System.Linq;
 using System.Collections;
+using UnityEngine.Events;
 
 // Question manager handles the main game functionality
 // for displaying new questions, animating buttons etc
+
+[System.Serializable]
+public class QuestionEvent : UnityEvent<Question>
+{ 
+}
+
 public class QuestionManager : MonoBehaviour
 {   
     [SerializeField]
@@ -18,7 +25,7 @@ public class QuestionManager : MonoBehaviour
     GameManager gameManager;
     
     // The currently displaed question
-    Question currentQuestion;
+    public Question currentQuestion { get; private set; }
     PlayerStats playerStats;
 
     // List of all wrong answer buttons
@@ -47,6 +54,7 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] AudioClip correctAnswerSfx;
     [SerializeField] AudioClip wrongAnswerSfx;
 
+    public QuestionEvent OnCorrectQuestion;
 
     #region Singleton
     public static QuestionManager Instance;
@@ -66,6 +74,7 @@ public class QuestionManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        OnCorrectQuestion.AddListener(AchievementsManager.Instance.IncrementAchievementOnCorrectAnswer);
         AudioManager.Instance.StopBGMusic();
         gameManager = GameManager.Instance;
         questionUI = GetComponent<QuestionUI>();
@@ -219,7 +228,7 @@ public class QuestionManager : MonoBehaviour
     void OnCorrectAnswer()
     {
         audioClipToPlay = correctAnswerSfx;
-
+        OnCorrectQuestion?.Invoke(currentQuestion);
         // increment their streak
         playerStats.CurrentStreak++;
         // every x5-x10-x15 etc streak add a life

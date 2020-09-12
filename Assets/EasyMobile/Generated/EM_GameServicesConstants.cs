@@ -8,7 +8,13 @@ namespace EasyMobile
 {
 	public static class EM_GameServicesConstants
 	{
+		public const string Achievement_GENERAL10 = "GENERAL10";
+		public const string Achievement_GENERAL100 = "GENERAL100";
+		public const string Achievement_VehicleCorrect50 = "VehicleCorrect50";
+		public const string Achievement_GENERAL50 = "GENERAL50";
+		public const string Achievement_VehicleCorrect10 = "VehicleCorrect10";
 		public const string Achievement_BabySteps = "BabySteps";
+		public const string Achievement_VehicleCorrect100 = "VehicleCorrect100";
 
 	}
 }

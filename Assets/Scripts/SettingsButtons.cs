@@ -31,6 +31,20 @@ public class SettingsButtons : MonoBehaviour
         
     }
 
+    void RestoreValues()
+    {
+        int sfx = PlayerPrefs.GetInt(SoundFxToggleName);
+        SoundFxToggle.isOn = Convert.ToBoolean(sfx);
+        
+        int bg = PlayerPrefs.GetInt(BgMusicToggleName);
+        MusicToggle.isOn = Convert.ToBoolean(bg);
+
+        int masterVolume = PlayerPrefs.GetInt("MasterVolume");
+        MasterVolumeText.text = masterVolume.ToString();
+        MasterVolumeSlider.value = masterVolume;
+
+    }
+
     private void OnDisable()
     {
         PlayerPrefs.SetInt(MasterVolumeName, (int)MasterVolumeSlider.value);
@@ -48,19 +62,7 @@ public class SettingsButtons : MonoBehaviour
         MasterVolumeText.text = MasterVolumeSlider.value.ToString();
     }
 
-    void RestoreValues()
-    {
-        int sfx = PlayerPrefs.GetInt(SoundFxToggleName);
-        SoundFxToggle.isOn = Convert.ToBoolean(sfx);
 
-        int bg = PlayerPrefs.GetInt(BgMusicToggleName);
-        MusicToggle.isOn = Convert.ToBoolean(bg);
-
-        int masterVolume = PlayerPrefs.GetInt("MasterVolume");
-        MasterVolumeText.text = masterVolume.ToString();
-        MasterVolumeSlider.value = masterVolume;
-
-    }
 
     public void OnToggleAudioFx(bool isOn)
     {

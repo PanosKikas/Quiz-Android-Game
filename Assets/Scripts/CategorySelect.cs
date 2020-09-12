@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
-
+using System.CodeDom.Compiler;
+using System;
 // Manages the functionality of the category select menu
 // Selecting/ Deselecting categories and starting the game
 public class CategorySelect : MonoBehaviour
@@ -121,20 +122,15 @@ public class CategorySelect : MonoBehaviour
         }
     }
 
-    void AddCategoryToSelectedList(Toggle category)
+    void AddCategoryToSelectedList(Toggle categoryToggle)
     {
-        TextMeshProUGUI catText = category.gameObject.GetComponentInChildren<TextMeshProUGUI>();
-        
-        if (catText != null)
-        {
-            List<int> categoryIds = AllCategoriesData.AllCategories[catText.text];
+            CategoryName categoryName = (CategoryName)Enum.Parse(typeof(CategoryName), categoryToggle.gameObject.name, true);
+            List<int> categoryIds = AllCategoriesData.AllCategories[categoryName];
             foreach (int id in categoryIds)
             {
                 selectedCategories.Add(id);
             }
-
-            
-        }
+    
     }
 
     public void SelectAllCategories()

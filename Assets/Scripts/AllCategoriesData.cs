@@ -3,22 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum CategoryName
+{
+    GENERALKNOWLEDGE,
+    ENTERTAINMENT,
+    SCIENCE,
+    ANIMALSANDNATURE,
+    MYTHOLOGY,
+    SPORTS,
+    GEOGRAPHY,
+    HISTORY,
+    POLITICS,
+    ART,
+    CELEBRITIES,
+    VEHICLES
+    
+};
+
 public static class AllCategoriesData 
 {
-    public static Dictionary<string, List<int>> AllCategories = new Dictionary<string, List<int>>
+
+    public readonly static Dictionary<string, CategoryName> StringToCategoryEnumDictionary = new Dictionary<string, CategoryName>
     {
-        {"GENERAL KNOWLEDGE", new List<int>{9} },
-        {"ENTERTAINMENT", new List<int>{10, 11, 12,13, 14, 15, 16, 29, 31, 32} },
-        {"SCIENCE", new List<int>{18, 19, 30}},
-        {"ANIMALS & NATURE", new List<int>{17, 27} },
-        {"MYTHOLOGY", new List<int>{20} },
-        {"SPORTS", new List<int>{21 } },
-        {"GEOGRAPHY", new List<int>{22} },
-        {"HISTORY", new List<int>{23} },
-        {"POLITICS", new List<int>{24} },
-        {"ART", new List<int>{25} },
-        {"CELEBRITIES", new List<int>{26} },
-        {"VEHICLES", new List<int>{28}}
+        {"General Knowledge", CategoryName.GENERALKNOWLEDGE },
+        {"Entertainment: Books", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Film", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Music", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Musicals & Theatres", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Television", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Video Games", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Board Games", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Comics", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Japanese Anime & Manga", CategoryName.ENTERTAINMENT },
+        {"Entertainment: Cartoon & Animations", CategoryName.ENTERTAINMENT },
+        {"Science & Nature", CategoryName.ANIMALSANDNATURE },
+        {"Animals", CategoryName.ANIMALSANDNATURE },
+        {"Science: Computers", CategoryName.SCIENCE },
+        {"Science: Mathematics", CategoryName.SCIENCE },
+        {"Science: Gadgets", CategoryName.SCIENCE },
+        {"Mythology", CategoryName.MYTHOLOGY },
+        {"Sports", CategoryName.SPORTS },
+        {"Geography", CategoryName.GEOGRAPHY },
+        {"History", CategoryName.HISTORY },
+        {"Politics", CategoryName.POLITICS },
+        {"Art", CategoryName.ART },
+        {"Celebrities", CategoryName.CELEBRITIES },
+        {"Vehicles", CategoryName.VEHICLES }
+    };
+
+    public readonly static Dictionary<CategoryName, List<int>> AllCategories = new Dictionary<CategoryName, List<int>>
+    {
+        {CategoryName.GENERALKNOWLEDGE, new List<int>{9} },
+        {CategoryName.ENTERTAINMENT, new List<int>{10, 11, 12,13, 14, 15, 16, 29, 31, 32} },
+        {CategoryName.SCIENCE, new List<int>{18, 19, 30}},
+        {CategoryName.ANIMALSANDNATURE, new List<int>{17, 27} },
+        {CategoryName.MYTHOLOGY, new List<int>{20} },
+        {CategoryName.SPORTS, new List<int>{21 } },
+        {CategoryName.GEOGRAPHY, new List<int>{22} },
+        {CategoryName.HISTORY, new List<int>{23} },
+        {CategoryName.POLITICS, new List<int>{24} },
+        {CategoryName.ART, new List<int>{25} },
+        {CategoryName.CELEBRITIES, new List<int>{26} },
+        {CategoryName.VEHICLES, new List<int>{28}}
     };
 
     public static bool HasNoCategories()
@@ -26,8 +72,8 @@ public static class AllCategoriesData
         return !AllCategories.Any();
     }
 
-    public static void AddCategory(string name, List<int> ids)
+    public static CategoryName GetCategoryEnumFromString(string categoryName)
     {
-        AllCategories.Add(name, ids);
+        return StringToCategoryEnumDictionary[categoryName];
     }
 }

@@ -479,7 +479,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1287253307}
-  - component: {fileID: 1287253306}
   - component: {fileID: 1287253308}
   m_Layer: 0
   m_Name: AchievementsManager
@@ -488,14 +487,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1287253306
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287253305}
-  m_Enabled: 1
 --- !u!4 &1287253307
 Transform:
   m_ObjectHideFlags: 0
@@ -522,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a3829c5d870c64e93c8a87a46c6862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: adac70359c442ad47b3a3c9ba43195b0, type: 2}
 --- !u!1001 &8187791442984937064
 PrefabInstance:
   m_ObjectHideFlags: 0

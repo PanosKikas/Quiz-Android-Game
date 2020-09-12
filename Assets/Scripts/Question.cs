@@ -8,6 +8,13 @@ public class Question
     public Category questionCategory { get; private set; }
     public string category; // the category name
     
+    public CategoryName categoryName
+    {
+        get
+        {
+            return AllCategoriesData.GetCategoryEnumFromString(category);
+        }
+    }
     
     // the type of question
     public string type;

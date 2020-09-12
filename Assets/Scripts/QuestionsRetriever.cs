@@ -21,7 +21,7 @@ public class QuestionsRetriever : MonoBehaviour
 
     RequestData requestData;
 
-    Dictionary<string, List<int>> NonSelectedCategories; // a dictionary with the non-selected categories
+    Dictionary<CategoryName, List<int>> NonSelectedCategories; // a dictionary with the non-selected categories
 
     Difficulty requestedDifficulty;
 
@@ -49,7 +49,7 @@ public class QuestionsRetriever : MonoBehaviour
     {
         SelectedCategories = new List<int>();
         questionList = new List<Question>();
-        NonSelectedCategories = new Dictionary<string, List<int>>();
+        //NonSelectedCategories = new Dictionary<CategoryName, List<int>>();
     }
 
     public Question GetRandomQuestion()
@@ -108,7 +108,7 @@ public class QuestionsRetriever : MonoBehaviour
     void FindNonSelectedCategories()
     {
         var AllCategoriesDictionary = AllCategoriesData.AllCategories;
-        NonSelectedCategories = new Dictionary<string, List<int>>(AllCategoriesDictionary);
+        NonSelectedCategories = new Dictionary<CategoryName, List<int>>(AllCategoriesDictionary);
         foreach (int id in SelectedCategories)
         {  
             var cat = AllCategoriesDictionary.First(kvp => kvp.Value.Contains(id));
@@ -256,7 +256,7 @@ public class QuestionsRetriever : MonoBehaviour
         int id = Int32.Parse(splitted[1]);
         // remove the category from the selected categories - no more requests for this category
         SelectedCategories.Remove(id);
-        string toRemove = NonSelectedCategories.Where(pair => pair.Value.Contains(id)).Select(pair => pair.Key).First();
+        var toRemove = NonSelectedCategories.Where(pair => pair.Value.Contains(id)).Select(pair => pair.Key).First();
         NonSelectedCategories.Remove(toRemove);
     }
 

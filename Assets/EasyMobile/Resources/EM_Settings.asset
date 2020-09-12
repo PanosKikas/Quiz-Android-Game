@@ -227,19 +227,41 @@ MonoBehaviour:
     mGpgsShouldRequestServerAuthCode: 0
     mGpgsForceRefreshServerAuthCode: 0
     mGpgsOauthScopes: []
-    mLeaderboards: []
+    mLeaderboards:
+    - _name: 
+      _iosId: 
+      _androidId: 
     mAchievements:
     - _name: BabySteps
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQAg
+    - _name: VehicleCorrect10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQHQ
+    - _name: VehicleCorrect50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQHg
+    - _name: VehicleCorrect100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQDw
+    - _name: GENERAL10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQBQ
+    - _name: GENERAL50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQBg
+    - _name: GENERAL100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQEg
     mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--\r\nGoogle
       Play game services IDs.\r\nSave this file as res/values/games-ids.xml in your
       project.\r\n-->\r\n<resources>\r\n  <!-- app_id -->\r\n  <string name=\"app_id\"
       translatable=\"false\">168412269178</string>\r\n  <!-- package_name -->\r\n 
       <string name=\"package_name\" translatable=\"false\">com.hollowlotusnetertainment.triviyes</string>\r\n 
       <!-- achievement Baby Steps -->\r\n  <string name=\"achievement_baby_steps\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQAg</string>\r\n  <!-- achievement I
-      think I know this? -->\r\n  <string name=\"achievement_i_think_i_know_this\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQAg</string>\r\n  <!-- achievement Broom
+      broom...? -->\r\n  <string name=\"achievement_broom_broom...\" translatable=\"false\">CgkI-pSdsfMEEAIQHQ</string>\r\n 
+      <!-- achievement I think I know this? -->\r\n  <string name=\"achievement_i_think_i_know_this\"
       translatable=\"false\">CgkI-pSdsfMEEAIQBQ</string>\r\n  <!-- achievement I've
       watched some youtube videos! -->\r\n  <string name=\"achievement_ive_watched_some_youtube_videos\"
       translatable=\"false\">CgkI-pSdsfMEEAIQBg</string>\r\n  <!-- achievement Level
@@ -248,15 +270,11 @@ MonoBehaviour:
       <!-- achievement Adept -->\r\n  <string name=\"achievement_adept\" translatable=\"false\">CgkI-pSdsfMEEAIQCQ</string>\r\n 
       <!-- achievement Master -->\r\n  <string name=\"achievement_master\" translatable=\"false\">CgkI-pSdsfMEEAIQCg</string>\r\n 
       <!-- achievement 2000 IQ! -->\r\n  <string name=\"achievement_2000_iq\" translatable=\"false\">CgkI-pSdsfMEEAIQCw</string>\r\n 
-      <!-- achievement Broom broom..? -->\r\n  <string name=\"achievement_broom_broom..\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQDA</string>\r\n  <!-- achievement Vehicle
-      Junkie! -->\r\n  <string name=\"achievement_vehicle_junkie\" translatable=\"false\">CgkI-pSdsfMEEAIQDg</string>\r\n 
-      <!-- achievement Vehicle Engineer -->\r\n  <string name=\"achievement_vehicle_engineer\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQDw</string>\r\n  <!-- achievement Free
-      time..? -->\r\n  <string name=\"achievement_free_time..\" translatable=\"false\">CgkI-pSdsfMEEAIQEQ</string>\r\n 
-      <!-- achievement I've watched everything, I've played everything! -->\r\n 
-      <string name=\"achievement_ive_watched_everything_ive_played_everything\" translatable=\"false\">CgkI-pSdsfMEEAIQEg</string>\r\n 
-      <!-- achievement NERD! -->\r\n  <string name=\"achievement_nerd\" translatable=\"false\">CgkI-pSdsfMEEAIQEw</string>\r\n 
+      <!-- achievement Free time..? -->\r\n  <string name=\"achievement_free_time..\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQEQ</string>\r\n  <!-- achievement I've
+      watched everything, I've played everything! -->\r\n  <string name=\"achievement_ive_watched_everything_ive_played_everything\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQEg</string>\r\n  <!-- achievement NERD!
+      -->\r\n  <string name=\"achievement_nerd\" translatable=\"false\">CgkI-pSdsfMEEAIQEw</string>\r\n 
       <!-- achievement 1 + 1 = 2..? -->\r\n  <string name=\"achievement_1__1__2..\"
       translatable=\"false\">CgkI-pSdsfMEEAIQFA</string>\r\n  <!-- achievement Professor
       -->\r\n  <string name=\"achievement_professor\" translatable=\"false\">CgkI-pSdsfMEEAIQFg</string>\r\n 
@@ -269,9 +287,12 @@ MonoBehaviour:
       translatable=\"false\">CgkI-pSdsfMEEAIQGg</string>\r\n  <!-- achievement Zeus...?
       -->\r\n  <string name=\"achievement_zeus...\" translatable=\"false\">CgkI-pSdsfMEEAIQGw</string>\r\n 
       <!-- achievement I know about Gods! -->\r\n  <string name=\"achievement_i_know_about_gods\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQHA</string>\r\n</resources>\r\n"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHA</string>\r\n  <!-- achievement Vehicle
+      Junkie! -->\r\n  <string name=\"achievement_vehicle_junkie\" translatable=\"false\">CgkI-pSdsfMEEAIQHg</string>\r\n 
+      <!-- achievement Vehicle Engineer -->\r\n  <string name=\"achievement_vehicle_engineer\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQDw</string>\r\n</resources>\r\n"
     mEnableMultiplayer: 0
-    mEnableSavedGames: 0
+    mEnableSavedGames: 1
     mAutoConflictResolutionStrategy: 0
     mGpgsDataSource: 0
   mInAppPurchaseSettings:
