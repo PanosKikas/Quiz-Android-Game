@@ -11,7 +11,7 @@ public class CategorySelect : MonoBehaviour
 {
     
     [SerializeField]
-    private const int minimumSelectedCategories = 3;
+    private const int minimumSelectedCategories = 1;
 
     [Header("AudiClips")]  
     [SerializeField]

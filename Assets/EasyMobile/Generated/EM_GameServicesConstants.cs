@@ -12,6 +12,7 @@ namespace EasyMobile
 		public const string Achievement_MYTHOLOGY50 = "MYTHOLOGY50";
 		public const string Achievement_VEHICLE100 = "VEHICLE100";
 		public const string Achievement_ART100 = "ART100";
+		public const string Achievement_TECHNOLOGY100 = "TECHNOLOGY100";
 		public const string Achievement_VEHICLE50 = "VEHICLE50";
 		public const string Achievement_GENERAL10 = "GENERAL10";
 		public const string Achievement_ENTERTAINMENT50 = "ENTERTAINMENT50";
@@ -30,8 +31,10 @@ namespace EasyMobile
 		public const string Achievement_CELEBRITIES100 = "CELEBRITIES100";
 		public const string Achievement_ANIMALS100 = "ANIMALS100";
 		public const string Achievement_SCIENCE10 = "SCIENCE10";
+		public const string Achievement_TECHNOLOGY50 = "TECHNOLOGY50";
 		public const string Achievement_CELEBRITIES10 = "CELEBRITIES10";
 		public const string Achievement_SPORTS10 = "SPORTS10";
+		public const string Achievement_TECHNOLOGY10 = "TECHNOLOGY10";
 		public const string Achievement_GENERAL50 = "GENERAL50";
 		public const string Achievement_SPORTS100 = "SPORTS100";
 		public const string Achievement_SCIENCE50 = "SCIENCE50";

@@ -3482,8 +3482,8 @@ MonoBehaviour:
   trueBooleanButton: {fileID: 1657854085}
   falseBooleanButton: {fileID: 3396335259129381182}
   PopupGUI: {fileID: 148085654}
-  correctAnswerSfx: {fileID: 8300000, guid: c24d8d3201f83354b9dd851fcbdcee3b, type: 3}
-  wrongAnswerSfx: {fileID: 8300000, guid: d78edf816ad4d814f9d36468d75ea677, type: 3}
+  correctAnswerSfx: {fileID: 8300000, guid: 7d5ecc9483b02724fb8a4ebba67547c9, type: 3}
+  wrongAnswerSfx: {fileID: 8300000, guid: 8c3b1637a889aa0489210458731132c2, type: 3}
   OnCorrectQuestion:
     m_PersistentCalls:
       m_Calls: []

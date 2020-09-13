@@ -16,7 +16,8 @@ public enum CategoryName
     POLITICS,
     ART,
     CELEBRITIES,
-    VEHICLES
+    VEHICLES,
+    TECHNOLOGY
     
 };
 
@@ -38,9 +39,9 @@ public static class AllCategoriesData
         {"Entertainment: Cartoon & Animations", CategoryName.ENTERTAINMENT },
         {"Science & Nature", CategoryName.ANIMALSANDNATURE },
         {"Animals", CategoryName.ANIMALSANDNATURE },
-        {"Science: Computers", CategoryName.SCIENCE },
+        {"Science: Computers", CategoryName.TECHNOLOGY },
         {"Science: Mathematics", CategoryName.SCIENCE },
-        {"Science: Gadgets", CategoryName.SCIENCE },
+        {"Science: Gadgets", CategoryName.TECHNOLOGY },
         {"Mythology", CategoryName.MYTHOLOGY },
         {"Sports", CategoryName.SPORTS },
         {"Geography", CategoryName.GEOGRAPHY },
@@ -48,14 +49,14 @@ public static class AllCategoriesData
         {"Politics", CategoryName.POLITICS },
         {"Art", CategoryName.ART },
         {"Celebrities", CategoryName.CELEBRITIES },
-        {"Vehicles", CategoryName.VEHICLES }
+        {"Vehicles", CategoryName.VEHICLES },
     };
 
     public readonly static Dictionary<CategoryName, List<int>> AllCategories = new Dictionary<CategoryName, List<int>>
     {
         {CategoryName.GENERALKNOWLEDGE, new List<int>{9} },
         {CategoryName.ENTERTAINMENT, new List<int>{10, 11, 12,13, 14, 15, 16, 29, 31, 32} },
-        {CategoryName.SCIENCE, new List<int>{18, 19, 30}},
+        {CategoryName.SCIENCE, new List<int>{19}},
         {CategoryName.ANIMALSANDNATURE, new List<int>{17, 27} },
         {CategoryName.MYTHOLOGY, new List<int>{20} },
         {CategoryName.SPORTS, new List<int>{21 } },
@@ -64,7 +65,8 @@ public static class AllCategoriesData
         {CategoryName.POLITICS, new List<int>{24} },
         {CategoryName.ART, new List<int>{25} },
         {CategoryName.CELEBRITIES, new List<int>{26} },
-        {CategoryName.VEHICLES, new List<int>{28}}
+        {CategoryName.VEHICLES, new List<int>{28}},
+        {CategoryName.TECHNOLOGY, new List<int>{18, 30}},
     };
 
     public static bool HasNoCategories()

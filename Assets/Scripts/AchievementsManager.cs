@@ -119,7 +119,17 @@ public class AchievementsManager : MonoBehaviour
                  EM_GameServicesConstants.Achievement_VEHICLE50,
                  EM_GameServicesConstants.Achievement_VEHICLE100
             }
+        },
+
+         {
+            CategoryName.TECHNOLOGY, new List<string>
+            {
+                 EM_GameServicesConstants.Achievement_TECHNOLOGY10,
+                 EM_GameServicesConstants.Achievement_TECHNOLOGY50,
+                 EM_GameServicesConstants.Achievement_TECHNOLOGY100
+            }
         }
+
     };
     #endregion
     private void Awake()

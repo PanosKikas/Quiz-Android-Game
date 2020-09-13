@@ -343,6 +343,15 @@ MonoBehaviour:
     - _name: SPORTS100
       _iosId: 
       _androidId: 
+    - _name: TECHNOLOGY10
+      _iosId: 
+      _androidId: 
+    - _name: TECHNOLOGY50
+      _iosId: 
+      _androidId: 
+    - _name: TECHNOLOGY100
+      _iosId: 
+      _androidId: 
     mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--\r\nGoogle
       Play game services IDs.\r\nSave this file as res/values/games-ids.xml in your
       project.\r\n-->\r\n<resources>\r\n  <!-- app_id -->\r\n  <string name=\"app_id\"
