@@ -24,6 +24,9 @@ public class QuestionUI : MonoBehaviour
     [SerializeField]
     Text currentStreak;
 
+    [SerializeField]
+    AudioClip TimeRunningOut;
+
     public int timer { get; private set; }
     
     
@@ -59,6 +62,10 @@ public class QuestionUI : MonoBehaviour
         timer--;
         timer = Mathf.Clamp(timer, 0, int.MaxValue); // dont let it fall below 0
         timerText.text = timer.ToString(); 
+        if (timer <= 3)
+        {
+            AudioManager.Instance.PlayAudioClip(TimeRunningOut);
+        }
         yield return new WaitForSeconds(1f);
         // no more time left
         if (timer <= 0)

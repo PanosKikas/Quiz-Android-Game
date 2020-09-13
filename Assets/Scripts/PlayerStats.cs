@@ -1,9 +1,11 @@
 ﻿using EasyMobile;
+using System;
 using System.Security.Cryptography;
 using UnityEngine;
 
 // This contains all the stats of the player
 [CreateAssetMenu]
+[Serializable]
 public class PlayerStats : ScriptableObject
 {
     public string PlayerName
@@ -26,15 +28,14 @@ public class PlayerStats : ScriptableObject
 
     // The remaining lives of the player
     public int RemainingLives { get; set; }
-    public int CurrentScore { get; set; } // their current score
-    public string Name { get; set; }      // name of the player
+    public int CurrentScore; // their current score
     
-    public int CurrentExperience { get { return savedData.TotalExperience % 400; } }
-    public int Level { get { return (savedData.TotalExperience / 400) + 1; } } // current level of the player
-    public int RoundCorrectAnswers { get; set; } // sum of correct answers the player answered correct during this round
+    public int CurrentExperience { get { return CalculateCurrentExperience(); } }
+    public int Level { get { return CalculateLevelFromTotalExperience(); } } // current level of the player
+    public int RoundCorrectAnswers; // sum of correct answers the player answered correct during this round
     public int ExpToNextLevel { get { return 400 * Level; } } // experience needed to level up
-    public int CurrentStreak { get; set; } // the current streak of the playe
-    public int BestRoundStreak { get; set; } // their best streak in this game
+    public int CurrentStreak; // the current streak of the playe
+    public int BestRoundStreak; // their best streak in this game
 
     public float ExperiencePercent
     {
@@ -44,6 +45,17 @@ public class PlayerStats : ScriptableObject
         }
     }
     
+
+    int CalculateLevelFromTotalExperience()
+    {
+        float y = (1 / 20f) * (10 + Mathf.Sqrt(2) * Mathf.Sqrt(50 + savedData.TotalExperience));
+        return Mathf.FloorToInt(y);
+    }
+
+    int CalculateCurrentExperience()
+    {
+        return (savedData.TotalExperience - 200 * (Level - 1) * Level) % ExpToNextLevel;
+    }
 
     // Initializes the stats for a new round
     public void NewRoundInit()

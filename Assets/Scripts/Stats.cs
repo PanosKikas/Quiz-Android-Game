@@ -66,8 +66,8 @@ public class Stats : MonoBehaviour
         correctQuestionsText.text = playerStats.savedData.TotalCorrectQuestionsAnswered.ToString();
         highestStreakText.text = "x" + playerStats.savedData.HighestStreak.ToString();
         levelText.text = playerStats.Level.ToString();
-        expText.text = playerStats.savedData.TotalExperience + "/" + playerStats.ExpToNextLevel;
-        expBar.value = (float)playerStats.savedData.TotalExperience /(float) playerStats.ExpToNextLevel;
+        expText.text = playerStats.CurrentExperience + "/" + playerStats.ExpToNextLevel;
+        expBar.value = playerStats.ExperiencePercent;
 
     }
 }

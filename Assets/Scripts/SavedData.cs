@@ -7,9 +7,9 @@ using EasyMobile;
 [System.Serializable]
 public class SavedData 
 {
-    public int HighScore { get; set; } = 0;
-    public int TotalCorrectQuestionsAnswered { get; set; } = 0;
-    public int TotalExperience { get; set; } = 0;
+    public int HighScore  = 0;
+    public int TotalCorrectQuestionsAnswered  = 0;
+    public int TotalExperience  = 0;
 
     public int HighestStreak { get; set; } = 0;
 

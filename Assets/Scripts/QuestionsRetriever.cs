@@ -143,13 +143,11 @@ public class QuestionsRetriever : MonoBehaviour
     // Storing them into a RequestData object.
     IEnumerator MakeGetQuestionRequestOn(string[] questionsUrl)
     {
-        Debug.Log("YO");
         // needs internet connection for that task- wait 
         yield return WaitForInternetConnection();
         
         foreach (string URL in questionsUrl)
         {
-            Debug.Log(URL);
             yield return RequestQuestionsFromAPI(URL);
 
             // not enough question for this category or already retrieved with this token

@@ -6,8 +6,6 @@ using System;
 public class GameOverUIAnimator : MonoBehaviour
 {
     
-    [SerializeField]
-    PlayerStats playerStats;
 
     [SerializeField]
     Text scoreText;
@@ -32,29 +30,38 @@ public class GameOverUIAnimator : MonoBehaviour
 
     [SerializeField]
     AudioClip ScoreClip;
+
     [SerializeField]
     AudioClip LevelUpClip;
+
     [SerializeField]
-    GameOverButtons gameoverButtons;
+    AudioClip GameOverClip;
 
+    PlayerStats playerStats;
 
-    private void OnEnable()
+    void OnEnable()
     {
-    
+        Debug.Log("Play GameOverClip");
+        AudioManager.Instance.PlayAudioClip(GameOverClip);
+    }
+
+    public IEnumerator Animate(PlayerStats stats)
+    {
+        playerStats = stats;
+        
+        
         ShowInitialUI();
+        yield return new WaitForSecondsRealtime(0.2f);
+        yield return AnimateScore();
     }
 
     void ShowInitialUI()
-    {   
+    {
         expText.text = String.Format("{0} / {1}", playerStats.CurrentExperience, playerStats.ExpToNextLevel);
         levelText.text = playerStats.Level.ToString();
         experienceBar.value = playerStats.ExperiencePercent;
     }
 
-    public IEnumerator Animate()
-    {
-        yield return AnimateScore();
-    }
 
     IEnumerator AnimateScore()
     {
@@ -86,7 +93,6 @@ public class GameOverUIAnimator : MonoBehaviour
             // means that new high score has been reached
             if (score > playerStats.savedData.HighScore)
             {
-                playerStats.savedData.HighScore = playerStats.CurrentScore;
                 NewHighscoreImage.SetActive(true);
             }
             yield return null;
@@ -139,7 +145,11 @@ public class GameOverUIAnimator : MonoBehaviour
         int incrementAmount;
         while (totalExp < roundExp)
         {
-            int speed = (playerStats.ExpToNextLevel / 100) + 1;
+            float expToLevelUp = playerStats.ExpToNextLevel - playerStats.CurrentExperience;
+            float levelUpFactor = 100f * playerStats.Level;
+            float floatSpeed = expToLevelUp / levelUpFactor;
+            int speed = Mathf.CeilToInt(floatSpeed);
+            
             // the player has leveled up
             if ((playerStats.CurrentExperience + speed) >= playerStats.ExpToNextLevel)
             {
@@ -168,13 +178,12 @@ public class GameOverUIAnimator : MonoBehaviour
                 AudioManager.Instance.PlayAudioClip(LevelUpClip);
                 yield return new WaitForSecondsRealtime(1f);
             }
-
-            AudioManager.Instance.PlayAudioClip(ScoreClip);
-            yield return null;
-            Debug.Log("Animation finished");
+            else
+            {
+                AudioManager.Instance.PlayAudioClip(ScoreClip);
+                yield return new WaitForSecondsRealtime(0.01f);
+            }                 
         }
-        SaveGameManager.Instance.SaveGame(playerStats.savedData);
-        gameoverButtons.EnableAllButtons();
     }
 
     

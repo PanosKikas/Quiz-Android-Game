@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407bc1d558ffac2439aafd053157ffe0, type: 3}
   m_Name: Playerstats
   m_EditorClassIdentifier: 
+  savedData:
+    HighScore: 746
+    TotalCorrectQuestionsAnswered: 17
+    TotalExperience: 1324
+  CurrentScore: 138
+  RoundCorrectAnswers: 2
+  CurrentStreak: 0
+  BestRoundStreak: 1

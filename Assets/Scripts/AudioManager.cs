@@ -78,7 +78,6 @@ public class AudioManager : MonoBehaviour
     {
         if (!SoundFxAudioSource.enabled)
             return;
-
         SoundFxAudioSource.clip= clip;
         SoundFxAudioSource.Play();
     }
