@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mAdvertisingSettings:
     mAutoLoadAdsMode: 2
-    mAdCheckingInterval: 10
+    mAdCheckingInterval: 50
     mAdLoadingInterval: 20
     mIosDefaultAdNetworks:
       bannerAdNetwork: 0
@@ -22,8 +22,8 @@ MonoBehaviour:
       rewardedAdNetwork: 0
     mAndroidDefaultAdNetworks:
       bannerAdNetwork: 0
-      interstitialAdNetwork: 5
-      rewardedAdNetwork: 5
+      interstitialAdNetwork: 10
+      rewardedAdNetwork: 10
     mAdColony:
       mEnable: 0
       mAppId:
@@ -119,7 +119,7 @@ MonoBehaviour:
         keys: []
         values: []
     mChartboost:
-      mEnable: 1
+      mEnable: 0
       mCustomInterstitialPlacements: []
       mCustomRewardedPlacements: []
     mFairBid:
@@ -195,10 +195,10 @@ MonoBehaviour:
         keys: []
         values: []
     mUnityAds:
-      mEnable: 0
+      mEnable: 1
       mAppId:
-        mIosId: 
-        mAndroidId: 
+        mIosId: 3820336
+        mAndroidId: 3820337
       mDefaultBannerAdId:
         mIosId: 
         mAndroidId: 
@@ -318,13 +318,13 @@ MonoBehaviour:
       _androidId: 
     - _name: MYTHOLOGY10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQGw
     - _name: MYTHOLOGY50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQHA
     - _name: MYTHOLOGY100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQHw
     - _name: POLITICS10
       _iosId: 
       _androidId: 
@@ -336,22 +336,22 @@ MonoBehaviour:
       _androidId: 
     - _name: SPORTS10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQIA
     - _name: SPORTS50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQIQ
     - _name: SPORTS100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQIg
     - _name: TECHNOLOGY10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQIw
     - _name: TECHNOLOGY50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQJA
     - _name: TECHNOLOGY100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQJQ
     mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--\r\nGoogle
       Play game services IDs.\r\nSave this file as res/values/games-ids.xml in your
       project.\r\n-->\r\n<resources>\r\n  <!-- app_id -->\r\n  <string name=\"app_id\"
@@ -360,7 +360,7 @@ MonoBehaviour:
       <!-- achievement Baby Steps -->\r\n  <string name=\"achievement_baby_steps\"
       translatable=\"false\">CgkI-pSdsfMEEAIQAg</string>\r\n  <!-- achievement Broom
       broom...? -->\r\n  <string name=\"achievement_broom_broom...\" translatable=\"false\">CgkI-pSdsfMEEAIQHQ</string>\r\n 
-      <!-- achievement I think I know this? -->\r\n  <string name=\"achievement_i_think_i_know_this\"
+      <!-- achievement I think I know this...? -->\r\n  <string name=\"achievement_i_think_i_know_this...\"
       translatable=\"false\">CgkI-pSdsfMEEAIQBQ</string>\r\n  <!-- achievement I've
       watched some youtube videos! -->\r\n  <string name=\"achievement_ive_watched_some_youtube_videos\"
       translatable=\"false\">CgkI-pSdsfMEEAIQBg</string>\r\n  <!-- achievement Level
@@ -369,12 +369,12 @@ MonoBehaviour:
       <!-- achievement Adept -->\r\n  <string name=\"achievement_adept\" translatable=\"false\">CgkI-pSdsfMEEAIQCQ</string>\r\n 
       <!-- achievement Master -->\r\n  <string name=\"achievement_master\" translatable=\"false\">CgkI-pSdsfMEEAIQCg</string>\r\n 
       <!-- achievement 2000 IQ! -->\r\n  <string name=\"achievement_2000_iq\" translatable=\"false\">CgkI-pSdsfMEEAIQCw</string>\r\n 
-      <!-- achievement Free time..? -->\r\n  <string name=\"achievement_free_time..\"
+      <!-- achievement Free time...? -->\r\n  <string name=\"achievement_free_time...\"
       translatable=\"false\">CgkI-pSdsfMEEAIQEQ</string>\r\n  <!-- achievement I've
       watched everything, I've played everything! -->\r\n  <string name=\"achievement_ive_watched_everything_ive_played_everything\"
       translatable=\"false\">CgkI-pSdsfMEEAIQEg</string>\r\n  <!-- achievement NERD!
       -->\r\n  <string name=\"achievement_nerd\" translatable=\"false\">CgkI-pSdsfMEEAIQEw</string>\r\n 
-      <!-- achievement 1 + 1 = 2..? -->\r\n  <string name=\"achievement_1__1__2..\"
+      <!-- achievement 1 + 1 = 2...? -->\r\n  <string name=\"achievement_1__1__2...\"
       translatable=\"false\">CgkI-pSdsfMEEAIQFA</string>\r\n  <!-- achievement Professor
       -->\r\n  <string name=\"achievement_professor\" translatable=\"false\">CgkI-pSdsfMEEAIQFg</string>\r\n 
       <!-- achievement Albert Einstein -->\r\n  <string name=\"achievement_albert_einstein\"
@@ -389,7 +389,20 @@ MonoBehaviour:
       translatable=\"false\">CgkI-pSdsfMEEAIQHA</string>\r\n  <!-- achievement Vehicle
       Junkie! -->\r\n  <string name=\"achievement_vehicle_junkie\" translatable=\"false\">CgkI-pSdsfMEEAIQHg</string>\r\n 
       <!-- achievement Vehicle Engineer -->\r\n  <string name=\"achievement_vehicle_engineer\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQDw</string>\r\n</resources>\r\n"
+      translatable=\"false\">CgkI-pSdsfMEEAIQDw</string>\r\n  <!-- achievement Myth-(olog)-ical
+      -->\r\n  <string name=\"achievement_mythological\" translatable=\"false\">CgkI-pSdsfMEEAIQHw</string>\r\n 
+      <!-- achievement Gooaaal...? -->\r\n  <string name=\"achievement_gooaaal...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQIA</string>\r\n  <!-- achievement Kobe
+      -->\r\n  <string name=\"achievement_kobe\" translatable=\"false\">CgkI-pSdsfMEEAIQIQ</string>\r\n 
+      <!-- achievement Messi Would be Proud -->\r\n  <string name=\"achievement_messi_would_be_proud\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQIg</string>\r\n  <!-- achievement Boot...?
+      -->\r\n  <string name=\"achievement_boot...\" translatable=\"false\">CgkI-pSdsfMEEAIQIw</string>\r\n 
+      <!-- achievement Tech Savvy -->\r\n  <string name=\"achievement_tech_savvy\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQJA</string>\r\n  <!-- achievement HACKER!!!
+      -->\r\n  <string name=\"achievement_hacker\" translatable=\"false\">CgkI-pSdsfMEEAIQJQ</string>\r\n 
+      <!-- achievement Continents...? -->\r\n  <string name=\"achievement_continents...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQJg</string>\r\n  <!-- achievement Getting
+      Continental -->\r\n  <string name=\"achievement_getting_continental\" translatable=\"false\">CgkI-pSdsfMEEAIQJw</string>\r\n</resources>\r\n"
     mEnableMultiplayer: 0
     mEnableSavedGames: 1
     mAutoConflictResolutionStrategy: 0
@@ -506,5 +519,5 @@ MonoBehaviour:
   mIsGameServiceModuleEnable: 1
   mIsNotificationModuleEnable: 0
   mIsSharingModuleEnable: 1
-  mActiveModuleIndex: 1
+  mActiveModuleIndex: 0
   mIsSelectingModule: 0

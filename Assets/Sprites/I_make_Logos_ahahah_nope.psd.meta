@@ -41,6 +41,39 @@ TextureImporter:
   - first:
       213: 6151400235827379488
     second: I_make_Logos_ahahah_nope_12
+  - first:
+      213: -6534860498815275700
+    second: I_make_Logos_ahahah_nope_0
+  - first:
+      213: -6401945654307093247
+    second: I_make_Logos_ahahah_nope_1
+  - first:
+      213: -4229170417719460964
+    second: I_make_Logos_ahahah_nope_2
+  - first:
+      213: -4981299064486701718
+    second: I_make_Logos_ahahah_nope_3
+  - first:
+      213: -3079088595885445822
+    second: I_make_Logos_ahahah_nope_4
+  - first:
+      213: 7045795267649373189
+    second: I_make_Logos_ahahah_nope_5
+  - first:
+      213: 1503778341414425764
+    second: I_make_Logos_ahahah_nope_6
+  - first:
+      213: -3900864244768936049
+    second: I_make_Logos_ahahah_nope_7
+  - first:
+      213: -3868339473346071992
+    second: I_make_Logos_ahahah_nope_8
+  - first:
+      213: -1427466106250510132
+    second: I_make_Logos_ahahah_nope_9
+  - first:
+      213: -2307686229168605969
+    second: I_make_Logos_ahahah_nope_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -144,9 +177,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1284
+        y: 1234
         width: 553
-        height: 573
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b79253eda97d9c00800000000000000
-      internalID: 909016487548852149
+      spriteID: c4d226fdff28f45a0800000000000000
+      internalID: -6534860498815275700
       vertices: []
       indices: 
       edges: []
@@ -165,9 +198,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 605
-        y: 1284
+        y: 1234
         width: 555
-        height: 573
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97659996aaf711a60800000000000000
-      internalID: 7643030412517267065
+      spriteID: 1058baba858b727a0800000000000000
+      internalID: -6401945654307093247
       vertices: []
       indices: 
       edges: []
@@ -186,9 +219,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1212
-        y: 1284
+        y: 1234
         width: 555
-        height: 573
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbe9cc9ddb0407bc0800000000000000
-      internalID: -3787456102471524676
+      spriteID: c9bbd3589e7fe45c0800000000000000
+      internalID: -4229170417719460964
       vertices: []
       indices: 
       edges: []
@@ -207,9 +240,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1819
-        y: 1284
+        y: 1234
         width: 553
-        height: 573
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e322498a983c18d10800000000000000
-      internalID: 2126195495101801022
+      spriteID: a65d84594eededab0800000000000000
+      internalID: -4981299064486701718
       vertices: []
       indices: 
       edges: []
@@ -228,9 +261,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 690
+        y: 641
         width: 553
-        height: 576
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad523b446aeb13770800000000000000
-      internalID: 8588855585698686426
+      spriteID: 24daa4a5c31e445d0800000000000000
+      internalID: -3079088595885445822
       vertices: []
       indices: 
       edges: []
@@ -249,9 +282,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 605
-        y: 690
+        y: 641
         width: 555
-        height: 576
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,8 +292,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf95c9975b6c64d10800000000000000
-      internalID: 2109591958201326075
+      spriteID: 5048e583771b7c160800000000000000
+      internalID: 7045795267649373189
       vertices: []
       indices: 
       edges: []
@@ -270,9 +303,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1212
-        y: 690
+        y: 641
         width: 555
-        height: 576
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,8 +313,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbc9ace33c8832e10800000000000000
-      internalID: 2171729817476177085
+      spriteID: 4a4dee42f6e7ed410800000000000000
+      internalID: 1503778341414425764
       vertices: []
       indices: 
       edges: []
@@ -291,9 +324,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1819
-        y: 690
+        y: 641
         width: 553
-        height: 576
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,8 +334,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68ed94fa2244e9dc0800000000000000
-      internalID: -3630389333853610362
+      spriteID: f8f668513a85dd9c0800000000000000
+      internalID: -3900864244768936049
       vertices: []
       indices: 
       edges: []
@@ -312,9 +345,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 97
+        y: 47
         width: 553
-        height: 574
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -322,8 +355,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f168a665866a24380800000000000000
-      internalID: -8988438939221457377
+      spriteID: 842f59c8eb5e05ac0800000000000000
+      internalID: -3868339473346071992
       vertices: []
       indices: 
       edges: []
@@ -333,9 +366,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 605
-        y: 97
+        y: 47
         width: 555
-        height: 574
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -343,8 +376,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 582b06129ffb3b480800000000000000
-      internalID: -8884546563144109435
+      spriteID: cc04700b32f903ce0800000000000000
+      internalID: -1427466106250510132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_10
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 47
+        width: 555
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1d6c120e7d62a0a0800000000000000
+      internalID: -6871809693445231331
       vertices: []
       indices: 
       edges: []
@@ -353,31 +407,10 @@ TextureImporter:
       name: I_make_Logos_ahahah_nope_11
       rect:
         serializedVersion: 2
-        x: 1212
-        y: 97
-        width: 555
-        height: 574
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9de332f5a927d8110800000000000000
-      internalID: 1264793077707652825
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: I_make_Logos_ahahah_nope_12
-      rect:
-        serializedVersion: 2
         x: 1819
-        y: 97
+        y: 47
         width: 553
-        height: 574
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -385,8 +418,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02dbeb74ce92e5550800000000000000
-      internalID: 6151400235827379488
+      spriteID: fe43859e99379ffd0800000000000000
+      internalID: -2307686229168605969
       vertices: []
       indices: 
       edges: []

@@ -20,6 +20,11 @@ public class OnButtonSubmit : MonoBehaviour
         InitializeUI();
     }
 
+    private void Start()
+    {
+        AdManager.Instance.ShowInterstial();
+    }
+
     public void Submit()
     {
         bool success = CheckInputFields();

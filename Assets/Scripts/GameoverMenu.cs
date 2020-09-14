@@ -20,6 +20,8 @@ public class GameoverMenu : MonoBehaviour
     {
         // Pause the game
         Time.timeScale = 0f;
+
+        AdManager.Instance.ShowRewardedAd();
         InitializeComponents();
 
 
