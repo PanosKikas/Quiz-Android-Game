@@ -52,14 +52,9 @@ public class Stats : MonoBehaviour
     void UpdateGUI()
     {
 
-        
-        if(GameServices.IsInitialized())
-        {
-            SaveGameManager.Instance.LoadGame();
-            
-            //Texture2D image = GameServices.LocalUser.image;
-            //this.image.sprite = Sprite.Create(image, new Rect(0.0f, 0.0f, image.width, image.height), new Vector2(0.5f, 0.5f), 100.0f);
-        }
+        SaveGameManager.Instance.LoadGame();
+        //Texture2D image = GameServices.LocalUser.image;
+        //this.image.sprite = Sprite.Create(image, new Rect(0.0f, 0.0f, image.width, image.height), new Vector2(0.5f, 0.5f), 100.0f);
 
         nameText.text = playerStats.PlayerName;
         highScoreText.text = playerStats.savedData.HighScore.ToString();

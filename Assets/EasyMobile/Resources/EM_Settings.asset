@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mAdvertisingSettings:
     mAutoLoadAdsMode: 2
-    mAdCheckingInterval: 100
+    mAdCheckingInterval: 53.4
     mAdLoadingInterval: 20
     mIosDefaultAdNetworks:
       bannerAdNetwork: 0
@@ -462,7 +462,7 @@ MonoBehaviour:
       mEnableCopyPasteMode: 0
   mRatingRequestSettings:
     mDefaultRatingDialogContent:
-      mTitle: Rate $PRODUCT_NAME
+      mTitle: Enjoying $PRODUCT_NAME?
       mMessage: How would you rate $PRODUCT_NAME?
       mLowRatingMessage: That's bad. Would you like to give us some feedback instead?
       mHighRatingMessage: Awesome! Let's do it!
@@ -472,12 +472,12 @@ MonoBehaviour:
       mCancelButtonText: Cancel
       mFeedbackButtonText: Send Feedback
     mMinimumAcceptedStars: 4
-    mSupportEmail: 
+    mSupportEmail: hollowlotusentertainment@gmail.com
     mIosAppId: 
     mAnnualCap: 12
-    mDelayAfterInstallation: 10
-    mCoolingOffPeriod: 10
-    mIgnoreContraintsInDevelopment: 0
+    mDelayAfterInstallation: 2
+    mCoolingOffPeriod: 7
+    mIgnoreContraintsInDevelopment: 1
   mSharingSettings:
     mAndroidPermissions:
     - mElementName: uses-permission
@@ -519,5 +519,5 @@ MonoBehaviour:
   mIsGameServiceModuleEnable: 1
   mIsNotificationModuleEnable: 0
   mIsSharingModuleEnable: 1
-  mActiveModuleIndex: 0
+  mActiveModuleIndex: 1
   mIsSelectingModule: 0

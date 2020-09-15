@@ -10,7 +10,7 @@ public class QuestionsRetriever : MonoBehaviour
 {
     public static QuestionsRetriever Instance;
 
-    private const string defaultGetQuestionsUrl = "https://opentdb.com/api.php?amount=3";
+    private const string defaultGetQuestionsUrl = "https://opentdb.com/api.php?amount=5";
 
     private const int RandomCategoriesToAddWhenNoQuestionsFound = 2;
 
