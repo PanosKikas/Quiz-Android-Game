@@ -5,7 +5,7 @@ using System;
 
 public class GameOverUIAnimator : MonoBehaviour
 {
-    
+
 
     [SerializeField]
     Text scoreText;
@@ -37,7 +37,12 @@ public class GameOverUIAnimator : MonoBehaviour
     [SerializeField]
     AudioClip GameOverClip;
 
-    PlayerStats playerStats;
+    PlayerStats previousStats;
+
+    int CurrentExp;
+    int TotalExp;
+    int CurrentLevel;
+    int CurrentExpToNextLevel { get { return 400 * CurrentLevel;} }
 
     void OnEnable()
     {
@@ -45,11 +50,15 @@ public class GameOverUIAnimator : MonoBehaviour
         AudioManager.Instance.PlayAudioClip(GameOverClip);
     }
 
-    public IEnumerator Animate(PlayerStats stats)
+    public IEnumerator Animate(PlayerStats previousStats)
     {
-        playerStats = stats;
-        
-        
+        this.previousStats = previousStats;
+
+        CurrentExp = previousStats.CurrentExperience;
+        TotalExp = previousStats.savedData.TotalExperience;
+        CurrentLevel = previousStats.Level;
+
+
         ShowInitialUI();
         yield return new WaitForSecondsRealtime(0.2f);
         yield return AnimateScore();
@@ -57,29 +66,29 @@ public class GameOverUIAnimator : MonoBehaviour
 
     void ShowInitialUI()
     {
-        expText.text = String.Format("{0} / {1}", playerStats.CurrentExperience, playerStats.ExpToNextLevel);
-        levelText.text = playerStats.Level.ToString();
-        experienceBar.value = playerStats.ExperiencePercent;
+        expText.text = String.Format("{0} / {1}", previousStats.CurrentExperience, previousStats.ExpToNextLevel);
+        levelText.text = previousStats.Level.ToString();
+        experienceBar.value = previousStats.ExperiencePercent;
     }
 
 
     IEnumerator AnimateScore()
     {
-        
+
         // wait for animation gameover to play
         yield return new WaitForSecondsRealtime(1f);
         int score = 0;
         scoreText.text = "0";
         // The speed to which the high score will be incremented
-        int speed = playerStats.CurrentScore / 60;
-   
+        int speed = previousStats.CurrentScore / 60;
+
         // Add a little to the score - wait then add more
-        while (score < playerStats.CurrentScore)
+        while (score < previousStats.CurrentScore)
         {
             // avoid going over the score
-            if ((score + speed) > playerStats.CurrentScore)
+            if ((score + speed) > previousStats.CurrentScore)
             {
-                score = playerStats.CurrentScore;
+                score = previousStats.CurrentScore;
             }
             else
             {
@@ -91,7 +100,7 @@ public class GameOverUIAnimator : MonoBehaviour
             scoreText.text = score.ToString();
 
             // means that new high score has been reached
-            if (score > playerStats.savedData.HighScore)
+            if (score > previousStats.savedData.HighScore)
             {
                 NewHighscoreImage.SetActive(true);
             }
@@ -104,7 +113,7 @@ public class GameOverUIAnimator : MonoBehaviour
     {
         int correctQuestions = 0;
         correctAnswersText.text = "0";
-        while (correctQuestions < playerStats.RoundCorrectAnswers)
+        while (correctQuestions < previousStats.RoundCorrectAnswers)
         {
             yield return new WaitForSecondsRealtime(0.05f);
             correctQuestions++;
@@ -120,7 +129,7 @@ public class GameOverUIAnimator : MonoBehaviour
         int streak = 0;
         highestStreakText.text = "x0";
 
-        while (streak < playerStats.BestRoundStreak)
+        while (streak < previousStats.BestRoundStreak)
         {
             yield return new WaitForSecondsRealtime(0.2f);
             AudioManager.Instance.PlayAudioClip(ScoreClip);
@@ -135,45 +144,41 @@ public class GameOverUIAnimator : MonoBehaviour
     // A function that animates the experience of the player
     IEnumerator AnimateExperience()
     {
-        yield return new WaitForSecondsRealtime(0.2f);   
-        
+        yield return new WaitForSecondsRealtime(0.2f);
+
         int totalExp = 0;
-        
+
         // the experience gathered from that round
-        int roundExp = playerStats.CurrentScore;
-        
+        int roundExp = previousStats.CurrentScore;
+
         int incrementAmount;
         while (totalExp < roundExp)
         {
-            float expToLevelUp = playerStats.ExpToNextLevel - playerStats.CurrentExperience;
-            float levelUpFactor = 100f * playerStats.Level;
-            float floatSpeed = expToLevelUp / levelUpFactor;
-            int speed = Mathf.CeilToInt(floatSpeed);
-            
-            // the player has leveled up
-            if ((playerStats.CurrentExperience + speed) >= playerStats.ExpToNextLevel)
-            {
-                incrementAmount = (playerStats.ExpToNextLevel - playerStats.CurrentExperience);
-                
-                levelText.text = playerStats.Level.ToString();
-                expText.text = "0 / 0";
-                experienceBar.value = 0f;
-                
+            int speed = ComputeExperienceSpeed();
 
+            if ((CurrentExp + speed) >= CurrentExpToNextLevel)
+            {
+                incrementAmount = (CurrentExpToNextLevel - CurrentExp);
+                ++CurrentLevel;
+                CurrentExp = 0;
+                
             }
             else
             {
+                
                 incrementAmount = speed;
+                CurrentExp += speed;
             }
 
-            playerStats.savedData.TotalExperience += incrementAmount;
-            totalExp += incrementAmount;    
             
-            levelText.text = playerStats.Level.ToString();
-            expText.text = playerStats.CurrentExperience.ToString() + "/" + playerStats.ExpToNextLevel;
-            experienceBar.value = playerStats.ExperiencePercent;
 
-            if (playerStats.CurrentExperience == 0)
+            totalExp += incrementAmount;
+
+            levelText.text = CurrentLevel.ToString();
+            expText.text = CurrentExp.ToString() + "/" + CurrentExpToNextLevel;
+            experienceBar.value = ((float)CurrentExp / (float)CurrentExpToNextLevel);
+
+            if (CurrentExp == 0)
             {
                 AudioManager.Instance.PlayAudioClip(LevelUpClip);
                 yield return new WaitForSecondsRealtime(1f);
@@ -182,9 +187,18 @@ public class GameOverUIAnimator : MonoBehaviour
             {
                 AudioManager.Instance.PlayAudioClip(ScoreClip);
                 yield return new WaitForSecondsRealtime(0.01f);
-            }                 
+            }
         }
     }
+
+    int ComputeExperienceSpeed()
+    {
+        float expToLevelUp = CurrentExpToNextLevel - CurrentExp;
+        float levelUpFactor = 100f * CurrentLevel;
+        float floatSpeed = expToLevelUp / levelUpFactor;
+        return Mathf.CeilToInt(floatSpeed + 1);
+    }
+    
 
     
 }

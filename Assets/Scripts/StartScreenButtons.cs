@@ -65,6 +65,11 @@ public class StartScreenButtons : MonoBehaviour
             
     }
 
+    public void ShowLeaderBoards()
+    {
+        LeaderboardManager.Instance.ShowLeaderboardUI();
+    }
+
     public void Quit()
     {
         AudioManager.Instance.PlayAudioClip(ButtonClickFx);

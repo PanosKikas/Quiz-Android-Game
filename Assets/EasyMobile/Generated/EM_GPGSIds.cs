@@ -38,6 +38,7 @@ public static class EM_GPGSIds
         public const string achievement_kobe = "CgkI-pSdsfMEEAIQIQ"; // <GPGSID>
         public const string achievement_baby_steps = "CgkI-pSdsfMEEAIQAg"; // <GPGSID>
         public const string achievement_i_am_one_with_the_nature = "CgkI-pSdsfMEEAIQGg"; // <GPGSID>
+        public const string leaderboard_global_leaderboard = "CgkI-pSdsfMEEAIQKA"; // <GPGSID>
         public const string achievement_continents = "CgkI-pSdsfMEEAIQJg"; // <GPGSID>
         public const string achievement_messi_would_be_proud = "CgkI-pSdsfMEEAIQIg"; // <GPGSID>
         public const string achievement_novice = "CgkI-pSdsfMEEAIQCA"; // <GPGSID>

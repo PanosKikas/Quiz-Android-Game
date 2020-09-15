@@ -228,9 +228,9 @@ MonoBehaviour:
     mGpgsForceRefreshServerAuthCode: 0
     mGpgsOauthScopes: []
     mLeaderboards:
-    - _name: 
+    - _name: GlobalLeaderboard
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQKA
     mAchievements:
     - _name: BabySteps
       _iosId: 
@@ -402,7 +402,9 @@ MonoBehaviour:
       -->\r\n  <string name=\"achievement_hacker\" translatable=\"false\">CgkI-pSdsfMEEAIQJQ</string>\r\n 
       <!-- achievement Continents...? -->\r\n  <string name=\"achievement_continents...\"
       translatable=\"false\">CgkI-pSdsfMEEAIQJg</string>\r\n  <!-- achievement Getting
-      Continental -->\r\n  <string name=\"achievement_getting_continental\" translatable=\"false\">CgkI-pSdsfMEEAIQJw</string>\r\n</resources>\r\n"
+      Continental -->\r\n  <string name=\"achievement_getting_continental\" translatable=\"false\">CgkI-pSdsfMEEAIQJw</string>\r\n 
+      <!-- leaderboard Global Leaderboard -->\r\n  <string name=\"leaderboard_global_leaderboard\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQKA</string>\r\n</resources>\r\n"
     mEnableMultiplayer: 0
     mEnableSavedGames: 1
     mAutoConflictResolutionStrategy: 0

@@ -140,6 +140,7 @@ public class CloudDataManager : MonoBehaviour
                 SavedData savedData = ByteArrayToObject(data) as SavedData;
                 Debug.Log(savedData.HighScore + " " + savedData.HighestStreak);
                 stats.savedData = savedData;
+                LeaderboardManager.Instance.AddToLeaderboard(stats.savedData.TotalExperience);
             }
             else
             {

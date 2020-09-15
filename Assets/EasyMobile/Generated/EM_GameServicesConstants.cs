@@ -14,7 +14,7 @@ namespace EasyMobile
 		public const string Achievement_ART100 = "ART100";
 		public const string Achievement_TECHNOLOGY100 = "TECHNOLOGY100";
 		public const string Achievement_VEHICLE50 = "VEHICLE50";
-		public const string Achievement_GENERAL10 = "GENERAL10";
+		public const string Leaderboard_GlobalLeaderboard = "GlobalLeaderboard";
 		public const string Achievement_ENTERTAINMENT50 = "ENTERTAINMENT50";
 		public const string Achievement_MYTHOLOGY10 = "MYTHOLOGY10";
 		public const string Achievement_HISTORY100 = "HISTORY100";
@@ -43,6 +43,7 @@ namespace EasyMobile
 		public const string Achievement_HISTORY10 = "HISTORY10";
 		public const string Achievement_SCIENCE100 = "SCIENCE100";
 		public const string Achievement_ENTERTAINMENT10 = "ENTERTAINMENT10";
+		public const string Achievement_GENERAL10 = "GENERAL10";
 		public const string Achievement_GEOGRAPHY100 = "GEOGRAPHY100";
 		public const string Achievement_POLITICS100 = "POLITICS100";
 		public const string Achievement_BabySteps = "BabySteps";

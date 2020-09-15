@@ -25,6 +25,7 @@ public class GameoverMenu : MonoBehaviour
         
         var clonedStats = UnityEngine.Object.Instantiate(stats) as PlayerStats;
         UpdatePlayerStats();
+        LeaderboardManager.Instance.AddToLeaderboard(stats.savedData.TotalExperience);
         SaveGameManager.Instance.SaveGame(stats.savedData);
         StartCoroutine(gameoverAnimator.Animate(clonedStats));
         gameoverButtons.EnableAllButtons();

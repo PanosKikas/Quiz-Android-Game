@@ -32,6 +32,21 @@ public class SaveGameManager : MonoBehaviour
     }
     #endregion
 
+    private void OnEnable()
+    {
+        GameServices.UserLoginSucceeded += OnUserLogin;
+    }
+
+    private void OnDisable()
+    {
+        GameServices.UserLoginSucceeded -= OnUserLogin;
+    }
+
+    private void OnUserLogin()
+    {
+        LoadGame();
+    }
+
     private void Start()
     {
         LoadGame();
