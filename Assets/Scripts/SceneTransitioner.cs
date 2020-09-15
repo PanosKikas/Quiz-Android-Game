@@ -52,27 +52,13 @@ public class SceneTransitioner : MonoBehaviour
             {
                 return;
             }
-            
-            if (CurrentSceneIsFirst() ) 
-            {
-                if (StartScreen == null)
-                {
-                    StartScreen = GameObject.FindGameObjectWithTag("StartScreenPanel").GetComponent<StartScreenButtons>();
-                }
-                StartScreen.ToggleQuitDialogue();
-                AudioManager.Instance.PlayAudioClip(QuitDialogueClip);
 
-            }
-            else 
-            {
-                AudioManager.Instance.PlayAudioClip(PreviousSceneClip);
-                TransitionToPreviousScene();
-            }
+             AudioManager.Instance.PlayAudioClip(PreviousSceneClip);
+             TransitionToPreviousScene();
+
         }
 
     }
-
-    
 
     public void TransitionTo(string sceneName)
     {
@@ -116,7 +102,7 @@ public class SceneTransitioner : MonoBehaviour
 
     bool BlockedTransitionScene()
     {
-        return currentScene.name == MainGameSceneName || currentScene.name == LoadScreenSceneName;
+        return currentScene.name == MainGameSceneName || currentScene.name == LoadScreenSceneName || CurrentSceneIsFirst();
     }
 
     bool CurrentSceneIsFirst()
