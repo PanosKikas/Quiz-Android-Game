@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     public void Home()
     {
         Time.timeScale = 1f;
-        SceneTransitioner.Instance.TransitionToCategorySelect();
+        SceneTransitioner.Instance.TransitionTo("CategorySelect");
     }
 
     // Toggles the stats panel

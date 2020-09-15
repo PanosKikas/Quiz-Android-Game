@@ -20,11 +20,8 @@ public class GameoverMenu : MonoBehaviour
     {
         // Pause the game
         Time.timeScale = 0f;
-
-        AdManager.Instance.ShowRewardedAd();
         InitializeComponents();
-
-
+        
         
         var clonedStats = UnityEngine.Object.Instantiate(stats) as PlayerStats;
         UpdatePlayerStats();
@@ -37,6 +34,7 @@ public class GameoverMenu : MonoBehaviour
 
     void UpdatePlayerStats()
     {
+        stats.savedData.TotalCorrectQuestionsAnswered += stats.RoundCorrectAnswers;
 
         if (stats.CurrentScore > stats.savedData.HighScore)
         {

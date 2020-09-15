@@ -47,6 +47,8 @@ public class QuestionUI : MonoBehaviour
         this.categoryText.text = currentQuestion.category;            
     }
 
+
+ 
     // a function that takes a reference to the player stats and updates 
     // the helper gui (score, lives streak)
     public void UpdateGUI(PlayerStats stats)

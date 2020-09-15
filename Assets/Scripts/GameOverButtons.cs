@@ -30,7 +30,7 @@ public class GameOverButtons : MonoBehaviour
     public void Home()
     {
         Time.timeScale = 1f;
-        SceneTransitioner.Instance.TransitionToCategorySelect();
+        SceneTransitioner.Instance.TransitionTo("CategorySelect");
     }
 
     public void Share()

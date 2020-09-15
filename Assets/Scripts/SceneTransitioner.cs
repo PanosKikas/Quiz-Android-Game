@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using UnityEngine;
+using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 
 public class SceneTransitioner : MonoBehaviour
@@ -83,30 +84,18 @@ public class SceneTransitioner : MonoBehaviour
         StartCoroutine(LoadSceneAsync(GetNextSceneIndex(), enumerator));
     }
 
-    public void TransitionToCategorySelect()
-    {
-
-        StartCoroutine(LoadSceneAsync(CategorySelectIndex, null));
-    }
-
     // this function is called every time we want to load a new level while waiting
     // for a requeired task (enumerator) to finish
     IEnumerator LoadSceneAsync(int SceneIndex, IEnumerator enumerator)
     {
-        // load the load screen scene
         TransitionToLoadScene();
-        // wait for enumerator to finish
+        
         yield return enumerator;
-
-        // wait for any logging or reading the database - else errors may occur
-      /*  while (GetComponent<DatabaseManager>().readingDB
-           || GetComponent<FacebookManager>().isLogging)
+        while (Advertisement.isShowing)
         {
-
             yield return null;
-        }*/
-
-        // load the new scene
+        }
+       
         SceneManager.LoadSceneAsync(SceneIndex);
     }
 

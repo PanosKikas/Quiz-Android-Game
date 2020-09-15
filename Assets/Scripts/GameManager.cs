@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     
     GameObject GameOverPanel;
 
+    public bool GameEnded = false;
+
     #region Singleton
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(List<int> selectedCategories, Difficulty difficulty)
     {
-        
+        GameEnded = false;   
         questionRetriever.Initialize();   
         
         SessionTokenManager.Instance.ResetToken();
@@ -53,10 +55,7 @@ public class GameManager : MonoBehaviour
     
     public void EndGame()
     {
-
-        playerStats.savedData.TotalCorrectQuestionsAnswered += playerStats.RoundCorrectAnswers;
-        
-        // find the gameover panel gameobject
+        GameEnded = true;
         if (GameOverPanel == null)
         {
             GameOverPanel = Resources.FindObjectsOfTypeAll<GameoverMenu>()[0].gameObject;

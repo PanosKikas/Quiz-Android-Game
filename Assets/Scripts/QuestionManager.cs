@@ -23,6 +23,9 @@ public class QuestionManager : MonoBehaviour
     Transform trueFalsePanel;
     
     GameManager gameManager;
+
+    [SerializeField]
+    GameObject RewardAdPanel;
     
     // The currently displaed question
     public Question currentQuestion { get; private set; }
@@ -55,6 +58,8 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] AudioClip wrongAnswerSfx;
 
     public QuestionEvent OnCorrectQuestion;
+
+    public bool HasWatchedAd = false;
 
     #region Singleton
     public static QuestionManager Instance;
@@ -92,6 +97,12 @@ public class QuestionManager : MonoBehaviour
     
     void GetNextQuestion()
     {
+        if (GameManager.Instance.GameEnded)
+        {
+            return;
+        }
+
+        questionUI.UpdateGUI(playerStats);
         ClearPreviousAnswers();
         currentQuestion = QuestionsRetriever.Instance.GetRandomQuestion();
         Debug.Log(currentQuestion.correct_answer);
@@ -258,16 +269,28 @@ public class QuestionManager : MonoBehaviour
     {
         audioClipToPlay = wrongAnswerSfx;
         // decrement its live
-        playerStats.RemainingLives--;
+        --playerStats.RemainingLives;
 
         UpdateStreakStats();
         
         // If no more lives
+
         if (HasNoLivesRemaining())
         {
-            ClearPreviousAnswers();
-            gameManager.EndGame();
+            if (!HasWatchedAd)
+            {
+                RewardAdPanel.SetActive(true);
+                HasWatchedAd = true;
+                
+            }
+            else
+            {
+                GameManager.Instance.EndGame();
+            }
+            
         }
+  
+       // ClearPreviousAnswers();
     }
 
     

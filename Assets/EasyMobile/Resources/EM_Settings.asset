@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mAdvertisingSettings:
     mAutoLoadAdsMode: 2
-    mAdCheckingInterval: 50
+    mAdCheckingInterval: 100
     mAdLoadingInterval: 20
     mIosDefaultAdNetworks:
       bannerAdNetwork: 0
