@@ -132,6 +132,36 @@ public class AchievementsManager : MonoBehaviour
 
     };
     #endregion
+
+    #region LevelAchievements
+    private List<string> LevelAchievementsList = new List<string>
+    {
+        EM_GameServicesConstants.Achievement_LEVEL2,
+        EM_GameServicesConstants.Achievement_LEVEL10,
+        EM_GameServicesConstants.Achievement_LEVEL20,
+        EM_GameServicesConstants.Achievement_LEVEL50,
+        EM_GameServicesConstants.Achievement_LEVEL100
+    };
+    #endregion
+
+    #region TotalAnswersAchievements
+    List<string> TotalAnswersAchievementsList = new List<string>
+    {
+        EM_GameServicesConstants.Achievement_TOTAL10,
+        EM_GameServicesConstants.Achievement_TOTAL50,
+        EM_GameServicesConstants.Achievement_TOTAL100
+    };
+    #endregion
+
+    readonly int[] LevelAchievementConstants = new int[]
+    {
+        2,
+        10,
+        20,
+        50,
+        100
+    };
+
     private void Awake()
     {
         if (Instance == null)
@@ -161,15 +191,21 @@ public class AchievementsManager : MonoBehaviour
 
     public void UnlockAchievement(string achievementName)
     {
+        if (!GameServices.IsInitialized())
+            return;
+
         GameServices.UnlockAchievement(achievementName);
     }
 
     public void IncrementAchievementOnCorrectAnswer(Question question)
     {
 
+        if (!GameServices.IsInitialized())
+            return;
+
         CategoryName name = question.categoryName;
         IncrementOnCategory(name);
-
+        IncrementTotal();
     }
 
     void IncrementOnCategory(CategoryName category)
@@ -179,5 +215,29 @@ public class AchievementsManager : MonoBehaviour
             GameServices.Instance.IncrementAchievement(achievement, 1);
         }
 
+    }
+
+    void IncrementTotal()
+    {
+        foreach (var achievement in TotalAnswersAchievementsList)
+        {
+            GameServices.Instance.IncrementAchievement(achievement, 1);
+        }
+    }
+
+    public void ProgressLevelAchievements(int CurrentLevel)
+    {
+        if (!GameServices.IsInitialized())
+        {
+            return;
+        }
+        Debug.Log("Reporting Level:" + CurrentLevel);
+        for (int i = 0; i < LevelAchievementsList.Count; i++)
+        {
+            double progress = ((double)CurrentLevel / (double)LevelAchievementConstants[i])*100;
+            progress = Mathf.Clamp((float)progress, 0, 100);
+            Debug.Log("Progress " + i + " " + progress);
+            GameServices.ReportAchievementProgress(LevelAchievementsList[i], progress);
+        }
     }
 }
