@@ -255,67 +255,67 @@ MonoBehaviour:
       _androidId: CgkI-pSdsfMEEAIQEg
     - _name: ANIMALS10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQGA
     - _name: ANIMALS50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQGQ
     - _name: ANIMALS100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQGg
     - _name: SCIENCE10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQFA
     - _name: SCIENCE50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQFg
     - _name: SCIENCE100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQFw
     - _name: ART10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQLw
     - _name: ART50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQMA
     - _name: ART100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQMQ
     - _name: ENTERTAINMENT10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQEQ
     - _name: ENTERTAINMENT50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQEg
     - _name: ENTERTAINMENT100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQEw
     - _name: CELEBRITIES10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQMg
     - _name: CELEBRITIES50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQMw
     - _name: CELEBRITIES100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQNA
     - _name: GEOGRAPHY10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQJg
     - _name: GEOGRAPHY50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQJw
     - _name: GEOGRAPHY100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQKw
     - _name: HISTORY10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQLA
     - _name: HISTORY50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQLQ
     - _name: HISTORY100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQLg
     - _name: MYTHOLOGY10
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQGw
@@ -327,13 +327,13 @@ MonoBehaviour:
       _androidId: CgkI-pSdsfMEEAIQHw
     - _name: POLITICS10
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQNQ
     - _name: POLITICS50
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQNg
     - _name: POLITICS100
       _iosId: 
-      _androidId: 
+      _androidId: CgkI-pSdsfMEEAIQNw
     - _name: SPORTS10
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQIA
@@ -352,59 +352,110 @@ MonoBehaviour:
     - _name: TECHNOLOGY100
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQJQ
+    - _name: TOTAL10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQOw
+    - _name: TOTAL50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQPA
+    - _name: TOTAL100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQPQ
+    - _name: LEVEL2
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQBw
+    - _name: LEVEL10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQCA
+    - _name: LEVEL20
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQCQ
+    - _name: LEVEL50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQCg
+    - _name: LEVEL100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQCw
     mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--\r\nGoogle
       Play game services IDs.\r\nSave this file as res/values/games-ids.xml in your
       project.\r\n-->\r\n<resources>\r\n  <!-- app_id -->\r\n  <string name=\"app_id\"
       translatable=\"false\">168412269178</string>\r\n  <!-- package_name -->\r\n 
       <string name=\"package_name\" translatable=\"false\">com.hollowlotusnetertainment.triviyes</string>\r\n 
       <!-- achievement Baby Steps -->\r\n  <string name=\"achievement_baby_steps\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQAg</string>\r\n  <!-- achievement Broom
-      broom...? -->\r\n  <string name=\"achievement_broom_broom...\" translatable=\"false\">CgkI-pSdsfMEEAIQHQ</string>\r\n 
-      <!-- achievement I think I know this...? -->\r\n  <string name=\"achievement_i_think_i_know_this...\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQBQ</string>\r\n  <!-- achievement I've
-      watched some youtube videos! -->\r\n  <string name=\"achievement_ive_watched_some_youtube_videos\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQBg</string>\r\n  <!-- achievement Level
+      translatable=\"false\">CgkI-pSdsfMEEAIQAg</string>\r\n  <!-- achievement Level
       Up! -->\r\n  <string name=\"achievement_level_up\" translatable=\"false\">CgkI-pSdsfMEEAIQBw</string>\r\n 
-      <!-- achievement Novice -->\r\n  <string name=\"achievement_novice\" translatable=\"false\">CgkI-pSdsfMEEAIQCA</string>\r\n 
-      <!-- achievement Adept -->\r\n  <string name=\"achievement_adept\" translatable=\"false\">CgkI-pSdsfMEEAIQCQ</string>\r\n 
-      <!-- achievement Master -->\r\n  <string name=\"achievement_master\" translatable=\"false\">CgkI-pSdsfMEEAIQCg</string>\r\n 
-      <!-- achievement 2000 IQ! -->\r\n  <string name=\"achievement_2000_iq\" translatable=\"false\">CgkI-pSdsfMEEAIQCw</string>\r\n 
-      <!-- achievement Free time...? -->\r\n  <string name=\"achievement_free_time...\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQEQ</string>\r\n  <!-- achievement I've
-      watched everything, I've played everything! -->\r\n  <string name=\"achievement_ive_watched_everything_ive_played_everything\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQEg</string>\r\n  <!-- achievement NERD!
-      -->\r\n  <string name=\"achievement_nerd\" translatable=\"false\">CgkI-pSdsfMEEAIQEw</string>\r\n 
+      <!-- achievement The 5th One...? -->\r\n  <string name=\"achievement_the_5th_one...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQOw</string>\r\n  <!-- achievement 50/50
+      -->\r\n  <string name=\"achievement_5050\" translatable=\"false\">CgkI-pSdsfMEEAIQOA</string>\r\n 
+      <!-- achievement Knowledge Is Power...? -->\r\n  <string name=\"achievement_knowledge_is_power...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQBQ</string>\r\n  <!-- achievement Recreational
+      Time...? -->\r\n  <string name=\"achievement_recreational_time...\" translatable=\"false\">CgkI-pSdsfMEEAIQEQ</string>\r\n 
+      <!-- achievement Boot...? -->\r\n  <string name=\"achievement_boot...\" translatable=\"false\">CgkI-pSdsfMEEAIQIw</string>\r\n 
       <!-- achievement 1 + 1 = 2...? -->\r\n  <string name=\"achievement_1__1__2...\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQFA</string>\r\n  <!-- achievement Professor
-      -->\r\n  <string name=\"achievement_professor\" translatable=\"false\">CgkI-pSdsfMEEAIQFg</string>\r\n 
-      <!-- achievement Albert Einstein -->\r\n  <string name=\"achievement_albert_einstein\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQFw</string>\r\n  <!-- achievement Meow..?
-      -->\r\n  <string name=\"achievement_meow..\" translatable=\"false\">CgkI-pSdsfMEEAIQGA</string>\r\n 
-      <!-- achievement I love Nature! -->\r\n  <string name=\"achievement_i_love_nature\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQGQ</string>\r\n  <!-- achievement I
-      am ONE with the Nature -->\r\n  <string name=\"achievement_i_am_one_with_the_nature\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQGg</string>\r\n  <!-- achievement Zeus...?
-      -->\r\n  <string name=\"achievement_zeus...\" translatable=\"false\">CgkI-pSdsfMEEAIQGw</string>\r\n 
-      <!-- achievement I know about Gods! -->\r\n  <string name=\"achievement_i_know_about_gods\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQHA</string>\r\n  <!-- achievement Vehicle
-      Junkie! -->\r\n  <string name=\"achievement_vehicle_junkie\" translatable=\"false\">CgkI-pSdsfMEEAIQHg</string>\r\n 
-      <!-- achievement Vehicle Engineer -->\r\n  <string name=\"achievement_vehicle_engineer\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQDw</string>\r\n  <!-- achievement Myth-(olog)-ical
-      -->\r\n  <string name=\"achievement_mythological\" translatable=\"false\">CgkI-pSdsfMEEAIQHw</string>\r\n 
-      <!-- achievement Gooaaal...? -->\r\n  <string name=\"achievement_gooaaal...\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQIA</string>\r\n  <!-- achievement Kobe
-      -->\r\n  <string name=\"achievement_kobe\" translatable=\"false\">CgkI-pSdsfMEEAIQIQ</string>\r\n 
-      <!-- achievement Messi Would be Proud -->\r\n  <string name=\"achievement_messi_would_be_proud\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQIg</string>\r\n  <!-- achievement Boot...?
-      -->\r\n  <string name=\"achievement_boot...\" translatable=\"false\">CgkI-pSdsfMEEAIQIw</string>\r\n 
+      translatable=\"false\">CgkI-pSdsfMEEAIQFA</string>\r\n  <!-- achievement Gooaaal...?
+      -->\r\n  <string name=\"achievement_gooaaal...\" translatable=\"false\">CgkI-pSdsfMEEAIQIA</string>\r\n 
+      <!-- achievement Broom broom...? -->\r\n  <string name=\"achievement_broom_broom...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHQ</string>\r\n  <!-- achievement World
+      War What...?! -->\r\n  <string name=\"achievement_world_war_what...\" translatable=\"false\">CgkI-pSdsfMEEAIQLA</string>\r\n 
+      <!-- achievement Zeus...? -->\r\n  <string name=\"achievement_zeus...\" translatable=\"false\">CgkI-pSdsfMEEAIQGw</string>\r\n 
+      <!-- achievement Where Am I...? -->\r\n  <string name=\"achievement_where_am_i...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQJg</string>\r\n  <!-- achievement Canvas...?
+      -->\r\n  <string name=\"achievement_canvas...\" translatable=\"false\">CgkI-pSdsfMEEAIQLw</string>\r\n 
+      <!-- achievement Johnny Depp...? -->\r\n  <string name=\"achievement_johnny_depp...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQMg</string>\r\n  <!-- achievement Meow...?
+      -->\r\n  <string name=\"achievement_meow...\" translatable=\"false\">CgkI-pSdsfMEEAIQGA</string>\r\n 
+      <!-- achievement Parliament...? -->\r\n  <string name=\"achievement_parliament...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQNQ</string>\r\n  <!-- achievement Novice
+      -->\r\n  <string name=\"achievement_novice\" translatable=\"false\">CgkI-pSdsfMEEAIQCA</string>\r\n 
+      <!-- achievement 90% Certain -->\r\n  <string name=\"achievement_90_certain\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQPA</string>\r\n  <!-- achievement 75/25
+      -->\r\n  <string name=\"achievement_7525\" translatable=\"false\">CgkI-pSdsfMEEAIQOQ</string>\r\n 
+      <!-- achievement The More You Know! -->\r\n  <string name=\"achievement_the_more_you_know\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQBg</string>\r\n  <!-- achievement Binge
+      Watcher -->\r\n  <string name=\"achievement_binge_watcher\" translatable=\"false\">CgkI-pSdsfMEEAIQEg</string>\r\n 
       <!-- achievement Tech Savvy -->\r\n  <string name=\"achievement_tech_savvy\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQJA</string>\r\n  <!-- achievement HACKER!!!
-      -->\r\n  <string name=\"achievement_hacker\" translatable=\"false\">CgkI-pSdsfMEEAIQJQ</string>\r\n 
-      <!-- achievement Continents...? -->\r\n  <string name=\"achievement_continents...\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQJg</string>\r\n  <!-- achievement Getting
-      Continental -->\r\n  <string name=\"achievement_getting_continental\" translatable=\"false\">CgkI-pSdsfMEEAIQJw</string>\r\n 
-      <!-- leaderboard Global Leaderboard -->\r\n  <string name=\"leaderboard_global_leaderboard\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQKA</string>\r\n</resources>\r\n"
+      translatable=\"false\">CgkI-pSdsfMEEAIQJA</string>\r\n  <!-- achievement Professor
+      -->\r\n  <string name=\"achievement_professor\" translatable=\"false\">CgkI-pSdsfMEEAIQFg</string>\r\n 
+      <!-- achievement Kobe -->\r\n  <string name=\"achievement_kobe\" translatable=\"false\">CgkI-pSdsfMEEAIQIQ</string>\r\n 
+      <!-- achievement Vehicle Engineer! -->\r\n  <string name=\"achievement_vehicle_engineer\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHg</string>\r\n  <!-- achievement This
+      is SPARTA! -->\r\n  <string name=\"achievement_this_is_sparta\" translatable=\"false\">CgkI-pSdsfMEEAIQLQ</string>\r\n 
+      <!-- achievement Folklore Enthusiast -->\r\n  <string name=\"achievement_folklore_enthusiast\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHA</string>\r\n  <!-- achievement Going
+      Places -->\r\n  <string name=\"achievement_going_places\" translatable=\"false\">CgkI-pSdsfMEEAIQJw</string>\r\n 
+      <!-- achievement Bob Ross -->\r\n  <string name=\"achievement_bob_ross\" translatable=\"false\">CgkI-pSdsfMEEAIQMA</string>\r\n 
+      <!-- achievement I'm a Fan! -->\r\n  <string name=\"achievement_im_a_fan\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQMw</string>\r\n  <!-- achievement I
+      love Nature! -->\r\n  <string name=\"achievement_i_love_nature\" translatable=\"false\">CgkI-pSdsfMEEAIQGQ</string>\r\n 
+      <!-- achievement Politically correct -->\r\n  <string name=\"achievement_politically_correct\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQNg</string>\r\n  <!-- achievement Scholar
+      -->\r\n  <string name=\"achievement_scholar\" translatable=\"false\">CgkI-pSdsfMEEAIQCQ</string>\r\n 
+      <!-- achievement Assertive! -->\r\n  <string name=\"achievement_assertive\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQPQ</string>\r\n  <!-- achievement 100/0
+      -->\r\n  <string name=\"achievement_1000\" translatable=\"false\">CgkI-pSdsfMEEAIQOg</string>\r\n 
+      <!-- achievement Hyper-Literate! -->\r\n  <string name=\"achievement_hyperliterate\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQPg</string>\r\n  <!-- achievement Sleep?!
+      -->\r\n  <string name=\"achievement_sleep\" translatable=\"false\">CgkI-pSdsfMEEAIQEw</string>\r\n 
+      <!-- achievement HACKER! -->\r\n  <string name=\"achievement_hacker\" translatable=\"false\">CgkI-pSdsfMEEAIQJQ</string>\r\n 
+      <!-- achievement Albert Einstein! -->\r\n  <string name=\"achievement_albert_einstein\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQFw</string>\r\n  <!-- achievement Pele
+      Would be Proud! -->\r\n  <string name=\"achievement_pele_would_be_proud\" translatable=\"false\">CgkI-pSdsfMEEAIQIg</string>\r\n 
+      <!-- achievement Schumacher! -->\r\n  <string name=\"achievement_schumacher\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQDw</string>\r\n  <!-- achievement Herodotus!
+      -->\r\n  <string name=\"achievement_herodotus\" translatable=\"false\">CgkI-pSdsfMEEAIQLg</string>\r\n 
+      <!-- achievement Myth-(olog)-ical! -->\r\n  <string name=\"achievement_mythological\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHw</string>\r\n  <!-- achievement Globe
+      Master! -->\r\n  <string name=\"achievement_globe_master\" translatable=\"false\">CgkI-pSdsfMEEAIQKw</string>\r\n 
+      <!-- achievement Picasso! -->\r\n  <string name=\"achievement_picasso\" translatable=\"false\">CgkI-pSdsfMEEAIQMQ</string>\r\n 
+      <!-- achievement Paparazzi! -->\r\n  <string name=\"achievement_paparazzi\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQNA</string>\r\n  <!-- achievement I
+      am ONE with Nature! -->\r\n  <string name=\"achievement_i_am_one_with_nature\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQGg</string>\r\n  <!-- achievement The
+      Next President! -->\r\n  <string name=\"achievement_the_next_president\" translatable=\"false\">CgkI-pSdsfMEEAIQNw</string>\r\n 
+      <!-- achievement Master! -->\r\n  <string name=\"achievement_master\" translatable=\"false\">CgkI-pSdsfMEEAIQCg</string>\r\n 
+      <!-- achievement Human Encyclopedia!!! -->\r\n  <string name=\"achievement_human_encyclopedia\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQCw</string>\r\n  <!-- leaderboard Global
+      Leaderboard -->\r\n  <string name=\"leaderboard_global_leaderboard\" translatable=\"false\">CgkI-pSdsfMEEAIQKA</string>\r\n</resources>\r\n"
     mEnableMultiplayer: 0
     mEnableSavedGames: 1
     mAutoConflictResolutionStrategy: 0

@@ -42,6 +42,7 @@ public class LeaderboardManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("Reporting score");
         GameServices.ReportScore(score, EM_GameServicesConstants.Leaderboard_GlobalLeaderboard);
     }
 }

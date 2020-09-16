@@ -2,6 +2,9 @@
 using UnityEngine;
 using System.Collections;
 using EasyMobile;
+using System;
+using GooglePlayGames;
+
 
 public class Stats : MonoBehaviour
 {
@@ -33,9 +36,9 @@ public class Stats : MonoBehaviour
     [SerializeField]
     Image image;
 
-    //DBManager dbManager;
+    [SerializeField]
+    Sprite PlaceHolderSprite;
 
-    // read the database and then update gui
     private void OnEnable()
     {
         //dbManager = GameManager.Instance.GetComponent<DBManager>();
@@ -46,23 +49,45 @@ public class Stats : MonoBehaviour
     
     void OnDisable()
     {
-        GameServices.UserLoginFailed -= UpdateGUI;
+        GameServices.UserLoginSucceeded -= UpdateGUI;
+        StopAllCoroutines();
     }
      
     void UpdateGUI()
     {
 
         SaveGameManager.Instance.LoadGame();
-        //Texture2D image = GameServices.LocalUser.image;
-        //this.image.sprite = Sprite.Create(image, new Rect(0.0f, 0.0f, image.width, image.height), new Vector2(0.5f, 0.5f), 100.0f);
+
+        if (!GameServices.IsInitialized())
+        {
+            image.sprite = PlaceHolderSprite;
+        }
+        else
+        {
+            StartCoroutine(LoadImage());
+        }
+
 
         nameText.text = playerStats.PlayerName;
         highScoreText.text = playerStats.savedData.HighScore.ToString();
         correctQuestionsText.text = playerStats.savedData.TotalCorrectQuestionsAnswered.ToString();
         highestStreakText.text = "x" + playerStats.savedData.HighestStreak.ToString();
-        levelText.text = playerStats.Level.ToString();
-        expText.text = playerStats.CurrentExperience + "/" + playerStats.ExpToNextLevel;
+        levelText.text = String.Format("LEVEL {0}", playerStats.Level.ToString());
+        expText.text = String.Format("Experience {0} / {1}",playerStats.CurrentExperience, playerStats.ExpToNextLevel);
         expBar.value = playerStats.ExperiencePercent;
 
+    }
+
+    IEnumerator LoadImage()
+    {
+        Texture2D googlePlayImageTexture;
+        while (GameServices.LocalUser.image == null)
+        {
+            Debug.Log("IMAGE NOT FOUND");
+            yield return null;
+        }
+        googlePlayImageTexture = GameServices.LocalUser.image;
+        image.sprite = Sprite.Create(googlePlayImageTexture, new Rect(0, 0,
+        googlePlayImageTexture.width, googlePlayImageTexture.height), new Vector2(0.5f, 0.5f));
     }
 }

@@ -26,6 +26,8 @@ public class QuestionUI : MonoBehaviour
 
     [SerializeField]
     AudioClip TimeRunningOut;
+    [SerializeField]
+    AudioClip TimeoutClip;
 
     public int timer { get; private set; }
     
@@ -66,7 +68,15 @@ public class QuestionUI : MonoBehaviour
         timerText.text = timer.ToString(); 
         if (timer <= 3)
         {
-            AudioManager.Instance.PlayAudioClip(TimeRunningOut);
+            if (timer > 0)
+            {
+                AudioManager.Instance.PlayAudioClip(TimeRunningOut);
+            }
+            else
+            {
+                AudioManager.Instance.PlayAudioClip(TimeoutClip);
+            }
+            
         }
         yield return new WaitForSeconds(1f);
         // no more time left

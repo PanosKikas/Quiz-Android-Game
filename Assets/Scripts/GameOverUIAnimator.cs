@@ -28,11 +28,17 @@ public class GameOverUIAnimator : MonoBehaviour
     [SerializeField]
     GameObject NewHighscoreImage;
 
+    [Header("Audio Clips")]
     [SerializeField]
     AudioClip ScoreClip;
-
     [SerializeField]
     AudioClip LevelUpClip;
+    [SerializeField]
+    AudioClip StreakClip;
+    [SerializeField]
+    AudioClip CorrectAnswersClip;
+    [SerializeField]
+    AudioClip ExperienceClip;
 
     [SerializeField]
     AudioClip GameOverClip;
@@ -95,7 +101,7 @@ public class GameOverUIAnimator : MonoBehaviour
                 score += speed;
             }
 
-            AudioManager.Instance.PlayAudioClip(ScoreClip);
+            AudioManager.Instance.PlayAudioClip(ScoreClip, .95f);
 
             scoreText.text = score.ToString();
 
@@ -111,30 +117,32 @@ public class GameOverUIAnimator : MonoBehaviour
 
     IEnumerator AnimateCorrectQuestions()
     {
+        
+        yield return new WaitForSecondsRealtime(.4f);
         int correctQuestions = 0;
         correctAnswersText.text = "0";
         while (correctQuestions < previousStats.RoundCorrectAnswers)
         {
-            yield return new WaitForSecondsRealtime(0.05f);
             correctQuestions++;
             correctAnswersText.text = correctQuestions.ToString();
-            AudioManager.Instance.PlayAudioClip(ScoreClip);
+            AudioManager.Instance.PlayAudioClip(ScoreClip, .8f);
+            yield return new WaitForSecondsRealtime(.2f);
         }
         yield return AnimateStreak();
     }
 
     IEnumerator AnimateStreak()
     {
+        
         yield return new WaitForSecondsRealtime(0.2f);
         int streak = 0;
         highestStreakText.text = "x0";
-
         while (streak < previousStats.BestRoundStreak)
         {
-            yield return new WaitForSecondsRealtime(0.2f);
-            AudioManager.Instance.PlayAudioClip(ScoreClip);
+            AudioManager.Instance.PlayAudioClip(ScoreClip, .5f);
             streak++;
             highestStreakText.text = "x" + streak.ToString();
+            yield return new WaitForSecondsRealtime(0.2f);
         }
 
 
@@ -185,7 +193,7 @@ public class GameOverUIAnimator : MonoBehaviour
             }
             else
             {
-                AudioManager.Instance.PlayAudioClip(ScoreClip);
+                AudioManager.Instance.PlayAudioClip(ScoreClip, 0.5f);
                 yield return new WaitForSecondsRealtime(0.01f);
             }
         }

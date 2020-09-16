@@ -1679,7 +1679,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1695,18 +1694,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 564cab73bc06cf741b367885dcebf050, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2986,7 +2973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921c2bf078806f5459e7f074fbb5bfad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverMenu: {fileID: 1674185456}
   stats: {fileID: 11400000, guid: adac70359c442ad47b3a3c9ba43195b0, type: 2}
 --- !u!1 &927739848
 GameObject:
@@ -4571,6 +4557,7 @@ MonoBehaviour:
   OnCorrectQuestion:
     m_PersistentCalls:
       m_Calls: []
+  HasWatchedAd: 0
 --- !u!114 &1670451054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4591,6 +4578,7 @@ MonoBehaviour:
   timerText: {fileID: 690478866}
   currentStreak: {fileID: 615511688}
   TimeRunningOut: {fileID: 8300000, guid: f6361f02422274542b71710025824ea2, type: 3}
+  TimeoutClip: {fileID: 8300000, guid: 6bfab0b4d130e3e4d804c16ade230a17, type: 3}
 --- !u!82 &1670451055
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4834,6 +4822,9 @@ MonoBehaviour:
   NewHighscoreImage: {fileID: 1637414404}
   ScoreClip: {fileID: 8300000, guid: be01c1a4b0ff2ba48b7572e8d4af7c8f, type: 3}
   LevelUpClip: {fileID: 8300000, guid: efa49f7072d457f46a474cbcf82daa0e, type: 3}
+  StreakClip: {fileID: 8300000, guid: 52d29f9102f23a64992d66120aef1295, type: 3}
+  CorrectAnswersClip: {fileID: 8300000, guid: 2373b2980d742354f8a4e43794488352, type: 3}
+  ExperienceClip: {fileID: 8300000, guid: 5d90554eb9d0c714c8ca6094c6f4d27e, type: 3}
   GameOverClip: {fileID: 8300000, guid: 2b74a9ffca576d441900651ba2bac725, type: 3}
 --- !u!1 &1696715854
 GameObject:

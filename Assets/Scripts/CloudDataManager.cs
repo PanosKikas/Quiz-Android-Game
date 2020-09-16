@@ -104,7 +104,7 @@ public class CloudDataManager : MonoBehaviour
         else
         {
             OpenSavedGame();
-         //   ReadCloudData();
+
         }
     }
 
@@ -138,8 +138,8 @@ public class CloudDataManager : MonoBehaviour
             if (data.Length > 0)
             {
                 SavedData savedData = ByteArrayToObject(data) as SavedData;
-                Debug.Log(savedData.HighScore + " " + savedData.HighestStreak);
                 stats.savedData = savedData;
+                Debug.Log("Report to leaderboards: XP" + savedData.TotalExperience);
                 LeaderboardManager.Instance.AddToLeaderboard(stats.savedData.TotalExperience);
             }
             else

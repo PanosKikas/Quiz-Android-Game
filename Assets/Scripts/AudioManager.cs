@@ -76,12 +76,28 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudioClip(AudioClip clip) 
     {
+
         if (!SoundFxAudioSource.enabled)
             return;
+
+        SoundFxAudioSource.pitch = 1f;
         SoundFxAudioSource.clip= clip;
         SoundFxAudioSource.Play();
     }
-    
+
+    public void PlayAudioClip(AudioClip clip, float pitch)
+    {
+        if (!SoundFxAudioSource.enabled)
+            return;
+
+        var previousPitch = SoundFxAudioSource.pitch;
+        SoundFxAudioSource.pitch = pitch;
+        SoundFxAudioSource.clip = clip;
+
+        SoundFxAudioSource.Play();
+        //SoundFxAudioSource.pitch = previousPitch;
+    }
+
     public void SetMasterVolume(int Volume)
     {
         int mappedVolume = Map(Volume, 0, 100, -80, 0);
