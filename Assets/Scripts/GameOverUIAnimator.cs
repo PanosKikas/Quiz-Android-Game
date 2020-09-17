@@ -72,9 +72,12 @@ public class GameOverUIAnimator : MonoBehaviour
 
     void ShowInitialUI()
     {
-        expText.text = String.Format("{0} / {1}", previousStats.CurrentExperience, previousStats.ExpToNextLevel);
-        levelText.text = previousStats.Level.ToString();
+        expText.text = String.Format("Experience: {0} / {1}", previousStats.CurrentExperience, previousStats.ExpToNextLevel);
+        levelText.text = "LEVEL" + previousStats.Level.ToString();
         experienceBar.value = previousStats.ExperiencePercent;
+        scoreText.text = "";
+        highestStreakText.text = "";
+        correctAnswersText.text = "";
     }
 
 
@@ -118,7 +121,7 @@ public class GameOverUIAnimator : MonoBehaviour
     IEnumerator AnimateCorrectQuestions()
     {
         
-        yield return new WaitForSecondsRealtime(.4f);
+        yield return new WaitForSecondsRealtime(.15f);
         int correctQuestions = 0;
         correctAnswersText.text = "0";
         while (correctQuestions < previousStats.RoundCorrectAnswers)
@@ -134,12 +137,12 @@ public class GameOverUIAnimator : MonoBehaviour
     IEnumerator AnimateStreak()
     {
         
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         int streak = 0;
         highestStreakText.text = "x0";
         while (streak < previousStats.BestRoundStreak)
         {
-            AudioManager.Instance.PlayAudioClip(ScoreClip, .5f);
+            AudioManager.Instance.PlayAudioClip(ScoreClip, .75f);
             streak++;
             highestStreakText.text = "x" + streak.ToString();
             yield return new WaitForSecondsRealtime(0.2f);
@@ -152,7 +155,7 @@ public class GameOverUIAnimator : MonoBehaviour
     // A function that animates the experience of the player
     IEnumerator AnimateExperience()
     {
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
 
         int totalExp = 0;
 
@@ -182,8 +185,8 @@ public class GameOverUIAnimator : MonoBehaviour
 
             totalExp += incrementAmount;
 
-            levelText.text = CurrentLevel.ToString();
-            expText.text = CurrentExp.ToString() + "/" + CurrentExpToNextLevel;
+            levelText.text = "LEVEL" + CurrentLevel.ToString();
+            expText.text = "Experience: " + CurrentExp.ToString() + "/" + CurrentExpToNextLevel;
             experienceBar.value = ((float)CurrentExp / (float)CurrentExpToNextLevel);
 
             if (CurrentExp == 0)

@@ -7,6 +7,9 @@ public class DifficultyPanel : MonoBehaviour
     StartGameManager startManager;
     Difficulty selectedDifficulty;
 
+    [SerializeField]
+    AudioClip DifficultySelectAudioClip;
+
     private void OnEnable()
     {
         if (startManager == null)
@@ -17,7 +20,9 @@ public class DifficultyPanel : MonoBehaviour
 
     public void OnEasyButtonSelected()
     {
+
         selectedDifficulty = Difficulty.easy;
+        AudioManager.Instance.PlayAudioClip(DifficultySelectAudioClip, .9f);
         startManager.StartGame(selectedDifficulty);
 
     }
@@ -25,12 +30,14 @@ public class DifficultyPanel : MonoBehaviour
     public void OnMediumButtonSelected()
     {
         selectedDifficulty = Difficulty.medium;
+        AudioManager.Instance.PlayAudioClip(DifficultySelectAudioClip, 1.2f);
         startManager.StartGame(selectedDifficulty);
     }
 
     public void OnHardButtonSelected()
     {
         selectedDifficulty = Difficulty.hard;
+        AudioManager.Instance.PlayAudioClip(DifficultySelectAudioClip, 1.4f);
         startManager.StartGame(selectedDifficulty);
     }
 }

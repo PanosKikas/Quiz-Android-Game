@@ -1312,6 +1312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd9b50f1c7f0af4d9b142628cde4994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DifficultySelectAudioClip: {fileID: 8300000, guid: 9c01d16f6ebfbfe4687837fd6ae168d4,
+    type: 3}
 --- !u!1001 &384266608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5573,7 +5575,7 @@ PrefabInstance:
     - target: {fileID: 532913600636091333, guid: 106637bdf340a7c498e00c8b551c8372,
         type: 3}
       propertyPath: m_IsOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 532913600636091333, guid: 106637bdf340a7c498e00c8b551c8372,
         type: 3}
