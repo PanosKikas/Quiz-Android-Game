@@ -41,25 +41,6 @@ public class SceneTransitioner : MonoBehaviour
     }
     #endregion
 
-    private void Update()
-    {
-        if (BackButtonPressed())
-        {
-            // get the current scene
-            GetCurrentScene();
-            // can't go to the previous scene if in the main game or load screen
-            if (BlockedTransitionScene())
-            {
-                return;
-            }
-
-             AudioManager.Instance.PlayAudioClip(PreviousSceneClip);
-             TransitionToPreviousScene();
-
-        }
-
-    }
-
     public void TransitionTo(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -90,20 +71,10 @@ public class SceneTransitioner : MonoBehaviour
         TransitionTo(LoadScreenSceneName);
     }
 
-    bool BackButtonPressed()
-    {
-        return Input.GetKeyDown(KeyCode.Escape);
-    }
-
     void GetCurrentScene()
     {
         currentScene = SceneManager.GetActiveScene();
-    }
-
-    bool BlockedTransitionScene()
-    {
-        return currentScene.name == MainGameSceneName || currentScene.name == LoadScreenSceneName || CurrentSceneIsFirst();
-    }
+    }   
 
     bool CurrentSceneIsFirst()
     {
@@ -121,8 +92,9 @@ public class SceneTransitioner : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex + 1;
     }
 
-    void TransitionToPreviousScene()
+    public void TransitionToPreviousScene()
     {
-        SceneManager.LoadScene(currentScene.buildIndex - 1); // go to the previous scene
+        GetCurrentScene();
+        SceneManager.LoadScene(currentScene.buildIndex - 1); 
     }
 }
