@@ -11,9 +11,10 @@ public class LoadScreenIntertstitial : MonoBehaviour
 
     void Start()
     {
-        if (Advertising.IsInterstitialAdReady() && IsTimeForAd())
+        if (IsTimeForAd() && Advertising.IsInterstitialAdReady())
         {
             AdManager.Instance.ShowInterstial();
+            Counter = 0;
         }
         else
         {

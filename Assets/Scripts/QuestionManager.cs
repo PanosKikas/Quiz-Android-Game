@@ -102,6 +102,8 @@ public class QuestionManager : MonoBehaviour
             return;
         }
 
+        
+
         questionUI.UpdateGUI(playerStats);
         ClearPreviousAnswers();
         currentQuestion = QuestionsRetriever.Instance.GetRandomQuestion();

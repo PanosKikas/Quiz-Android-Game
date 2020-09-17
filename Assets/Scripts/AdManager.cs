@@ -27,7 +27,6 @@ public class AdManager : MonoBehaviour
 
     public void ShowInterstial()
     {
-        Debug.Log("Show Intersitial TEST");
         if (Advertising.IsInterstitialAdReady())
         {
             Advertising.ShowInterstitialAd();

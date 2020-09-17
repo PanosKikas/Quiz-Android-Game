@@ -61,27 +61,27 @@ public class AchievementsManager : MonoBehaviour
          {
             CategoryName.GEOGRAPHY, new List<string>
             {
-                 EM_GameServicesConstants.Achievement_CELEBRITIES10,
-                 EM_GameServicesConstants.Achievement_CELEBRITIES50,
-                 EM_GameServicesConstants.Achievement_CELEBRITIES100
+                 EM_GameServicesConstants.Achievement_GEOGRAPHY10,
+                 EM_GameServicesConstants.Achievement_GEOGRAPHY50,
+                 EM_GameServicesConstants.Achievement_GEOGRAPHY100
             }
         },
 
          {
             CategoryName.HISTORY, new List<string>
             {
-                 EM_GameServicesConstants.Achievement_CELEBRITIES10,
-                 EM_GameServicesConstants.Achievement_CELEBRITIES50,
-                 EM_GameServicesConstants.Achievement_CELEBRITIES100
+                 EM_GameServicesConstants.Achievement_HISTORY10,
+                 EM_GameServicesConstants.Achievement_HISTORY50,
+                 EM_GameServicesConstants.Achievement_HISTORY100
             }
         },
 
          {
             CategoryName.MYTHOLOGY, new List<string>
             {
-                 EM_GameServicesConstants.Achievement_CELEBRITIES10,
-                 EM_GameServicesConstants.Achievement_CELEBRITIES50,
-                 EM_GameServicesConstants.Achievement_CELEBRITIES100
+                 EM_GameServicesConstants.Achievement_MYTHOLOGY10,
+                 EM_GameServicesConstants.Achievement_MYTHOLOGY50,
+                 EM_GameServicesConstants.Achievement_MYTHOLOGY100
             }
         },
 

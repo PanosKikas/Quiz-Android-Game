@@ -89,7 +89,7 @@ public class GameOverUIAnimator : MonoBehaviour
         int score = 0;
         scoreText.text = "0";
         // The speed to which the high score will be incremented
-        int speed = previousStats.CurrentScore / 60;
+        int speed = (int)Mathf.Clamp(previousStats.CurrentScore / 60, 1f, Mathf.Infinity);
 
         // Add a little to the score - wait then add more
         while (score < previousStats.CurrentScore)
@@ -207,7 +207,9 @@ public class GameOverUIAnimator : MonoBehaviour
         float expToLevelUp = CurrentExpToNextLevel - CurrentExp;
         float levelUpFactor = 100f * CurrentLevel;
         float floatSpeed = expToLevelUp / levelUpFactor;
-        return Mathf.CeilToInt(floatSpeed + 1);
+        var speed =  Mathf.CeilToInt(floatSpeed + 1);
+        speed = (int)Mathf.Clamp(speed, 1f, 30f);
+        return speed;
     }
     
 

@@ -217,7 +217,7 @@ MonoBehaviour:
       mCustomRewardedAdIds:
         keys: []
         values: []
-      mEnableTestMode: 0
+      mEnableTestMode: 1
   mGameServiceSettings:
     mAutoInit: 1
     mAutoInitDelay: 0
