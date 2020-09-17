@@ -118,6 +118,7 @@ public class StartScreenButtons : MonoBehaviour
 
     public void ToggleInfoPanel()
     {
+        Debug.Log("Toggle");
         AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         InfoPanel.SetActive(!InfoPanel.activeSelf);
     }
