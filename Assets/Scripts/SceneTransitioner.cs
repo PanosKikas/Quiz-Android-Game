@@ -7,23 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitioner : MonoBehaviour
 {
-
-    StartScreenButtons StartScreen = null;
     
     public static SceneTransitioner Instance;
-
-    private const int CategorySelectIndex = 2;
-    private const string MainGameSceneName = "MainGame";
     private const string LoadScreenSceneName = "LoadScreen";
     
     Scene currentScene;
 
     CategoryRetriever categoryRetriever;
-
-    [SerializeField]
-    AudioClip PreviousSceneClip;
-    [SerializeField]
-    AudioClip QuitDialogueClip;
 
     #region Singleton
     private void Awake()

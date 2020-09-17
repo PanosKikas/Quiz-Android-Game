@@ -22,6 +22,9 @@ public class StartScreenButtons : MonoBehaviour
     [SerializeField]
     GameObject SettingsPanel;
 
+    [SerializeField]
+    GameObject InfoPanel;
+
     public bool QuitDialogueAnimationPlaying { get; set; } = false;
 
     void OnEnable()
@@ -82,14 +85,22 @@ public class StartScreenButtons : MonoBehaviour
         ShareHandler.Instance.ShareText();
     }
     
-    public void ToggleSettingsMenu()
+    public void ToggleSettings()
     {
+        if (statsPanel.activeSelf)
+        {
+            ToggleStats();
+        }
         AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         SettingsPanel.SetActive(!SettingsPanel.activeSelf);
     }
     
     public void ToggleStats()
     {
+        if (SettingsPanel.activeSelf)
+        {
+            ToggleSettings();
+        }
         AudioManager.Instance.PlayAudioClip(ButtonClickFx);
         statsPanel.SetActive(!statsPanel.activeSelf);
     }
@@ -103,6 +114,12 @@ public class StartScreenButtons : MonoBehaviour
     public void ShowAchievements()
     {
         AchievementsManager.Instance.ShowAchievementUI();
+    }
+
+    public void ToggleInfoPanel()
+    {
+        AudioManager.Instance.PlayAudioClip(ButtonClickFx);
+        InfoPanel.SetActive(!InfoPanel.activeSelf);
     }
 
     public IEnumerator DisplayPopup(string popuptext)

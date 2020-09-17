@@ -11,6 +11,8 @@ public class SettingsButtons : MonoBehaviour
     const string BgMusicToggleName = "MusicFxToggle";
     const string MasterVolumeName = "MasterVolume";
 
+
+
     [SerializeField]
     Toggle SoundFxToggle;
     [SerializeField]
@@ -30,7 +32,7 @@ public class SettingsButtons : MonoBehaviour
         RestoreValues();
         
     }
-
+    
     void RestoreValues()
     {
         int sfx = PlayerPrefs.GetInt(SoundFxToggleName);
@@ -47,6 +49,7 @@ public class SettingsButtons : MonoBehaviour
 
     private void OnDisable()
     {
+
         PlayerPrefs.SetInt(MasterVolumeName, (int)MasterVolumeSlider.value);
     }
 
@@ -75,4 +78,6 @@ public class SettingsButtons : MonoBehaviour
         AudioManager.Instance.ToggleBackgroundMusicSource(value);
         AudioManager.Instance.PlayAudioClip(checkmarkSoundClip);
     }
+
+   
 }

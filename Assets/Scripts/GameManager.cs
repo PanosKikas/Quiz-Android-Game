@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     
     GameObject GameOverPanel;
 
+    [HideInInspector]
     public bool GameEnded = false;
 
     #region Singleton
