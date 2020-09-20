@@ -217,7 +217,7 @@ MonoBehaviour:
       mCustomRewardedAdIds:
         keys: []
         values: []
-      mEnableTestMode: 1
+      mEnableTestMode: 0
   mGameServiceSettings:
     mAutoInit: 1
     mAutoInitDelay: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
       _androidId: CgkI-pSdsfMEEAIQBg
     - _name: GENERAL100
       _iosId: 
-      _androidId: CgkI-pSdsfMEEAIQEg
+      _androidId: CgkI-pSdsfMEEAIQPg
     - _name: ANIMALS10
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQGA
@@ -355,10 +355,10 @@ MonoBehaviour:
     - _name: TOTAL10
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQOw
-    - _name: TOTAL50
+    - _name: TOTAL100
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQPA
-    - _name: TOTAL100
+    - _name: TOTAL500
       _iosId: 
       _androidId: CgkI-pSdsfMEEAIQPQ
     - _name: LEVEL2
@@ -385,12 +385,11 @@ MonoBehaviour:
       translatable=\"false\">CgkI-pSdsfMEEAIQAg</string>\r\n  <!-- achievement Level
       Up! -->\r\n  <string name=\"achievement_level_up\" translatable=\"false\">CgkI-pSdsfMEEAIQBw</string>\r\n 
       <!-- achievement The 5th One...? -->\r\n  <string name=\"achievement_the_5th_one...\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQOw</string>\r\n  <!-- achievement 50/50
-      -->\r\n  <string name=\"achievement_5050\" translatable=\"false\">CgkI-pSdsfMEEAIQOA</string>\r\n 
-      <!-- achievement Knowledge Is Power...? -->\r\n  <string name=\"achievement_knowledge_is_power...\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQBQ</string>\r\n  <!-- achievement Recreational
-      Time...? -->\r\n  <string name=\"achievement_recreational_time...\" translatable=\"false\">CgkI-pSdsfMEEAIQEQ</string>\r\n 
-      <!-- achievement Boot...? -->\r\n  <string name=\"achievement_boot...\" translatable=\"false\">CgkI-pSdsfMEEAIQIw</string>\r\n 
+      translatable=\"false\">CgkI-pSdsfMEEAIQOw</string>\r\n  <!-- achievement Knowledge
+      Is Power...? -->\r\n  <string name=\"achievement_knowledge_is_power...\" translatable=\"false\">CgkI-pSdsfMEEAIQBQ</string>\r\n 
+      <!-- achievement Recreational Time...? -->\r\n  <string name=\"achievement_recreational_time...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQEQ</string>\r\n  <!-- achievement Boot...?
+      -->\r\n  <string name=\"achievement_boot...\" translatable=\"false\">CgkI-pSdsfMEEAIQIw</string>\r\n 
       <!-- achievement 1 + 1 = 2...? -->\r\n  <string name=\"achievement_1__1__2...\"
       translatable=\"false\">CgkI-pSdsfMEEAIQFA</string>\r\n  <!-- achievement Gooaaal...?
       -->\r\n  <string name=\"achievement_gooaaal...\" translatable=\"false\">CgkI-pSdsfMEEAIQIA</string>\r\n 
@@ -408,15 +407,14 @@ MonoBehaviour:
       translatable=\"false\">CgkI-pSdsfMEEAIQNQ</string>\r\n  <!-- achievement Novice
       -->\r\n  <string name=\"achievement_novice\" translatable=\"false\">CgkI-pSdsfMEEAIQCA</string>\r\n 
       <!-- achievement 90% Certain -->\r\n  <string name=\"achievement_90_certain\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQPA</string>\r\n  <!-- achievement 75/25
-      -->\r\n  <string name=\"achievement_7525\" translatable=\"false\">CgkI-pSdsfMEEAIQOQ</string>\r\n 
-      <!-- achievement The More You Know! -->\r\n  <string name=\"achievement_the_more_you_know\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQBg</string>\r\n  <!-- achievement Binge
-      Watcher -->\r\n  <string name=\"achievement_binge_watcher\" translatable=\"false\">CgkI-pSdsfMEEAIQEg</string>\r\n 
-      <!-- achievement Tech Savvy -->\r\n  <string name=\"achievement_tech_savvy\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQJA</string>\r\n  <!-- achievement Professor
-      -->\r\n  <string name=\"achievement_professor\" translatable=\"false\">CgkI-pSdsfMEEAIQFg</string>\r\n 
-      <!-- achievement Kobe -->\r\n  <string name=\"achievement_kobe\" translatable=\"false\">CgkI-pSdsfMEEAIQIQ</string>\r\n 
+      translatable=\"false\">CgkI-pSdsfMEEAIQPA</string>\r\n  <!-- achievement The
+      More You Know! -->\r\n  <string name=\"achievement_the_more_you_know\" translatable=\"false\">CgkI-pSdsfMEEAIQBg</string>\r\n 
+      <!-- achievement Binge Watcher -->\r\n  <string name=\"achievement_binge_watcher\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQEg</string>\r\n  <!-- achievement Tech
+      Savvy -->\r\n  <string name=\"achievement_tech_savvy\" translatable=\"false\">CgkI-pSdsfMEEAIQJA</string>\r\n 
+      <!-- achievement Professor -->\r\n  <string name=\"achievement_professor\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQFg</string>\r\n  <!-- achievement Kobe
+      -->\r\n  <string name=\"achievement_kobe\" translatable=\"false\">CgkI-pSdsfMEEAIQIQ</string>\r\n 
       <!-- achievement Vehicle Engineer! -->\r\n  <string name=\"achievement_vehicle_engineer\"
       translatable=\"false\">CgkI-pSdsfMEEAIQHg</string>\r\n  <!-- achievement This
       is SPARTA! -->\r\n  <string name=\"achievement_this_is_sparta\" translatable=\"false\">CgkI-pSdsfMEEAIQLQ</string>\r\n 
@@ -425,17 +423,15 @@ MonoBehaviour:
       Places -->\r\n  <string name=\"achievement_going_places\" translatable=\"false\">CgkI-pSdsfMEEAIQJw</string>\r\n 
       <!-- achievement Bob Ross -->\r\n  <string name=\"achievement_bob_ross\" translatable=\"false\">CgkI-pSdsfMEEAIQMA</string>\r\n 
       <!-- achievement I'm a Fan! -->\r\n  <string name=\"achievement_im_a_fan\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQMw</string>\r\n  <!-- achievement I
-      love Nature! -->\r\n  <string name=\"achievement_i_love_nature\" translatable=\"false\">CgkI-pSdsfMEEAIQGQ</string>\r\n 
+      translatable=\"false\">CgkI-pSdsfMEEAIQMw</string>\r\n  <!-- achievement Animal
+      Lover -->\r\n  <string name=\"achievement_animal_lover\" translatable=\"false\">CgkI-pSdsfMEEAIQGQ</string>\r\n 
       <!-- achievement Politically correct -->\r\n  <string name=\"achievement_politically_correct\"
       translatable=\"false\">CgkI-pSdsfMEEAIQNg</string>\r\n  <!-- achievement Scholar
       -->\r\n  <string name=\"achievement_scholar\" translatable=\"false\">CgkI-pSdsfMEEAIQCQ</string>\r\n 
       <!-- achievement Assertive! -->\r\n  <string name=\"achievement_assertive\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQPQ</string>\r\n  <!-- achievement 100/0
-      -->\r\n  <string name=\"achievement_1000\" translatable=\"false\">CgkI-pSdsfMEEAIQOg</string>\r\n 
-      <!-- achievement Hyper-Literate! -->\r\n  <string name=\"achievement_hyperliterate\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQPg</string>\r\n  <!-- achievement Sleep?!
-      -->\r\n  <string name=\"achievement_sleep\" translatable=\"false\">CgkI-pSdsfMEEAIQEw</string>\r\n 
+      translatable=\"false\">CgkI-pSdsfMEEAIQPQ</string>\r\n  <!-- achievement Hyper-Literate!
+      -->\r\n  <string name=\"achievement_hyperliterate\" translatable=\"false\">CgkI-pSdsfMEEAIQPg</string>\r\n 
+      <!-- achievement Sleep?! -->\r\n  <string name=\"achievement_sleep\" translatable=\"false\">CgkI-pSdsfMEEAIQEw</string>\r\n 
       <!-- achievement HACKER! -->\r\n  <string name=\"achievement_hacker\" translatable=\"false\">CgkI-pSdsfMEEAIQJQ</string>\r\n 
       <!-- achievement Albert Einstein! -->\r\n  <string name=\"achievement_albert_einstein\"
       translatable=\"false\">CgkI-pSdsfMEEAIQFw</string>\r\n  <!-- achievement Pele
@@ -448,11 +444,11 @@ MonoBehaviour:
       Master! -->\r\n  <string name=\"achievement_globe_master\" translatable=\"false\">CgkI-pSdsfMEEAIQKw</string>\r\n 
       <!-- achievement Picasso! -->\r\n  <string name=\"achievement_picasso\" translatable=\"false\">CgkI-pSdsfMEEAIQMQ</string>\r\n 
       <!-- achievement Paparazzi! -->\r\n  <string name=\"achievement_paparazzi\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQNA</string>\r\n  <!-- achievement I
-      am ONE with Nature! -->\r\n  <string name=\"achievement_i_am_one_with_nature\"
-      translatable=\"false\">CgkI-pSdsfMEEAIQGg</string>\r\n  <!-- achievement The
-      Next President! -->\r\n  <string name=\"achievement_the_next_president\" translatable=\"false\">CgkI-pSdsfMEEAIQNw</string>\r\n 
-      <!-- achievement Master! -->\r\n  <string name=\"achievement_master\" translatable=\"false\">CgkI-pSdsfMEEAIQCg</string>\r\n 
+      translatable=\"false\">CgkI-pSdsfMEEAIQNA</string>\r\n  <!-- achievement Animal
+      Spirit! -->\r\n  <string name=\"achievement_animal_spirit\" translatable=\"false\">CgkI-pSdsfMEEAIQGg</string>\r\n 
+      <!-- achievement The Next President! -->\r\n  <string name=\"achievement_the_next_president\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQNw</string>\r\n  <!-- achievement Master!
+      -->\r\n  <string name=\"achievement_master\" translatable=\"false\">CgkI-pSdsfMEEAIQCg</string>\r\n 
       <!-- achievement Human Encyclopedia!!! -->\r\n  <string name=\"achievement_human_encyclopedia\"
       translatable=\"false\">CgkI-pSdsfMEEAIQCw</string>\r\n  <!-- leaderboard Global
       Leaderboard -->\r\n  <string name=\"leaderboard_global_leaderboard\" translatable=\"false\">CgkI-pSdsfMEEAIQKA</string>\r\n</resources>\r\n"
@@ -515,8 +511,8 @@ MonoBehaviour:
       mEnableCopyPasteMode: 0
   mRatingRequestSettings:
     mDefaultRatingDialogContent:
-      mTitle: Enjoying $PRODUCT_NAME?
-      mMessage: How would you rate $PRODUCT_NAME?
+      mTitle: Enjoying TriviYES! ?
+      mMessage: How would you rate TriviYES! ?
       mLowRatingMessage: That's bad. Would you like to give us some feedback instead?
       mHighRatingMessage: Awesome! Let's do it!
       mPostponeButtonText: Not Now
@@ -529,7 +525,7 @@ MonoBehaviour:
     mIosAppId: 
     mAnnualCap: 12
     mDelayAfterInstallation: 2
-    mCoolingOffPeriod: 7
+    mCoolingOffPeriod: 10
     mIgnoreContraintsInDevelopment: 1
   mSharingSettings:
     mAndroidPermissions:
@@ -572,5 +568,5 @@ MonoBehaviour:
   mIsGameServiceModuleEnable: 1
   mIsNotificationModuleEnable: 0
   mIsSharingModuleEnable: 1
-  mActiveModuleIndex: 1
+  mActiveModuleIndex: 0
   mIsSelectingModule: 0

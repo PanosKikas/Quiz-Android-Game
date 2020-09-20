@@ -33,7 +33,7 @@ public class CategorySelect : MonoBehaviour
     {
         Initialize();
         AudioManager.Instance.EnableBGMusic();
-        DeselectAllCategories();
+        //DeselectAllCategories();
     }
 
     void Initialize()

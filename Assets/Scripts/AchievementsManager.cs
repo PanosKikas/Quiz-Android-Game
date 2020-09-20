@@ -23,7 +23,7 @@ public class AchievementsManager : MonoBehaviour
         },
 
         {
-            CategoryName.ANIMALSANDNATURE, new List<string>
+            CategoryName.ANIMALS, new List<string>
             {
                  EM_GameServicesConstants.Achievement_ANIMALS10,
                  EM_GameServicesConstants.Achievement_ANIMALS50,
@@ -148,8 +148,8 @@ public class AchievementsManager : MonoBehaviour
     List<string> TotalAnswersAchievementsList = new List<string>
     {
         EM_GameServicesConstants.Achievement_TOTAL10,
-        EM_GameServicesConstants.Achievement_TOTAL50,
-        EM_GameServicesConstants.Achievement_TOTAL100
+        EM_GameServicesConstants.Achievement_TOTAL100,
+        EM_GameServicesConstants.Achievement_TOTAL500
     };
     #endregion
 

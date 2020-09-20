@@ -129,7 +129,7 @@ public class GameOverUIAnimator : MonoBehaviour
             correctQuestions++;
             correctAnswersText.text = correctQuestions.ToString();
             AudioManager.Instance.PlayAudioClip(ScoreClip, .8f);
-            yield return new WaitForSecondsRealtime(.2f);
+            yield return new WaitForSecondsRealtime(.12f);
         }
         yield return AnimateStreak();
     }
@@ -142,10 +142,10 @@ public class GameOverUIAnimator : MonoBehaviour
         highestStreakText.text = "x0";
         while (streak < previousStats.BestRoundStreak)
         {
-            AudioManager.Instance.PlayAudioClip(ScoreClip, .75f);
+            AudioManager.Instance.PlayAudioClip(ScoreClip, .8f);
             streak++;
             highestStreakText.text = "x" + streak.ToString();
-            yield return new WaitForSecondsRealtime(0.2f);
+            yield return new WaitForSecondsRealtime(0.12f);
         }
 
 

@@ -22,8 +22,9 @@ public class ShareHandler : MonoBehaviour
     }
     #endregion
 
-    const string screenshotName = "QuizHuntScreenshot";
-    const string shareText = "Play TriviYES! on PlayStore: ";
+    const string screenshotName = "TriviYES!ScreenShot";
+    const string shareText = "Download and play TriviYES! now on PlayStore: " + "https://play.google.com/store/apps/details?id="
+         + "com.hollowlotusnetertainment.triviyes";
     public void ShareText()
     {
         Sharing.ShareText(shareText);
@@ -31,20 +32,19 @@ public class ShareHandler : MonoBehaviour
 
 
     public void ShareScreenshot()
-    {
-        Debug.Log("Share");
+    {   
         StartCoroutine(TakeScreenshot());
 
-        string path = System.IO.Path.Combine(Application.persistentDataPath, "QuizHuntScreenshot.png");
+        string path = System.IO.Path.Combine(Application.persistentDataPath, (screenshotName + ".png"));
 
-        Sharing.ShareImage(path, "I did this in quiz hunt!");
+        Sharing.ShareImage(path, "Look at my progress in TriviYES!");
     }
     
     IEnumerator TakeScreenshot()
     {
         yield return new WaitForEndOfFrame();
 
-        string path = Sharing.SaveScreenshot(screenshotName);
+        Sharing.SaveScreenshot(screenshotName);
     }
 
 

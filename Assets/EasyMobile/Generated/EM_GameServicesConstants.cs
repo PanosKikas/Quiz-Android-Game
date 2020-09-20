@@ -19,9 +19,9 @@ namespace EasyMobile
 		public const string Achievement_MYTHOLOGY10 = "MYTHOLOGY10";
 		public const string Achievement_HISTORY100 = "HISTORY100";
 		public const string Achievement_LEVEL10 = "LEVEL10";
+		public const string Achievement_TOTAL500 = "TOTAL500";
 		public const string Achievement_VEHICLE10 = "VEHICLE10";
 		public const string Achievement_TOTAL100 = "TOTAL100";
-		public const string Achievement_TOTAL50 = "TOTAL50";
 		public const string Achievement_LEVEL50 = "LEVEL50";
 		public const string Achievement_POLITICS10 = "POLITICS10";
 		public const string Achievement_ENTERTAINMENT100 = "ENTERTAINMENT100";

@@ -10,7 +10,6 @@ public class GameoverMenu : MonoBehaviour
     [SerializeField]
     PlayerStats stats;
     
-    [SerializeField]
     GameOverUIAnimator gameoverAnimator;
 
     [SerializeField]

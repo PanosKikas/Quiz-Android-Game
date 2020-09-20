@@ -24,22 +24,20 @@
 
 public static class EM_GPGSIds
 {
-        public const string achievement_7525 = "CgkI-pSdsfMEEAIQOQ"; // <GPGSID>
-        public const string achievement_1000 = "CgkI-pSdsfMEEAIQOg"; // <GPGSID>
+        public const string achievement_herodotus = "CgkI-pSdsfMEEAIQLg"; // <GPGSID>
         public const string achievement_albert_einstein = "CgkI-pSdsfMEEAIQFw"; // <GPGSID>
         public const string achievement_parliament = "CgkI-pSdsfMEEAIQNQ"; // <GPGSID>
         public const string achievement_90_certain = "CgkI-pSdsfMEEAIQPA"; // <GPGSID>
         public const string achievement_picasso = "CgkI-pSdsfMEEAIQMQ"; // <GPGSID>
         public const string achievement_sleep = "CgkI-pSdsfMEEAIQEw"; // <GPGSID>
-        public const string achievement_professor = "CgkI-pSdsfMEEAIQFg"; // <GPGSID>
-        public const string achievement_i_am_one_with_nature = "CgkI-pSdsfMEEAIQGg"; // <GPGSID>
-        public const string achievement_hacker = "CgkI-pSdsfMEEAIQJQ"; // <GPGSID>
         public const string achievement_master = "CgkI-pSdsfMEEAIQCg"; // <GPGSID>
+        public const string achievement_professor = "CgkI-pSdsfMEEAIQFg"; // <GPGSID>
+        public const string achievement_hacker = "CgkI-pSdsfMEEAIQJQ"; // <GPGSID>
+        public const string achievement_animal_lover = "CgkI-pSdsfMEEAIQGQ"; // <GPGSID>
         public const string achievement_zeus = "CgkI-pSdsfMEEAIQGw"; // <GPGSID>
         public const string achievement_broom_broom = "CgkI-pSdsfMEEAIQHQ"; // <GPGSID>
         public const string achievement_the_next_president = "CgkI-pSdsfMEEAIQNw"; // <GPGSID>
         public const string achievement_meow = "CgkI-pSdsfMEEAIQGA"; // <GPGSID>
-        public const string achievement_i_love_nature = "CgkI-pSdsfMEEAIQGQ"; // <GPGSID>
         public const string achievement_1__1__2 = "CgkI-pSdsfMEEAIQFA"; // <GPGSID>
         public const string achievement_human_encyclopedia = "CgkI-pSdsfMEEAIQCw"; // <GPGSID>
         public const string achievement_baby_steps = "CgkI-pSdsfMEEAIQAg"; // <GPGSID>
@@ -55,7 +53,7 @@ public static class EM_GPGSIds
         public const string achievement_world_war_what = "CgkI-pSdsfMEEAIQLA"; // <GPGSID>
         public const string achievement_kobe = "CgkI-pSdsfMEEAIQIQ"; // <GPGSID>
         public const string achievement_the_more_you_know = "CgkI-pSdsfMEEAIQBg"; // <GPGSID>
-        public const string achievement_herodotus = "CgkI-pSdsfMEEAIQLg"; // <GPGSID>
+        public const string achievement_animal_spirit = "CgkI-pSdsfMEEAIQGg"; // <GPGSID>
         public const string achievement_gooaaal = "CgkI-pSdsfMEEAIQIA"; // <GPGSID>
         public const string achievement_im_a_fan = "CgkI-pSdsfMEEAIQMw"; // <GPGSID>
         public const string achievement_binge_watcher = "CgkI-pSdsfMEEAIQEg"; // <GPGSID>
@@ -73,7 +71,6 @@ public static class EM_GPGSIds
         public const string achievement_this_is_sparta = "CgkI-pSdsfMEEAIQLQ"; // <GPGSID>
         public const string achievement_where_am_i = "CgkI-pSdsfMEEAIQJg"; // <GPGSID>
         public const string achievement_tech_savvy = "CgkI-pSdsfMEEAIQJA"; // <GPGSID>
-        public const string achievement_5050 = "CgkI-pSdsfMEEAIQOA"; // <GPGSID>
         public const string achievement_boot = "CgkI-pSdsfMEEAIQIw"; // <GPGSID>
         public const string achievement_level_up = "CgkI-pSdsfMEEAIQBw"; // <GPGSID>
 

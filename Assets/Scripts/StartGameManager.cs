@@ -11,7 +11,7 @@ public class StartGameManager : MonoBehaviour
     GameObject PopupGUI;
 
     [SerializeField]
-    private const int minimumSelectedCategories = 1;
+    private const int minimumSelectedCategories = 3;
 
     CategorySelect categorySelect;
 

@@ -37,6 +37,11 @@ public class StartScreenButtons : MonoBehaviour
         GameServices.UserLoginSucceeded -= OnLoginSucceded;
     }
 
+    private void Start()
+    {
+        StoreReview.RequestRating();
+    }
+
     private void OnLoginSucceded()
     {
         if(statsPanel.activeSelf)
