@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: d841d5e3cc3dacb45b6eacd7bb7cfb3a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 909016487548852149
+    second: I_make_Logos_ahahah_nope_0
+  - first:
+      213: 7643030412517267065
+    second: I_make_Logos_ahahah_nope_1
+  - first:
+      213: -3787456102471524676
+    second: I_make_Logos_ahahah_nope_2
+  - first:
+      213: 2126195495101801022
+    second: I_make_Logos_ahahah_nope_3
+  - first:
+      213: 8588855585698686426
+    second: I_make_Logos_ahahah_nope_4
+  - first:
+      213: 2109591958201326075
+    second: I_make_Logos_ahahah_nope_5
+  - first:
+      213: 2171729817476177085
+    second: I_make_Logos_ahahah_nope_6
+  - first:
+      213: -3630389333853610362
+    second: I_make_Logos_ahahah_nope_7
+  - first:
+      213: -8988438939221457377
+    second: I_make_Logos_ahahah_nope_8
+  - first:
+      213: -8884546563144109435
+    second: I_make_Logos_ahahah_nope_9
+  - first:
+      213: -6871809693445231331
+    second: I_make_Logos_ahahah_nope_10
+  - first:
+      213: 1264793077707652825
+    second: I_make_Logos_ahahah_nope_11
+  - first:
+      213: 6151400235827379488
+    second: I_make_Logos_ahahah_nope_12
+  - first:
+      213: -6534860498815275700
+    second: I_make_Logos_ahahah_nope_0
+  - first:
+      213: -6401945654307093247
+    second: I_make_Logos_ahahah_nope_1
+  - first:
+      213: -4229170417719460964
+    second: I_make_Logos_ahahah_nope_2
+  - first:
+      213: -4981299064486701718
+    second: I_make_Logos_ahahah_nope_3
+  - first:
+      213: -3079088595885445822
+    second: I_make_Logos_ahahah_nope_4
+  - first:
+      213: 7045795267649373189
+    second: I_make_Logos_ahahah_nope_5
+  - first:
+      213: 1503778341414425764
+    second: I_make_Logos_ahahah_nope_6
+  - first:
+      213: -3900864244768936049
+    second: I_make_Logos_ahahah_nope_7
+  - first:
+      213: -3868339473346071992
+    second: I_make_Logos_ahahah_nope_8
+  - first:
+      213: -1427466106250510132
+    second: I_make_Logos_ahahah_nope_9
+  - first:
+      213: -2307686229168605969
+    second: I_make_Logos_ahahah_nope_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1234
+        width: 553
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d226fdff28f45a0800000000000000
+      internalID: -6534860498815275700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_1
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 1234
+        width: 555
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1058baba858b727a0800000000000000
+      internalID: -6401945654307093247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_2
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 1234
+        width: 555
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9bbd3589e7fe45c0800000000000000
+      internalID: -4229170417719460964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_3
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 1234
+        width: 553
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65d84594eededab0800000000000000
+      internalID: -4981299064486701718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 641
+        width: 553
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24daa4a5c31e445d0800000000000000
+      internalID: -3079088595885445822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_5
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 641
+        width: 555
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5048e583771b7c160800000000000000
+      internalID: 7045795267649373189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_6
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 641
+        width: 555
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a4dee42f6e7ed410800000000000000
+      internalID: 1503778341414425764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_7
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 641
+        width: 553
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8f668513a85dd9c0800000000000000
+      internalID: -3900864244768936049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 553
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842f59c8eb5e05ac0800000000000000
+      internalID: -3868339473346071992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_9
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 47
+        width: 555
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc04700b32f903ce0800000000000000
+      internalID: -1427466106250510132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_10
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 47
+        width: 555
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1d6c120e7d62a0a0800000000000000
+      internalID: -6871809693445231331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I_make_Logos_ahahah_nope_11
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 47
+        width: 553
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe43859e99379ffd0800000000000000
+      internalID: -2307686229168605969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

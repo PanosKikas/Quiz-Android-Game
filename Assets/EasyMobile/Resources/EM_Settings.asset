@@ -1,0 +1,572 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4452e2410c04b34915077cbe0f3a4d, type: 3}
+  m_Name: EM_Settings
+  m_EditorClassIdentifier: 
+  mAdvertisingSettings:
+    mAutoLoadAdsMode: 2
+    mAdCheckingInterval: 53.4
+    mAdLoadingInterval: 20
+    mIosDefaultAdNetworks:
+      bannerAdNetwork: 0
+      interstitialAdNetwork: 0
+      rewardedAdNetwork: 0
+    mAndroidDefaultAdNetworks:
+      bannerAdNetwork: 0
+      interstitialAdNetwork: 10
+      rewardedAdNetwork: 10
+    mAdColony:
+      mEnable: 0
+      mAppId:
+        mIosId: 
+        mAndroidId: 
+      mOrientation: 2
+      mEnableRewardedAdPrePopup: 0
+      mEnableRewardedAdPostPopup: 0
+      mDefaultInterstitialAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultRewardedAdId:
+        mIosId: 
+        mAndroidId: 
+      mCustomInterstitialAdIds:
+        keys: []
+        values: []
+      mCustomRewardedAdIds:
+        keys: []
+        values: []
+    mAdMob:
+      mEnable: 0
+      mTargetingSettings:
+        mTagForChildDirectedTreatment: 0
+        mExtraOptions:
+          keys: []
+          values: []
+      mEnableTestMode: 0
+      mAppId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultBannerAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultInterstitialAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultRewardedAdId:
+        mIosId: 
+        mAndroidId: 
+      mCustomBannerAdIds:
+        keys: []
+        values: []
+      mCustomInterstitialAdIds:
+        keys: []
+        values: []
+      mCustomRewardedAdIds:
+        keys: []
+        values: []
+    mAppLovin:
+      mEnable: 0
+      mAgeRestrictMode: 0
+      mSDKKey: 
+      mDefaultBannerAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultInterstitialAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultRewardedAdId:
+        mIosId: 
+        mAndroidId: 
+      mCustomBannerAdIds:
+        keys: []
+        values: []
+      mCustomInterstitialAdIds:
+        keys: []
+        values: []
+      mCustomRewardedAdIds:
+        keys: []
+        values: []
+    mFBAudience:
+      mEnable: 0
+      mBannerAdSize: 0
+      mEnableTestMode: 0
+      mTestDevices: []
+      mDefaultBannerId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultInterstitialAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultRewardedAdId:
+        mIosId: 
+        mAndroidId: 
+      mCustomBannerIds:
+        keys: []
+        values: []
+      mCustomInterstitialAdIds:
+        keys: []
+        values: []
+      mCustomRewardedAdIds:
+        keys: []
+        values: []
+    mChartboost:
+      mEnable: 0
+      mCustomInterstitialPlacements: []
+      mCustomRewardedPlacements: []
+    mFairBid:
+      mEnable: 0
+      mPublisherId: 
+      mShowTestSuite: 0
+      mDefaultBannerId: 
+      mDefaultInterstitialAdId: 
+      mDefaultRewardedAdId: 
+      mCustomBannerPlacements: []
+      mCustomInterstitialPlacements: []
+      mCustomRewardedPlacements: []
+    mIronSource:
+      mEnable: 0
+      mAppId:
+        mIosId: 
+        mAndroidId: 
+      mUseAdvancedSetting: 0
+      mSegments:
+        age: 0
+        gender: 
+        level: 0
+        isPaying: 0
+        userCreationDate: 0
+        iapt: 0
+        segmentName: 
+        customParams:
+          keys: []
+          values: []
+    mMoPub:
+      mEnable: 0
+      mReportAppOpen: 0
+      mITuneAppID: 
+      mEnableLocationPassing: 0
+      mUseAdvancedSetting: 0
+      mAllowLegitimateInterest: 0
+      mLogLevel: 70
+      mMediatedNetworks: []
+      mAutoRequestConsent: 0
+      mForceGdprApplicable: 0
+      mDefaultBannerId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultInterstitialAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultRewardedAdId:
+        mIosId: 
+        mAndroidId: 
+      mCustomBannerIds:
+        keys: []
+        values: []
+      mCustomInterstitialAdIds:
+        keys: []
+        values: []
+      mCustomRewardedAdIds:
+        keys: []
+        values: []
+    mTapjoy:
+      mEnable: 0
+      mAutoReconnect: 1
+      mAutoReconnectInterval: 10
+      mDefaultInterstitialAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultRewardedAdId:
+        mIosId: 
+        mAndroidId: 
+      mCustomInterstitialAdIds:
+        keys: []
+        values: []
+      mCustomRewardedAdIds:
+        keys: []
+        values: []
+    mUnityAds:
+      mEnable: 1
+      mAppId:
+        mIosId: 3820336
+        mAndroidId: 3820337
+      mDefaultBannerAdId:
+        mIosId: 
+        mAndroidId: 
+      mDefaultInterstitialAdId:
+        mIosId: video
+        mAndroidId: video
+      mDefaultRewardedAdId:
+        mIosId: rewardedVideo
+        mAndroidId: rewardedVideo
+      mCustomBannerAdIds:
+        keys: []
+        values: []
+      mCustomInterstitialAdIds:
+        keys: []
+        values: []
+      mCustomRewardedAdIds:
+        keys: []
+        values: []
+      mEnableTestMode: 0
+  mGameServiceSettings:
+    mAutoInit: 1
+    mAutoInitDelay: 0
+    mAndroidMaxLoginRequests: 3
+    mGpgsDebugLogEnabled: 0
+    mGpgsPopupGravity: 0
+    mGpgsShouldRequestServerAuthCode: 0
+    mGpgsForceRefreshServerAuthCode: 0
+    mGpgsOauthScopes: []
+    mLeaderboards:
+    - _name: GlobalLeaderboard
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQKA
+    mAchievements:
+    - _name: BabySteps
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQAg
+    - _name: VEHICLE10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQHQ
+    - _name: VEHICLE50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQHg
+    - _name: VEHICLE100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQDw
+    - _name: GENERAL10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQBQ
+    - _name: GENERAL50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQBg
+    - _name: GENERAL100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQPg
+    - _name: ANIMALS10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQGA
+    - _name: ANIMALS50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQGQ
+    - _name: ANIMALS100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQGg
+    - _name: SCIENCE10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQFA
+    - _name: SCIENCE50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQFg
+    - _name: SCIENCE100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQFw
+    - _name: ART10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQLw
+    - _name: ART50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQMA
+    - _name: ART100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQMQ
+    - _name: ENTERTAINMENT10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQEQ
+    - _name: ENTERTAINMENT50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQEg
+    - _name: ENTERTAINMENT100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQEw
+    - _name: CELEBRITIES10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQMg
+    - _name: CELEBRITIES50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQMw
+    - _name: CELEBRITIES100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQNA
+    - _name: GEOGRAPHY10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQJg
+    - _name: GEOGRAPHY50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQJw
+    - _name: GEOGRAPHY100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQKw
+    - _name: HISTORY10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQLA
+    - _name: HISTORY50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQLQ
+    - _name: HISTORY100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQLg
+    - _name: MYTHOLOGY10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQGw
+    - _name: MYTHOLOGY50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQHA
+    - _name: MYTHOLOGY100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQHw
+    - _name: POLITICS10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQNQ
+    - _name: POLITICS50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQNg
+    - _name: POLITICS100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQNw
+    - _name: SPORTS10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQIA
+    - _name: SPORTS50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQIQ
+    - _name: SPORTS100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQIg
+    - _name: TECHNOLOGY10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQIw
+    - _name: TECHNOLOGY50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQJA
+    - _name: TECHNOLOGY100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQJQ
+    - _name: TOTAL10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQOw
+    - _name: TOTAL100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQPA
+    - _name: TOTAL500
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQPQ
+    - _name: LEVEL2
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQBw
+    - _name: LEVEL10
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQCA
+    - _name: LEVEL20
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQCQ
+    - _name: LEVEL50
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQCg
+    - _name: LEVEL100
+      _iosId: 
+      _androidId: CgkI-pSdsfMEEAIQCw
+    mAndroidXmlResources: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--\r\nGoogle
+      Play game services IDs.\r\nSave this file as res/values/games-ids.xml in your
+      project.\r\n-->\r\n<resources>\r\n  <!-- app_id -->\r\n  <string name=\"app_id\"
+      translatable=\"false\">168412269178</string>\r\n  <!-- package_name -->\r\n 
+      <string name=\"package_name\" translatable=\"false\">com.hollowlotusnetertainment.triviyes</string>\r\n 
+      <!-- achievement Baby Steps -->\r\n  <string name=\"achievement_baby_steps\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQAg</string>\r\n  <!-- achievement Level
+      Up! -->\r\n  <string name=\"achievement_level_up\" translatable=\"false\">CgkI-pSdsfMEEAIQBw</string>\r\n 
+      <!-- achievement The 5th One...? -->\r\n  <string name=\"achievement_the_5th_one...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQOw</string>\r\n  <!-- achievement Knowledge
+      Is Power...? -->\r\n  <string name=\"achievement_knowledge_is_power...\" translatable=\"false\">CgkI-pSdsfMEEAIQBQ</string>\r\n 
+      <!-- achievement Recreational Time...? -->\r\n  <string name=\"achievement_recreational_time...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQEQ</string>\r\n  <!-- achievement Boot...?
+      -->\r\n  <string name=\"achievement_boot...\" translatable=\"false\">CgkI-pSdsfMEEAIQIw</string>\r\n 
+      <!-- achievement 1 + 1 = 2...? -->\r\n  <string name=\"achievement_1__1__2...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQFA</string>\r\n  <!-- achievement Gooaaal...?
+      -->\r\n  <string name=\"achievement_gooaaal...\" translatable=\"false\">CgkI-pSdsfMEEAIQIA</string>\r\n 
+      <!-- achievement Broom broom...? -->\r\n  <string name=\"achievement_broom_broom...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHQ</string>\r\n  <!-- achievement World
+      War What...?! -->\r\n  <string name=\"achievement_world_war_what...\" translatable=\"false\">CgkI-pSdsfMEEAIQLA</string>\r\n 
+      <!-- achievement Zeus...? -->\r\n  <string name=\"achievement_zeus...\" translatable=\"false\">CgkI-pSdsfMEEAIQGw</string>\r\n 
+      <!-- achievement Where Am I...? -->\r\n  <string name=\"achievement_where_am_i...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQJg</string>\r\n  <!-- achievement Canvas...?
+      -->\r\n  <string name=\"achievement_canvas...\" translatable=\"false\">CgkI-pSdsfMEEAIQLw</string>\r\n 
+      <!-- achievement Johnny Depp...? -->\r\n  <string name=\"achievement_johnny_depp...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQMg</string>\r\n  <!-- achievement Meow...?
+      -->\r\n  <string name=\"achievement_meow...\" translatable=\"false\">CgkI-pSdsfMEEAIQGA</string>\r\n 
+      <!-- achievement Parliament...? -->\r\n  <string name=\"achievement_parliament...\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQNQ</string>\r\n  <!-- achievement Novice
+      -->\r\n  <string name=\"achievement_novice\" translatable=\"false\">CgkI-pSdsfMEEAIQCA</string>\r\n 
+      <!-- achievement 90% Certain -->\r\n  <string name=\"achievement_90_certain\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQPA</string>\r\n  <!-- achievement The
+      More You Know! -->\r\n  <string name=\"achievement_the_more_you_know\" translatable=\"false\">CgkI-pSdsfMEEAIQBg</string>\r\n 
+      <!-- achievement Binge Watcher -->\r\n  <string name=\"achievement_binge_watcher\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQEg</string>\r\n  <!-- achievement Tech
+      Savvy -->\r\n  <string name=\"achievement_tech_savvy\" translatable=\"false\">CgkI-pSdsfMEEAIQJA</string>\r\n 
+      <!-- achievement Professor -->\r\n  <string name=\"achievement_professor\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQFg</string>\r\n  <!-- achievement Kobe
+      -->\r\n  <string name=\"achievement_kobe\" translatable=\"false\">CgkI-pSdsfMEEAIQIQ</string>\r\n 
+      <!-- achievement Vehicle Engineer! -->\r\n  <string name=\"achievement_vehicle_engineer\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHg</string>\r\n  <!-- achievement This
+      is SPARTA! -->\r\n  <string name=\"achievement_this_is_sparta\" translatable=\"false\">CgkI-pSdsfMEEAIQLQ</string>\r\n 
+      <!-- achievement Folklore Enthusiast -->\r\n  <string name=\"achievement_folklore_enthusiast\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHA</string>\r\n  <!-- achievement Going
+      Places -->\r\n  <string name=\"achievement_going_places\" translatable=\"false\">CgkI-pSdsfMEEAIQJw</string>\r\n 
+      <!-- achievement Bob Ross -->\r\n  <string name=\"achievement_bob_ross\" translatable=\"false\">CgkI-pSdsfMEEAIQMA</string>\r\n 
+      <!-- achievement I'm a Fan! -->\r\n  <string name=\"achievement_im_a_fan\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQMw</string>\r\n  <!-- achievement Animal
+      Lover -->\r\n  <string name=\"achievement_animal_lover\" translatable=\"false\">CgkI-pSdsfMEEAIQGQ</string>\r\n 
+      <!-- achievement Politically correct -->\r\n  <string name=\"achievement_politically_correct\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQNg</string>\r\n  <!-- achievement Scholar
+      -->\r\n  <string name=\"achievement_scholar\" translatable=\"false\">CgkI-pSdsfMEEAIQCQ</string>\r\n 
+      <!-- achievement Assertive! -->\r\n  <string name=\"achievement_assertive\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQPQ</string>\r\n  <!-- achievement Hyper-Literate!
+      -->\r\n  <string name=\"achievement_hyperliterate\" translatable=\"false\">CgkI-pSdsfMEEAIQPg</string>\r\n 
+      <!-- achievement Sleep?! -->\r\n  <string name=\"achievement_sleep\" translatable=\"false\">CgkI-pSdsfMEEAIQEw</string>\r\n 
+      <!-- achievement HACKER! -->\r\n  <string name=\"achievement_hacker\" translatable=\"false\">CgkI-pSdsfMEEAIQJQ</string>\r\n 
+      <!-- achievement Albert Einstein! -->\r\n  <string name=\"achievement_albert_einstein\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQFw</string>\r\n  <!-- achievement Pele
+      Would be Proud! -->\r\n  <string name=\"achievement_pele_would_be_proud\" translatable=\"false\">CgkI-pSdsfMEEAIQIg</string>\r\n 
+      <!-- achievement Schumacher! -->\r\n  <string name=\"achievement_schumacher\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQDw</string>\r\n  <!-- achievement Herodotus!
+      -->\r\n  <string name=\"achievement_herodotus\" translatable=\"false\">CgkI-pSdsfMEEAIQLg</string>\r\n 
+      <!-- achievement Myth-(olog)-ical! -->\r\n  <string name=\"achievement_mythological\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQHw</string>\r\n  <!-- achievement Globe
+      Master! -->\r\n  <string name=\"achievement_globe_master\" translatable=\"false\">CgkI-pSdsfMEEAIQKw</string>\r\n 
+      <!-- achievement Picasso! -->\r\n  <string name=\"achievement_picasso\" translatable=\"false\">CgkI-pSdsfMEEAIQMQ</string>\r\n 
+      <!-- achievement Paparazzi! -->\r\n  <string name=\"achievement_paparazzi\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQNA</string>\r\n  <!-- achievement Animal
+      Spirit! -->\r\n  <string name=\"achievement_animal_spirit\" translatable=\"false\">CgkI-pSdsfMEEAIQGg</string>\r\n 
+      <!-- achievement The Next President! -->\r\n  <string name=\"achievement_the_next_president\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQNw</string>\r\n  <!-- achievement Master!
+      -->\r\n  <string name=\"achievement_master\" translatable=\"false\">CgkI-pSdsfMEEAIQCg</string>\r\n 
+      <!-- achievement Human Encyclopedia!!! -->\r\n  <string name=\"achievement_human_encyclopedia\"
+      translatable=\"false\">CgkI-pSdsfMEEAIQCw</string>\r\n  <!-- leaderboard Global
+      Leaderboard -->\r\n  <string name=\"leaderboard_global_leaderboard\" translatable=\"false\">CgkI-pSdsfMEEAIQKA</string>\r\n</resources>\r\n"
+    mEnableMultiplayer: 0
+    mEnableSavedGames: 1
+    mAutoConflictResolutionStrategy: 0
+    mGpgsDataSource: 0
+  mInAppPurchaseSettings:
+    mAutoInit: 1
+    mTargetAndroidStore: 0
+    mSimulateAppleAskToBuy: 0
+    mInterceptApplePromotionalPurchases: 0
+    mEnableAmazonSandboxTesting: 0
+    mValidateAppleReceipt: 1
+    mValidateGooglePlayReceipt: 1
+    mProducts: []
+  mNotificationSettings:
+    mAutoInit: 1
+    mAutoInitDelay: 0
+    mIosAuthOptions: 7
+    mPushNotificationService: 0
+    mOneSignalAppId: 
+    mFirebaseTopics: []
+    mCategoryGroups: []
+    mDefaultCategory:
+      id: notification.category.default
+      groupId: 
+      name: Default
+      description: 
+      importance: 0
+      enableBadge: 1
+      lights: 1
+      lightColor: {r: 1, g: 1, b: 1, a: 1}
+      vibration: 1
+      vibrationPattern: 
+      lockScreenVisibility: 2
+      sound: 1
+      soundName: 
+      actionButtons: []
+    mUserCategories: []
+    mAndroidPermissions:
+    - mElementName: uses-permission
+      mValue: android.permission.RECEIVE_BOOT_COMPLETED
+  mPrivacySettings:
+    mDefaultConsentDialog:
+      mContent: 
+      mTitle: Privacy Consent
+      mToggles: []
+      mActionButtons:
+      - id: 
+        title: 
+        interactable: 0
+        titleColor: {r: 0, g: 0, b: 0, a: 0}
+        backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+        uninteractableTitleColor: {r: 0, g: 0, b: 0, a: 0}
+        uninteractableBackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    mConsentDialogComposerSettings:
+      mToggleSelectedIndex: 0
+      mButtonSelectedIndex: 0
+      mEnableCopyPasteMode: 0
+  mRatingRequestSettings:
+    mDefaultRatingDialogContent:
+      mTitle: Enjoying TriviYES! ?
+      mMessage: How would you rate TriviYES! ?
+      mLowRatingMessage: That's bad. Would you like to give us some feedback instead?
+      mHighRatingMessage: Awesome! Let's do it!
+      mPostponeButtonText: Not Now
+      mRefuseButtonText: Don't Ask Again
+      mRateButtonText: Rate Now!
+      mCancelButtonText: Cancel
+      mFeedbackButtonText: Send Feedback
+    mMinimumAcceptedStars: 4
+    mSupportEmail: hollowlotusentertainment@gmail.com
+    mIosAppId: 
+    mAnnualCap: 12
+    mDelayAfterInstallation: 2
+    mCoolingOffPeriod: 10
+    mIgnoreContraintsInDevelopment: 1
+  mSharingSettings:
+    mAndroidPermissions:
+    - mElementName: uses-permission
+      mValue: android.permission.WRITE_EXTERNAL_STORAGE
+    mIOSInfoPlistItems:
+    - mKey: NSPhotoLibraryUsageDescription
+      mValue: '[Your usage description]'
+    - mKey: NSPhotoLibraryAddUsageDescription
+      mValue: '[Your usage description]'
+  mNativeApisSettings:
+    mIsMediaEnabled: 0
+    mMediaSettings:
+      mAndroidPermissions:
+      - mElementName: uses-permission
+        mValue: android.permission.WRITE_EXTERNAL_STORAGE
+      - mElementName: uses-feature
+        mValue: android.hardware.camera
+      mIOSInfoPlistKeys:
+      - mKey: NSPhotoLibraryUsageDescription
+        mValue: '[Your usage description]'
+      - mKey: NSPhotoLibraryAddUsageDescription
+        mValue: '[Your usage description]'
+      - mKey: NSCameraUsageDescription
+        mValue: '[Your usage description]'
+      - mKey: NSMicrophoneUsageDescription
+        mValue: '[Your usage description]'
+    mIsContactsEnabled: 0
+    mContactsSettings:
+      mAndroidPermissions:
+      - mElementName: uses-permission
+        mValue: android.permission.WRITE_CONTACTS
+      - mElementName: uses-permission
+        mValue: android.permission.READ_CONTACTS
+      mIOSInfoPlistKeys:
+      - mKey: NSContactsUsageDescription
+        mValue: '[Your usage description]'
+  mIsAdModuleEnable: 1
+  mIsIAPModuleEnable: 0
+  mIsGameServiceModuleEnable: 1
+  mIsNotificationModuleEnable: 0
+  mIsSharingModuleEnable: 1
+  mActiveModuleIndex: 0
+  mIsSelectingModule: 0

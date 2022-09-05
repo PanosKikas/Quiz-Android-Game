@@ -1,5 +1,8 @@
 ﻿using System;
 
+// The reuqest data is the object that contains the list of questions
+// when first retrieved from the api as json as well as a response code
+// indicating if the request was was successfull
 [Serializable]
 public class RequestData
 {
@@ -12,7 +15,7 @@ public class RequestData
     }
 
     public int response_code;
-    public Question[] results;
+    public Question[] results; // list of questions fetched
     public int MyProperty { get; set; }
     public override string ToString()
     {

@@ -1,0 +1,16 @@
+<dependencies>
+  <androidPackages>
+    <!-- this should match ChartboostExampleApp/build.gradle -->
+    <androidPackage spec="com.google.android.gms:play-services-base:17.3.0"/>
+    <androidPackage spec="com.google.android.gms:play-services-ads-identifier:17.0.0"/>
+    <androidPackage spec="androidx.appcompat:appcompat:1.1.0"/>
+
+      <androidSdkPackageIds>
+        <androidSdkPackageId>extra-google-m2repository</androidSdkPackageId>
+      </androidSdkPackageIds>
+
+      <repositories>
+        <repository>https://maven.google.com</repository>
+      </repositories>
+  </androidPackages>
+</dependencies>

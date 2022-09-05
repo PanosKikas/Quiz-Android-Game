@@ -1,19 +1,22 @@
-﻿using System.Net;
-
+﻿using System.Collections.Generic;
+using System.Net;
+// A question object
 [System.Serializable]
 public class Question
 {
+    // the category of the question
     public Category questionCategory { get; private set; }
-    public string category;
-
-    public int categoryId
+    public string category; // the category name
+    
+    public CategoryName categoryName
     {
         get
         {
-            return GameManager.Instance.AllCategoriesDictionary[category].id;
+            return AllCategoriesData.GetCategoryEnumFromString(category);
         }
     }
     
+    // the type of question
     public string type;
 
     public QuestionType TypeOfQuestion
@@ -24,6 +27,7 @@ public class Question
         }
     }
    
+    // the difficulty of the question
     public string difficulty;
     
     public Difficulty QuestionDifficulty
@@ -34,9 +38,12 @@ public class Question
         }
     }
     
+    // The question itself
     public string question;
 
+    // The correct answer
     public string correct_answer;
+    // a list of all the incorrect answers
     public string[] incorrect_answers;
 
     public override string ToString()
